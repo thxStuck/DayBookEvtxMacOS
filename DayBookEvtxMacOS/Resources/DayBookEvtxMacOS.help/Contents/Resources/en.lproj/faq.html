@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="The app is not notarized by Apple. Open System Settings → Privacy &amp; Security and click Open Anyway, or run in Terminal:">
+<meta name="keywords" content="macOS will not open the app, A prompt asks for access to Documents (or Desktop, Downloads), A query finds nothing, The XML or Hex tab says &quot;Source file not found&quot;, &quot;The file has not responded for more than 3 seconds&quot;, An event has no readable description, How to find an event by record number (EventRecordID), How to switch the interface language, Can a case be moved to another Mac, Does it run on Intel Macs, How to report a bug or suggest an improvement">
+
+<title>FAQ and troubleshooting — DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Contents</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="faq-and-troubleshooting"><a name="faq-and-troubleshooting"></a>FAQ and troubleshooting</h1>
+<nav class="toc"><ul><li><a href="#macos-will-not-open-the-app">macOS will not open the app</a></li><li><a href="#a-prompt-asks-for-access-to-documents-or-desktop-downloads">A prompt asks for access to Documents (or Desktop, Downloads)</a></li><li><a href="#a-query-finds-nothing">A query finds nothing</a></li><li><a href="#the-xml-or-hex-tab-says-source-file-not-found">The XML or Hex tab says "Source file not found"</a></li><li><a href="#the-file-has-not-responded-for-more-than-3-seconds">"The file has not responded for more than 3 seconds"</a></li><li><a href="#an-event-has-no-readable-description">An event has no readable description</a></li><li><a href="#how-to-find-an-event-by-record-number-eventrecordid">How to find an event by record number (EventRecordID)</a></li><li><a href="#how-to-switch-the-interface-language">How to switch the interface language</a></li><li><a href="#can-a-case-be-moved-to-another-mac">Can a case be moved to another Mac</a></li><li><a href="#does-it-run-on-intel-macs">Does it run on Intel Macs</a></li><li><a href="#how-to-report-a-bug-or-suggest-an-improvement">How to report a bug or suggest an improvement</a></li></ul></nav>
+<h2 id="macos-will-not-open-the-app"><a name="macos-will-not-open-the-app"></a>macOS will not open the app</h2>
+<p>The app is not notarized by Apple. Open System Settings → Privacy &amp; Security and click Open Anyway, or run in Terminal:</p>
+<pre><code>xattr -dr com.apple.quarantine /Applications/DayBookEvtxMacOS.app</code></pre>
+<p>More in <a href="install.html#first-launch">Installation</a>.</p>
+<h2 id="a-prompt-asks-for-access-to-documents-or-desktop-downloads"><a name="a-prompt-asks-for-access-to-documents-or-desktop-downloads"></a>A prompt asks for access to Documents (or Desktop, Downloads)</h2>
+<p>macOS protects these folders separately. Allow access, or the app cannot read the logs during import or the XML and bytes of a record in the details. If you denied it, turn it on in System Settings → Privacy &amp; Security → Files and Folders → DayBookEvtxMacOS.</p>
+<h2 id="a-query-finds-nothing"><a name="a-query-finds-nothing"></a>A query finds nothing</h2>
+<ol>
+<li>Look at the filter bar under the query: filter chips and the orange time chip narrow the result. Click Reset All (⌘K).</li>
+<li><code>=</code> matches the whole value. For part of a value use <code>contains</code>, <code>startswith</code>, <code>endswith</code> or a <code>*</code> mask.</li>
+<li><code>=</code> compares text: <code>0x17</code> and <code>23</code> are different values. Use <code>&lt;</code>, <code>&gt;</code>, <code>between</code> for numbers.</li>
+<li><code>time</code> is read in the chosen time zone. Add <code>Z</code> to give a time in UTC.</li>
+<li>If a field does not exist, the app shows an error with similar field names.</li>
+</ol>
+<h2 id="the-xml-or-hex-tab-says-source-file-not-found"><a name="the-xml-or-hex-tab-says-source-file-not-found"></a>The XML or Hex tab says "Source file not found"</h2>
+<p>Event fields are stored in the case; the XML and raw bytes are re-read from the source log. If the logs were moved or deleted after import, these tabs are unavailable and everything else works. Put the files back at the path shown on the tab.</p>
+<h2 id="the-file-has-not-responded-for-more-than-3-seconds"><a name="the-file-has-not-responded-for-more-than-3-seconds"></a>"The file has not responded for more than 3 seconds"</h2>
+<p>The source file takes too long to open: a network share is unavailable, an external disk is asleep, or macOS is waiting for an answer to a folder access prompt. The interface keeps working and the Fields tab is available.</p>
+<h2 id="an-event-has-no-readable-description"><a name="an-event-has-no-readable-description"></a>An event has no readable description</h2>
+<p>Readable descriptions in English and Russian exist for events common in investigations: logons, Kerberos, processes, services, tasks, PowerShell, Sysmon, RDP, Defender and more. Other events show their data as "Field: value" in the description column. Every field is always on the Fields tab of the details.</p>
+<h2 id="how-to-find-an-event-by-record-number-eventrecordid"><a name="how-to-find-an-event-by-record-number-eventrecordid"></a>How to find an event by record number (EventRecordID)</h2>
+<p>Not yet: the record number is shown in the details and in exports, but cannot be queried.</p>
+<h2 id="how-to-switch-the-interface-language"><a name="how-to-switch-the-interface-language"></a>How to switch the interface language</h2>
+<p>DayBookEvtxMacOS menu → Interface Language, then restart. More in <a href="install.html#interface-language">Interface language</a>.</p>
+<h2 id="can-a-case-be-moved-to-another-mac"><a name="can-a-case-be-moved-to-another-mac"></a>Can a case be moved to another Mac</h2>
+<p>Yes, the <code>.daybook</code> folder can be copied. For the XML and Hex tabs to work there, the logs must be at the same paths as during import.</p>
+<h2 id="does-it-run-on-intel-macs"><a name="does-it-run-on-intel-macs"></a>Does it run on Intel Macs</h2>
+<p>An Intel build has not been tested; the release archive is for Apple Silicon only.</p>
+<h2 id="how-to-report-a-bug-or-suggest-an-improvement"><a name="how-to-report-a-bug-or-suggest-an-improvement"></a>How to report a bug or suggest an improvement</h2>
+<p>Open an <a href="https://github.com/thxStuck/DayBookEvtxMacOS/issues" class="external">issue on GitHub</a>. Include the app and macOS versions, the steps, what you expected and what happened. Do not attach logs with personal or confidential data.</p>
+</main>
+</body>
+</html>

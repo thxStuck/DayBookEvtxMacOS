@@ -11,6 +11,11 @@ struct DayBookApp: App {
                 .defaultAppStorage(AppDefaults.store)
         }
         .commands {
+            CommandGroup(replacing: .appInfo) {
+                Button("О программе DayBookEvtxMacOS") { AboutPanel.show() }
+                LanguageMenu(app: app)
+            }
+            CommandGroup(after: .help) { HelpMenuItems() }
             CommandGroup(replacing: .newItem) {
                 Button("Новый кейс из журналов…") { app.newCaseFromLogs() }
                     .keyboardShortcut("n")

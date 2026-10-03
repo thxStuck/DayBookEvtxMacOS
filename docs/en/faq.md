@@ -62,9 +62,10 @@ details.
 
 Not yet: the record number is shown in the details and in exports, but cannot be queried.
 
-## How to switch the interface to English
+## How to switch the interface language
 
-See [Interface language](install.html#interface-language).
+DayBookEvtxMacOS menu → Interface Language, then restart. More in
+[Interface language](install.html#interface-language).
 
 ## Can a case be moved to another Mac
 

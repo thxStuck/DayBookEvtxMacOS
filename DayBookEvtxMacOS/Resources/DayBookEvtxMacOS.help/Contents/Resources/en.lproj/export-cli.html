@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="The Export menu on the toolbar exports the current result: query, filters, time range, and only the selected group if one is selected. Rows keep the on-screen order. The file is revealed in Finder afterwards.">
+<meta name="keywords" content="Exporting events, Columns, XLSX details, Exporting detections, The evtxdump command-line tool, Examples, Differences from the app">
+
+<title>Export and command line — DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Contents</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="export-and-command-line"><a name="export-and-command-line"></a>Export and command line</h1>
+<nav class="toc"><ul><li><a href="#exporting-events">Exporting events</a></li><li class="sub"><a href="#columns">Columns</a></li><li class="sub"><a href="#xlsx-details">XLSX details</a></li><li><a href="#exporting-detections">Exporting detections</a></li><li><a href="#the-evtxdump-command-line-tool">The evtxdump command-line tool</a></li><li class="sub"><a href="#examples">Examples</a></li><li class="sub"><a href="#differences-from-the-app">Differences from the app</a></li></ul></nav>
+<h2 id="exporting-events"><a name="exporting-events"></a>Exporting events</h2>
+<p>The Export menu on the toolbar exports the <strong>current result</strong>: query, filters, time range, and only the selected group if one is selected. Rows keep the on-screen order. The file is revealed in Finder afterwards.</p>
+<table>
+<thead><tr><th>Format</th><th>Details</th></tr></thead>
+<tbody>
+<tr><td>CSV</td><td>Comma, UTF-8 without BOM, CRLF line ends, RFC 4180 quoting. Values are unchanged</td></tr>
+<tr><td>CSV for Excel (;)</td><td>Semicolon and BOM. Values starting with <code>=</code>, <code>+</code>, <code>-</code>, <code>@</code>, a tab or CR get a leading apostrophe so Excel does not run them as formulas</td></tr>
+<tr><td>JSON Lines</td><td>One event per line. <code>source_file</code> is the full path. Repeated fields in <code>data</code> become arrays</td></tr>
+<tr><td>Excel (XLSX)</td><td>An events sheet with a frozen header and autofilter; an information sheet with the export parameters</td></tr>
+</tbody></table>
+<h3 id="columns"><a name="columns"></a>Columns</h3>
+<table>
+<thead><tr><th>Column</th><th>Contents</th></tr></thead>
+<tbody>
+<tr><td><code>Time (&lt;zone&gt;)</code></td><td>Time in the chosen zone, to milliseconds</td></tr>
+<tr><td><code>TimeUTC</code></td><td>Time in UTC, 7 fraction digits and <code>Z</code></td></tr>
+<tr><td><code>Computer</code>, <code>Channel</code>, <code>Provider</code>, <code>EventID</code></td><td>System fields</td></tr>
+<tr><td><code>Level</code></td><td>Level as a number</td></tr>
+<tr><td><code>UserSID</code>, <code>RecordID</code></td><td>The user SID from System and the record number</td></tr>
+<tr><td><code>SourceFile</code>, <code>SourceSHA256</code></td><td>Source file name and its SHA-256</td></tr>
+<tr><td><code>Flags</code></td><td>Record flags</td></tr>
+<tr><td>Your columns</td><td>Fields you added to the table</td></tr>
+<tr><td><code>EventData</code></td><td>Every event field as "name: value | …"</td></tr>
+</tbody></table>
+<h3 id="xlsx-details"><a name="xlsx-details"></a>XLSX details</h3>
+<ul>
+<li>EventID, Level and RecordID are written as numbers; everything else as text, never as formulas.</li>
+<li>Up to 1,048,575 rows (the Excel limit). A larger result asks you to narrow the query.</li>
+<li>Cells longer than 32,767 characters are cut and end with "…[cut: full length N characters]"; their number is on the information sheet.</li>
+<li>The information sheet: case path, export time (UTC), time zone, query, filters, time range, row order, number of events, source files with SHA-256 and record counts.</li>
+</ul>
+<div class="callout note"><p class="callout-title">Note</p><p>The event description (the Description / event data column in the table) is built for display and is not exported. All event data is in the <code>EventData</code> column.</p></div>
+<h2 id="exporting-detections"><a name="exporting-detections"></a>Exporting detections</h2>
+<p>On the Detections screen the matched rules can be saved as CSV — plain or for Excel (with the same formula protection). Columns: <code>Level</code>, <code>Rule</code>, <code>Events</code>, <code>Hosts</code>, first and last match in the chosen zone and in UTC, <code>Author</code>, <code>RuleSet</code> (SigmaHQ, Hayabusa or your folder), <code>RulePath</code>, <code>RuleID</code>, <code>Status</code>, <code>Tags</code> (including MITRE ATT&amp;CK techniques), <code>References</code>, <code>License</code> and <code>DQL</code> — the query the rule became.</p>
+<h2 id="the-evtxdump-command-line-tool"><a name="the-evtxdump-command-line-tool"></a>The evtxdump command-line tool</h2>
+<p>Built with the app by <code>scripts/build.sh</code>: <code>Packages/DaybookKit/.build/release/evtxdump</code>. It uses the same core as the app.</p>
+<table>
+<thead><tr><th>Command</th><th>Syntax</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><code>ingest</code></td><td><code>&lt;case.daybook&gt; &lt;files/folders&gt;… [--no-merge] [--no-carve] [--no-hash]</code></td><td>Create a case. The case folder must not exist. Detections are not run</td></tr>
+<tr><td><code>dql</code></td><td><code>&lt;case&gt; &quot;&lt;query&gt;&quot;</code></td><td>Run a DQL query. Times are printed in UTC</td></tr>
+<tr><td><code>query</code></td><td><code>&lt;case&gt; [key=value \| key!=value]… [--facet key]</code></td><td>Filters like in the app: first rows of the result and timings</td></tr>
+<tr><td><code>entities</code></td><td><code>&lt;case&gt; [--rebuild]</code></td><td>Show or rebuild the registry of hosts, users and IPs</td></tr>
+<tr><td><code>sessions</code></td><td><code>&lt;case&gt;</code></td><td>Logon and RDP sessions</td></tr>
+<tr><td><code>processes</code></td><td><code>&lt;case&gt;</code></td><td>Process trees</td></tr>
+<tr><td><code>sigma</code></td><td><code>&lt;case&gt; --pack rules.json [--dir folder] [--rule id\|path] [--compile-only] [--verify] [--top N]</code></td><td>Run Sigma rules. Results are written to the case</td></tr>
+<tr><td><code>export</code></td><td><code>&lt;case&gt; &lt;out.csv\|out.jsonl\|out.xlsx&gt; [&quot;DQL&quot;] [--fields a,b]</code></td><td>Export; the format comes from the extension</td></tr>
+<tr><td><code>stats</code></td><td><code>&lt;files/folders&gt;…</code></td><td>State of files and chunks without creating a case</td></tr>
+<tr><td><code>carve</code></td><td><code>&lt;files/folders&gt;…</code></td><td>Slack recovery statistics</td></tr>
+<tr><td><code>xml</code></td><td><code>&lt;file&gt; [--limit N] [--jsonl]</code></td><td>XML of a file's live records</td></tr>
+<tr><td><code>json</code></td><td><code>&lt;file&gt; [--limit N]</code></td><td>A file's records, one JSON line each</td></tr>
+</tbody></table>
+<h3 id="examples"><a name="examples"></a>Examples</h3>
+<pre><code>evtxdump ingest case.daybook /path/to/winevt/logs
+evtxdump dql case.daybook &#x27;EventID = 4625 | group by IpAddress&#x27;
+evtxdump sigma case.daybook --pack DayBookEvtxMacOS/Resources/Rules/rules.json --top 20
+evtxdump export case.daybook out.xlsx &#x27;EventID = 4688&#x27;
+evtxdump stats /path/to/logs</code></pre>
+<h3 id="differences-from-the-app"><a name="differences-from-the-app"></a>Differences from the app</h3>
+<ul>
+<li><code>export</code> cannot write CSV for Excel and prints times in UTC only.</li>
+<li>In <code>dql</code>, times in a query are UTC and only in the form <code>YYYY-MM-DD[ HH:MM[:SS]]</code>: no fractions, no <code>Z</code> suffix, no offsets.</li>
+<li>In <code>export</code>, time conditions in the query are not supported and return an error. Use <code>dql</code> to find what you need, or export from the app.</li>
+</ul>
+</main>
+</body>
+</html>

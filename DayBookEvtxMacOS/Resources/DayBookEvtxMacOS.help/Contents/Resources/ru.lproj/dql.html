@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Условие — это поле оператор значение. Условия соединяются словами and, or, not и скобками.">
+<meta name="keywords" content="Коротко, Условия, Значения и кавычки, Регистр, Операторы, Подстроки и маски, Регулярные выражения, Подсети, Числа, Время, Поиск по всем полям, Сравнение двух полей, Поля, Поля данных события, Системные поля и псевдонимы, Сущности, закладки и детекты, Конвейер, Сортировка, Limit, Группы, Ограничения, Ошибки, Как выполняется запрос, Готовые запросы">
+
+<title>Язык запросов DQL — Справка DayBookEvtxMacOS</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Содержание</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/ru/">Документация на сайте</a></header>
+<main>
+<h1 id="язык-запросов-dql"><a name="язык-запросов-dql"></a>Язык запросов DQL</h1>
+<nav class="toc"><ul><li><a href="#коротко">Коротко</a></li><li><a href="#условия">Условия</a></li><li class="sub"><a href="#значения-и-кавычки">Значения и кавычки</a></li><li class="sub"><a href="#регистр">Регистр</a></li><li><a href="#операторы">Операторы</a></li><li class="sub"><a href="#подстроки-и-маски">Подстроки и маски</a></li><li class="sub"><a href="#регулярные-выражения">Регулярные выражения</a></li><li class="sub"><a href="#подсети">Подсети</a></li><li><a href="#числа">Числа</a></li><li><a href="#время">Время</a></li><li><a href="#поиск-по-всем-полям">Поиск по всем полям</a></li><li><a href="#сравнение-двух-полей">Сравнение двух полей</a></li><li><a href="#поля">Поля</a></li><li class="sub"><a href="#поля-данных-события">Поля данных события</a></li><li class="sub"><a href="#системные-поля-и-псевдонимы">Системные поля и псевдонимы</a></li><li class="sub"><a href="#сущности-закладки-и-детекты">Сущности, закладки и детекты</a></li><li><a href="#конвейер">Конвейер</a></li><li class="sub"><a href="#сортировка">Сортировка</a></li><li class="sub"><a href="#limit">Limit</a></li><li class="sub"><a href="#группы">Группы</a></li><li><a href="#ограничения">Ограничения</a></li><li><a href="#ошибки">Ошибки</a></li><li><a href="#как-выполняется-запрос">Как выполняется запрос</a></li><li><a href="#готовые-запросы">Готовые запросы</a></li></ul></nav>
+<h2 id="коротко"><a name="коротко"></a>Коротко</h2>
+<pre><code>EventID = 4624 and LogonType in (3, 10) and not TargetUserName endswith &quot;$&quot;
+| group by TargetUserName, IpAddress
+| sort count desc
+| limit 50</code></pre>
+<ul>
+<li>Запрос пишется в строке над таблицей и выполняется по Return или ⌘↩. Кнопка «Стоп» прерывает долгий запрос; новый запрос отменяет предыдущий.</li>
+<li>Запрос работает <strong>вместе</strong> с чипами фильтров и выбранным интервалом времени: сначала применяются они, затем запрос.</li>
+<li>Крестик в строке очищает запрос, кнопка «Сбросить всё» (⌘K) — запрос, фильтры и интервал.</li>
+<li>Последние 50 запросов хранятся в истории (кнопка с часами).</li>
+<li>Кнопка «?» открывает краткую подсказку.</li>
+</ul>
+<h2 id="условия"><a name="условия"></a>Условия</h2>
+<p>Условие — это <code>поле оператор значение</code>. Условия соединяются словами <code>and</code>, <code>or</code>, <code>not</code> и скобками.</p>
+<ul>
+<li>Приоритет: <code>not</code> выше <code>and</code>, <code>and</code> выше <code>or</code>.</li>
+<li>Два условия подряд без связки означают <code>and</code>: <code>EventID = 4624 LogonType = 3</code> — то же, что <code>EventID = 4624 and LogonType = 3</code>.</li>
+<li>Ключевые слова пишутся в любом регистре.</li>
+</ul>
+<h3 id="значения-и-кавычки"><a name="значения-и-кавычки"></a>Значения и кавычки</h3>
+<ul>
+<li>Без кавычек можно писать значения без пробелов и без символов <code>( ) , | &quot; &#x27; = ! &lt; &gt; ~</code>: <code>10.20.30.40</code>, <code>S-1-5-18</code>, <code>0x17</code>, <code>ADMIN$</code>, <code>C:\Windows\x.exe</code>, <code>*\powershell.exe</code>, <code>10.0.0.0/8</code>.</li>
+<li>Значения с пробелами берутся в двойные или одинарные кавычки.</li>
+<li>Внутри кавычек экранируются только своя кавычка и <code>\\</code>. Любой другой <code>\</code> остаётся как есть, поэтому пути Windows можно вставлять без изменений: <code>Image = &quot;C:\Windows\System32\cmd.exe&quot;</code>.</li>
+<li>Имя поля с пробелами или совпадающее с ключевым словом пишется в обратных кавычках: <code>`Threat Name` contains Trojan</code>.</li>
+</ul>
+<h3 id="регистр"><a name="регистр"></a>Регистр</h3>
+<ul>
+<li><strong>Имена полей</strong> — без учёта регистра: <code>eventid</code>, <code>EventID</code> и <code>@EventID</code> равнозначны. Если в кейсе есть поле с точно таким написанием, оно выигрывает у одноимённого псевдонима: <code>User</code> — поле Sysmon, <code>user</code> — псевдоним SID пользователя.</li>
+<li><strong>Значения</strong> сравниваются без учёта регистра. Исключение — оператор <code>==</code>.</li>
+</ul>
+<h2 id="операторы"><a name="операторы"></a>Операторы</h2>
+<table>
+<thead><tr><th>Оператор</th><th>Что делает</th></tr></thead>
+<tbody>
+<tr><td><code>=</code></td><td>Значение совпадает целиком, без учёта регистра. Если в значении есть <code>*</code> или <code>?</code>, работает как маска <code>like</code></td></tr>
+<tr><td><code>==</code></td><td>Совпадает целиком с учётом регистра (с <code>*</code> или <code>?</code> — маска без учёта регистра)</td></tr>
+<tr><td><code>!=</code></td><td>Всё, что не <code>=</code>, <strong>включая события, где поля нет совсем</strong></td></tr>
+<tr><td><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td><td>Сравнение чисел или времени</td></tr>
+<tr><td><code>between a and b</code></td><td>Числа или время в диапазоне, обе границы включительно</td></tr>
+<tr><td><code>in (a, b, …)</code> / <code>not in (…)</code></td><td>Одно из значений (до 10 000 значений)</td></tr>
+<tr><td><code>contains</code> или <code>~</code></td><td>Подстрока</td></tr>
+<tr><td><code>not contains</code> или <code>!~</code></td><td>Нет подстроки (включая события без поля)</td></tr>
+<tr><td><code>startswith</code>, <code>endswith</code></td><td>Начало или конец значения</td></tr>
+<tr><td><code>like</code></td><td>Маска: <code>*</code> — любые символы, <code>?</code> — один символ; маска охватывает значение целиком</td></tr>
+<tr><td><code>matches</code> или <code>regex</code></td><td>Регулярное выражение</td></tr>
+<tr><td><code>cidr</code></td><td>Адрес в подсети: <code>IpAddress cidr 10.0.0.0/8</code></td></tr>
+<tr><td><code>exists</code> / <code>not exists</code></td><td>Поле есть / поля нет</td></tr>
+</tbody></table>
+<p>После имени поля <code>not</code> допустим только перед <code>in</code>, <code>contains</code> и <code>exists</code>. Для остальных случаев пишите <code>not</code> перед условием: <code>not Image endswith &quot;\explorer.exe&quot;</code>.</p>
+<h3 id="подстроки-и-маски"><a name="подстроки-и-маски"></a>Подстроки и маски</h3>
+<ul>
+<li><code>contains</code>, <code>startswith</code>, <code>endswith</code> сравнивают буквально: <code>*</code>, <code>?</code>, <code>%</code>, <code>_</code> — обычные символы. Пустое значение ничего не находит.</li>
+<li><code>like</code> и <code>=</code> с <code>*</code>/<code>?</code> — маска. Экранировать сами <code>*</code> и <code>?</code> нельзя.</li>
+<li>Все эти операторы — без учёта регистра.</li>
+</ul>
+<h3 id="регулярные-выражения"><a name="регулярные-выражения"></a>Регулярные выражения</h3>
+<ul>
+<li>Движок ICU (<code>NSRegularExpression</code>), без учёта регистра.</li>
+<li>Ищется вхождение в любом месте значения. Чтобы привязать к началу или концу, используйте <code>^</code> и <code>$</code>.</li>
+<li>Выражение проверяется на каждом уникальном значении поля, параллельно.</li>
+<li>На одно значение отводится 2 секунды процессорного времени. Значение, на котором выражение работает дольше, пропускается. Детекты сообщают об этом предупреждением у правила; строка запроса такого предупреждения пока не показывает.</li>
+</ul>
+<h3 id="подсети"><a name="подсети"></a>Подсети</h3>
+<p><code>cidr</code> принимает IPv4 и IPv6: <code>адрес/префикс</code>, без префикса — один адрес. Значения полей вида <code>::ffff:10.1.2.3</code>, <code>[192.168.1.1]</code> и <code>fe80::1%12</code> распознаются.</p>
+<h2 id="числа"><a name="числа"></a>Числа</h2>
+<ul>
+<li><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code> и <code>between</code> работают только с числами: десятичными (можно с минусом) или шестнадцатеричными <code>0x…</code>. Нечисловые значения в такие выборки не попадают.</li>
+<li><code>=</code> сравнивает <strong>текст</strong>: <code>TicketEncryptionType = 0x17</code> найдёт <code>0x17</code>, но не <code>23</code>; <code>LogonType = 03</code> не найдёт <code>3</code>.</li>
+</ul>
+<h2 id="время"><a name="время"></a>Время</h2>
+<p>Поле <code>time</code> (также <code>timestamp</code>, <code>timecreated</code>) — это TimeCreated события, а если его нет — время записи в журнал.</p>
+<pre><code>time &gt;= &quot;2026-09-30 10:00&quot; and time &lt; &quot;2026-09-30 12:00&quot;
+time between &quot;2026-09-30 10:00&quot; and &quot;2026-09-30 12:00:30.5&quot;
+time &gt;= 2026-09-30T07:00Z</code></pre>
+<ul>
+<li>Формат: <code>ГГГГ-ММ-ДД[ ЧЧ:ММ[:СС[.fffffff]]]</code>, между датой и временем — пробел или <code>T</code>. Одна дата означает 00:00, доли секунды — до 7 цифр.</li>
+<li>Без суффикса время понимается <strong>в выбранном часовом поясе</strong> отображения. Суффикс <code>Z</code> — UTC, <code>+03:00</code> или <code>-05:00</code> — явное смещение (с двоеточием).</li>
+<li>Значение с пробелом берётся в кавычки.</li>
+<li><code>time = …</code> означает «в пределах этой секунды».</li>
+<li><code>between</code> включает обе границы, порядок границ не важен.</li>
+<li>Для поля <code>time</code> допустимы <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>between</code>, <code>=</code>, <code>!=</code>. <code>in</code>, группировка и <code>exists</code> по времени не поддерживаются.</li>
+</ul>
+<div class="callout note-ru"><p class="callout-title">Примечание</p><p>Если сменить часовой пояс, уже выполненный запрос не перезапускается: его время было понято в прежнем поясе. Выполните запрос заново.</p></div>
+<p>Интервал удобнее задавать на гистограмме: выделите область протягиванием и нажмите «Фильтр по выделению». Интервал появится оранжевым чипом.</p>
+<h2 id="поиск-по-всем-полям"><a name="поиск-по-всем-полям"></a>Поиск по всем полям</h2>
+<p>Строка в кавычках без имени поля ищет подстроку во всех полях события, включая системные:</p>
+<pre><code>&quot;mimikatz&quot;
+&quot;mimikatz&quot; &quot;sekurlsa&quot;            — обе подстроки (неявный and)
+EventID = 4104 | search &quot;Invoke-WebRequest&quot;</code></pre>
+<p>Это поиск подстроки без учёта регистра, а не поиск по словам. Слово без кавычек считается именем поля.</p>
+<h2 id="сравнение-двух-полей"><a name="сравнение-двух-полей"></a>Сравнение двух полей</h2>
+<p>Правая часть в обратных кавычках — это другое поле:</p>
+<pre><code>Image endswith `OriginalFileName`
+TargetUserName != `SubjectUserName`</code></pre>
+<ul>
+<li>Операторы: <code>=</code>, <code>==</code>, <code>!=</code>, <code>contains</code>/<code>~</code>, <code>startswith</code>, <code>endswith</code>.</li>
+<li>Берётся первое значение каждого поля, рассматриваются события, где есть оба поля (<code>!=</code> включает и события без одного из полей).</li>
+<li>Сравниваются поля данных события (EventData/UserData), не системные поля.</li>
+</ul>
+<h2 id="поля"><a name="поля"></a>Поля</h2>
+<h3 id="поля-данных-события"><a name="поля-данных-события"></a>Поля данных события</h3>
+<ul>
+<li><code>&lt;Data Name=&quot;X&quot;&gt;</code> даёт поле <code>X</code>; безымянный <code>&lt;Data&gt;</code> — поле <code>Data</code> (может повторяться).</li>
+<li>Для UserData имя — путь ниже корневого элемента через точку, атрибут — <code>путь.атрибут</code>.</li>
+<li>Если шаблон записи не найден, поля называются <code>Value[0]</code>, <code>Value[1]</code>, …</li>
+<li>Неизвестное имя поля даёт ошибку с подсказкой похожих имён.</li>
+</ul>
+<h3 id="системные-поля-и-псевдонимы"><a name="системные-поля-и-псевдонимы"></a>Системные поля и псевдонимы</h3>
+<table>
+<thead><tr><th>Пишите</th><th>Ключ</th><th>Что содержит</th></tr></thead>
+<tbody>
+<tr><td><code>EventID</code>, <code>id</code>, <code>event_id</code></td><td><code>@EventID</code></td><td>Код события десятичным числом (без Qualifiers)</td></tr>
+<tr><td><code>channel</code>, <code>log</code></td><td><code>@Channel</code></td><td>Журнал, например <code>Security</code>, <code>Microsoft-Windows-Sysmon/Operational</code></td></tr>
+<tr><td><code>provider</code>, <code>provider_name</code></td><td><code>@Provider</code></td><td>Источник (Provider Name)</td></tr>
+<tr><td><code>host</code>, <code>computer</code></td><td><code>@Computer</code></td><td>Поле Computer как записано в событии</td></tr>
+<tr><td><code>level</code></td><td><code>@Level</code></td><td>Уровень: число или слово (см. ниже)</td></tr>
+<tr><td><code>user</code>, <code>userid</code>, <code>sid</code></td><td><code>@UserID</code></td><td>SID из System/Security</td></tr>
+<tr><td><code>file</code>, <code>source</code></td><td><code>@Source</code></td><td>Имя исходного файла (при совпадении имён — с папками)</td></tr>
+<tr><td><code>flag</code>, <code>flags</code></td><td><code>@Flag</code></td><td>Флаги записи, см. <a href="cases-import.html#флаги-записей">Кейсы и импорт</a></td></tr>
+<tr><td><code>task</code>, <code>opcode</code></td><td><code>@Task</code>, <code>@Opcode</code></td><td>Числа из System</td></tr>
+<tr><td><code>keywords</code></td><td><code>@Keywords</code></td><td>16 шестнадцатеричных цифр: <code>0x8020000000000000</code></td></tr>
+</tbody></table>
+<p>Уровень можно писать числом или словом в операторах <code>=</code>, <code>!=</code>, <code>in</code>: <code>critical</code>/<code>критический</code> = 1, <code>error</code>/<code>ошибка</code> = 2, <code>warning</code>/<code>предупреждение</code> = 3, <code>information</code>/<code>info</code>/<code>сведения</code> = 4 (включает и 0), <code>verbose</code>/<code>подробно</code> = 5.</p>
+<p>Аудит в журнале Security задаётся через <code>keywords</code>: успех — <code>0x8020000000000000</code>, отказ — <code>0x8010000000000000</code>.</p>
+<div class="callout warning-ru"><p class="callout-title">Важно</p><p>Номер записи (EventRecordID), ProcessID и ThreadID хранятся в кейсе и показываются в деталях, но в запросах пока недоступны.</p></div>
+<h3 id="сущности-закладки-и-детекты"><a name="сущности-закладки-и-детекты"></a>Сущности, закладки и детекты</h3>
+<table>
+<thead><tr><th>Поле</th><th>Операторы</th><th>Что ищет</th></tr></thead>
+<tbody>
+<tr><td><code>anyhost</code>, <code>anyuser</code>, <code>anyip</code></td><td><code>=</code>, <code>!=</code>, <code>in</code></td><td>События сущности во всех ролях: хост в любом написании, IP в любой форме, пользователя по имени, <code>ДОМЕН\имя</code>, <code>имя@домен</code> или SID</td></tr>
+<tr><td><code>tag</code> (<code>bookmark</code>)</td><td><code>=</code>, <code>!=</code>, <code>in</code>, <code>exists</code></td><td>Закладки по цвету: <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>blue</code>, <code>purple</code>; <code>tag = *</code> — любая</td></tr>
+<tr><td><code>rule</code></td><td><code>=</code>, <code>!=</code>, <code>in</code>, <code>contains</code>, <code>exists</code></td><td>События, на которых сработало правило: по id или названию; <code>rule exists</code> — любое</td></tr>
+<tr><td><code>rulelevel</code></td><td><code>=</code>, <code>!=</code>, <code>in</code>, <code>&lt;</code>, <code>&gt;</code>…</td><td>По уровню сработавших правил: <code>informational</code>, <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code></td></tr>
+</tbody></table>
+<p>Примеры: <code>anyip = 10.20.30.40</code>, <code>anyuser = &quot;CORP\j.doe&quot;</code>, <code>tag = red</code>, <code>rulelevel &gt;= high</code>.</p>
+<h2 id="конвейер"><a name="конвейер"></a>Конвейер</h2>
+<p>После условий через <code>|</code> идут стадии. <code>|</code> перед ключевым словом стадии можно не писать; запрос может начинаться сразу со стадии: <code>| group by IpAddress</code>.</p>
+<table>
+<thead><tr><th>Стадия</th><th>Что делает</th></tr></thead>
+<tbody>
+<tr><td><code>where &lt;условие&gt;</code></td><td>Добавляет условие через <code>and</code>. Можно повторять</td></tr>
+<tr><td><code>search &quot;строка&quot;</code></td><td>Добавляет поиск подстроки по всем полям</td></tr>
+<tr><td><code>select f1, f2</code> (<code>project</code>)</td><td>Задаёт колонки таблицы: время всегда первое, затем указанные поля, в конце — описание. Отбор событий не меняет</td></tr>
+<tr><td><code>group by f1, f2</code></td><td>Группы со счётчиками. По умолчанию — по убыванию числа событий. Событие без поля попадает в группу «—». Не больше 20 000 групп</td></tr>
+<tr><td><code>sort f [asc\|desc]</code> (<code>order by</code>)</td><td>Сортировка. Учитывается <strong>первый</strong> ключ</td></tr>
+<tr><td><code>limit n</code> (<code>take</code>)</td><td>Первые n строк или групп</td></tr>
+</tbody></table>
+<h3 id="сортировка"><a name="сортировка"></a>Сортировка</h3>
+<ul>
+<li><code>sort time desc</code> / <code>sort time</code> — новые сверху / старые сверху. Без <code>sort time</code> таблица сохраняет текущий порядок.</li>
+<li>По другому полю: числа сравниваются как числа, текст — «естественно» (<code>file2</code> &lt; <code>file10</code>). Внутри равных значений — по времени; события без поля — в конце.</li>
+<li>С <code>group by</code>: <code>sort count</code> — по возрастанию, <code>sort count desc</code> — по убыванию (по умолчанию), <code>sort &lt;поле группировки&gt;</code> — по значению.</li>
+</ul>
+<h3 id="limit"><a name="limit"></a>Limit</h3>
+<ul>
+<li>Без сортировки <code>limit n</code> даёт <strong>n самых ранних</strong> событий; с <code>sort time desc</code> — n самых новых.</li>
+<li>Гистограмма строится по результату до <code>sort</code> и <code>limit</code>.</li>
+</ul>
+<h3 id="группы"><a name="группы"></a>Группы</h3>
+<p>Клик по группе показывает её события. Двойной клик или «Превратить в фильтры и показать события» превращает значения группы в чипы фильтров и убирает стадию <code>group by</code>.</p>
+<h2 id="ограничения"><a name="ограничения"></a>Ограничения</h2>
+<table>
+<thead><tr><th>Что</th><th>Предел</th></tr></thead>
+<tbody>
+<tr><td>Длина запроса</td><td>199 999 токенов</td></tr>
+<tr><td>Вложенность скобок</td><td>около 62 уровней</td></tr>
+<tr><td>Список <code>in</code></td><td>10 000 значений</td></tr>
+<tr><td>Регулярное выражение</td><td>2 с процессорного времени на одно значение</td></tr>
+<tr><td>Группы</td><td>20 000</td></tr>
+<tr><td>История запросов</td><td>50 (в меню видны 25)</td></tr>
+</tbody></table>
+<p>Общего тайм-аута у запроса нет: долгий запрос останавливается кнопкой «Стоп».</p>
+<h2 id="ошибки"><a name="ошибки"></a>Ошибки</h2>
+<p>Ошибка показывается под строкой запроса с позицией символа:</p>
+<table>
+<thead><tr><th>Запрос</th><th>Сообщение</th></tr></thead>
+<tbody>
+<tr><td><code>EventID = &quot;4624</code></td><td>Незакрытая кавычка (позиция 11)</td></tr>
+<tr><td><code>(EventID = 1</code></td><td>Ожидалась «)» (позиция 13)</td></tr>
+<tr><td><code>EventID =</code></td><td>Ожидалось значение</td></tr>
+<tr><td><code>EventID = 4624 foo</code></td><td>После «foo» ожидается оператор (=, !=, &lt;, &gt;, contains, in, …)</td></tr>
+<tr><td><code>EventID = 1 \| limit x</code></td><td>После limit ожидается число</td></tr>
+<tr><td><code>Foo = 1</code></td><td>Неизвестное поле «Foo» и подсказка похожих имён</td></tr>
+</tbody></table>
+<h2 id="как-выполняется-запрос"><a name="как-выполняется-запрос"></a>Как выполняется запрос</h2>
+<ul>
+<li>При импорте каждая уникальная строка — значение или имя поля — один раз попадает в словарь. События получают номера в порядке времени. Для каждой пары «поле = значение» хранится отсортированный список номеров событий — posting-лист. Системные свойства хранятся так же, как поля <code>@EventID</code>, <code>@Channel</code> и т. д.</li>
+<li>Запрос разбирается в дерево и <strong>никогда не превращается в SQL</strong>: ваш текст передаётся в фиксированные запросы к словарю только как параметр. Попытка SQL-инъекции в значении просто ничего не найдёт.</li>
+<li>Каждое условие находит подходящие значения словаря: хеш для <code>=</code>, триграммный полнотекстовый индекс для подстрок, числовой индекс для <code>&lt;</code> и <code>&gt;</code>, перебор для регулярных выражений и подсетей. Затем объединяются их posting-листы.</li>
+<li><code>and</code>, <code>or</code> и <code>not</code> выполняются как пересечение, объединение и разность отсортированных множеств. Отрицание не материализует все события. Условия по времени — двоичный поиск по массиву меток времени.</li>
+</ul>
+<h2 id="готовые-запросы"><a name="готовые-запросы"></a>Готовые запросы</h2>
+<p>Пресеты в боковой панели раздела «События». Их можно открыть, изменить и выполнить.</p>
+<p><strong>Входы и учётные записи</strong></p>
+<pre><code>EventID = 4624 | group by LogonType, TargetUserName
+EventID = 4625 | group by TargetUserName, IpAddress, SubStatus
+EventID = 4625 | group by IpAddress | sort count desc
+EventID = 4624 and LogonType = 3 and not TargetUserName endswith &quot;$&quot; | group by IpAddress, TargetUserName
+EventID = 4624 and LogonType in (10, 7) | group by IpAddress, TargetUserName
+EventID = 4648 | group by SubjectUserName, TargetUserName, TargetServerName
+EventID = 4672 and not SubjectUserName in (SYSTEM, &quot;LOCAL SERVICE&quot;, &quot;NETWORK SERVICE&quot;) and not SubjectUserName endswith &quot;$&quot;
+EventID in (4720, 4722, 4724, 4725, 4726, 4728, 4732, 4756, 4738) | group by EventID, TargetUserName</code></pre>
+<p><strong>Kerberos и NTLM</strong></p>
+<pre><code>EventID = 4769 and TicketEncryptionType = 0x17 and not ServiceName endswith &quot;$&quot;
+EventID = 4768 and PreAuthType = 0
+EventID = 4776 | group by TargetUserName, Workstation</code></pre>
+<p><strong>Выполнение и закрепление</strong></p>
+<pre><code>EventID = 4688 or (provider = &quot;Microsoft-Windows-Sysmon&quot; and EventID = 1)
+(EventID = 7045 and channel = System) or EventID = 4697
+EventID = 4698 or (channel = &quot;Microsoft-Windows-TaskScheduler/Operational&quot; and EventID = 106)
+EventID = 4104 and (ScriptBlockText contains FromBase64String or ScriptBlockText contains &quot;Invoke-Expression&quot; or ScriptBlockText contains DownloadString or ScriptBlockText contains &quot;-enc&quot; or ScriptBlockText contains IEX)
+provider = &quot;Microsoft-Windows-Sysmon&quot; and EventID = 3 | group by Image, DestinationIp, DestinationPort
+provider = &quot;Microsoft-Windows-Sysmon&quot; and EventID = 13 and TargetObject contains &quot;\CurrentVersion\Run&quot;</code></pre>
+<p><strong>Сокрытие следов</strong></p>
+<pre><code>(EventID = 1102 and channel = Security) or (EventID = 104 and channel = System) or (EventID = 1100 and channel = Security)
+EventID = 4616 or (provider = &quot;Microsoft-Windows-Kernel-General&quot; and EventID = 1)
+provider = &quot;Microsoft-Windows-Windows Defender&quot; and EventID in (1116, 1117, 5001, 5007)</code></pre>
+<p><strong>Доступ к ресурсам и особенности журналов</strong></p>
+<pre><code>EventID in (5140, 5145) and ShareName in (&quot;\\\\*\\ADMIN$&quot;, &quot;\\\\*\\C$&quot;, &quot;\\\\*\\IPC$&quot;) | group by IpAddress, ShareName, SubjectUserName
+flag = carved
+flag = beyondHeader and not flag = stale
+flag = timeSkew
+flag = parseError</code></pre>
+</main>
+</body>
+</html>

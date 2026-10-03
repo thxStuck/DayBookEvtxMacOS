@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="DayBookEvtxMacOS is a native macOS app for incident response with Windows event logs (.evtx). It parses a folder of logs (for example C/Windows/System32/winevt/logs from a triage collection) into a case and lets you work">
+<meta name="keywords" content="Features, Quick start, Contents">
+<meta name="AppleTitle" content="DayBookEvtxMacOS Help">
+<title>DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="daybookevtxmacos-documentation"><a name="daybookevtxmacos-documentation"></a>DayBookEvtxMacOS documentation</h1>
+<p>DayBookEvtxMacOS is a native macOS app for incident response with Windows event logs (<code>.evtx</code>). It parses a folder of logs (for example <code>C/Windows/System32/winevt/logs</code> from a triage collection) into a case and lets you work with it like a SIEM: fast search, click-to-filter, a timeline, entities, sessions, processes and detections.</p>
+<h2 id="features"><a name="features"></a>Features</h2>
+<ul>
+<li><strong>Own EVTX parser</strong> in Swift: every physical chunk, not only the ones listed in the stale file header; CRC checks; recovery of deleted records from slack space; copies of one record from the live log, shadow copies and slack merged into one event that lists every location.</li>
+<li><strong>DQL query language</strong> in the style of PDQL/KQL: <code>EventID = 4624 and LogonType in (3, 10) | group by IpAddress</code>. Queries run as set operations and never become SQL.</li>
+<li><strong>Click-to-filter</strong> on any value in the table, the details and the sidebar.</li>
+<li><strong>Display time zone</strong>: UTC, a fixed offset or an IANA zone; the case stores time in UTC.</li>
+<li><strong>Histogram and timeline</strong> with day and gap separators.</li>
+<li><strong>Logs</strong>: one log at a time, like Windows Event Viewer.</li>
+<li><strong>Registry of hosts, users and IP addresses</strong> with links, <strong>logon and RDP sessions</strong>, <strong>process trees</strong>.</li>
+<li><strong>Sigma detections</strong>: 2,748 bundled SigmaHQ and Hayabusa rules plus your own rules folder. Every rule becomes visible DQL; unsupported rules are listed with the reason.</li>
+<li><strong>Export</strong> to CSV, CSV for Excel, JSON Lines and XLSX with the time zone, the source file and its SHA-256.</li>
+<li><strong>Transparency</strong>: recovered records, heuristics, limits and skips are always marked.</li>
+<li>Russian and English user interface.</li>
+</ul>
+<p>Source logs are only ever read, never modified.</p>
+<h2 id="quick-start"><a name="quick-start"></a>Quick start</h2>
+<ol>
+<li>Download the app from <a href="https://github.com/thxStuck/DayBookEvtxMacOS/releases/latest" class="external">Releases</a> and allow it to open on first launch — see <a href="install.html">Installation</a>.</li>
+<li>File → New Case from Logs… (⌘N), choose the logs folder and where to save the case.</li>
+<li>Keep the default import options and click Start Import.</li>
+<li>In Events, pick a preset in the sidebar or type a query, for example <code>EventID = 4625 | group by IpAddress, TargetUserName</code>.</li>
+<li>Right-click a value to filter with = or ≠; click a row to see the event details.</li>
+<li>Open Detections: the Sigma rules ran automatically after the import.</li>
+</ol>
+<h2 id="contents"><a name="contents"></a>Contents</h2>
+<table>
+<thead><tr><th>Page</th><th>Covers</th></tr></thead>
+<tbody>
+<tr><td><a href="install.html">Installation</a></td><td>Requirements, installing, first launch, folder access, interface language, building from source</td></tr>
+<tr><td><a href="cases-import.html">Cases and import</a></td><td>What a case is, import options, how files are parsed, slack recovery, copies, flags, Case Information</td></tr>
+<tr><td><a href="events.html">Working with events</a></td><td>Window sections, query and filters, table, grouping, histogram, timeline, logs, details, time zone, bookmarks</td></tr>
+<tr><td><a href="dql.html">DQL query language</a></td><td>Full reference: operators, time, fields, pipeline, limits, ready-made queries</td></tr>
+<tr><td><a href="entities.html">Entities, sessions, processes</a></td><td>Hosts, users and IP registry, logon sessions, RDP, process trees</td></tr>
+<tr><td><a href="detections.html">Sigma detections</a></td><td>Bundled rules, your own folder, how rules become DQL, modifiers, the Detections screen</td></tr>
+<tr><td><a href="export-cli.html">Export and command line</a></td><td>Export formats and columns, the <code>evtxdump</code> tool</td></tr>
+<tr><td><a href="internals.html">How it works</a></td><td>Parser, import, storage, query execution, performance, limitations</td></tr>
+<tr><td><a href="faq.html">FAQ and troubleshooting</a></td><td>Common questions and what to do when something does not work</td></tr>
+</tbody></table>
+</main>
+</body>
+</html>

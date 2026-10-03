@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="The sidebar is on the left; the chosen section and, where it applies, the event details panel are on the right. The window title shows the case name and &quot;N events · M files&quot;.">
+<meta name="keywords" content="The case window, Events, Query bar, Filters, Table, Grouping, Sidebar, Histogram, Timeline, Logs, Details panel, Fields tab, XML and Hex tabs, Time zone, Bookmarks and notes, Keyboard shortcuts">
+
+<title>Working with events — DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Contents</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="working-with-events"><a name="working-with-events"></a>Working with events</h1>
+<nav class="toc"><ul><li><a href="#the-case-window">The case window</a></li><li><a href="#events">Events</a></li><li class="sub"><a href="#query-bar">Query bar</a></li><li class="sub"><a href="#filters">Filters</a></li><li class="sub"><a href="#table">Table</a></li><li class="sub"><a href="#grouping">Grouping</a></li><li class="sub"><a href="#sidebar">Sidebar</a></li><li><a href="#histogram">Histogram</a></li><li><a href="#timeline">Timeline</a></li><li><a href="#logs">Logs</a></li><li><a href="#details-panel">Details panel</a></li><li class="sub"><a href="#fields-tab">Fields tab</a></li><li class="sub"><a href="#xml-and-hex-tabs">XML and Hex tabs</a></li><li><a href="#time-zone">Time zone</a></li><li><a href="#bookmarks-and-notes">Bookmarks and notes</a></li><li><a href="#keyboard-shortcuts">Keyboard shortcuts</a></li></ul></nav>
+<h2 id="the-case-window"><a name="the-case-window"></a>The case window</h2>
+<p>The sidebar is on the left; the chosen section and, where it applies, the event details panel are on the right. The window title shows the case name and "N events · M files".</p>
+<table>
+<thead><tr><th>Section</th><th>Shows</th></tr></thead>
+<tbody>
+<tr><td>Events</td><td>The event table with the query, filters, histogram and grouping</td></tr>
+<tr><td>Timeline</td><td>The same events as one stream with day and gap separators</td></tr>
+<tr><td>Logs</td><td>One log, like Windows Event Viewer</td></tr>
+<tr><td>Detections</td><td>Sigma rule matches — see <a href="detections.html">Sigma detections</a></td></tr>
+<tr><td>Hosts, Users, IP addresses</td><td>The entity registry — see <a href="entities.html">Entities</a></td></tr>
+<tr><td>Sessions</td><td>Logon sessions and RDP chains</td></tr>
+<tr><td>Processes</td><td>Sysmon and Security 4688 process trees</td></tr>
+</tbody></table>
+<p>Counters next to the sections: Logs — logs with events, Detections — matched rules, registries — number of entities.</p>
+<p>Toolbar on the right: Case Information (ⓘ), time zone, Export, Histogram, Details.</p>
+<h2 id="events"><a name="events"></a>Events</h2>
+<p>From top to bottom: the query bar, the filter bar, the histogram, the table. A group panel appears on the left when the query groups events.</p>
+<h3 id="query-bar"><a name="query-bar"></a>Query bar</h3>
+<ul>
+<li>A query in <a href="dql.html">DQL</a>. Run it with Return or ⌘↩; Stop interrupts it.</li>
+<li>The clear button empties the query.</li>
+<li>The clock menu holds the query history.</li>
+<li>"?" opens a short language reference.</li>
+</ul>
+<h3 id="filters"><a name="filters"></a>Filters</h3>
+<p>A filter is a chip under the query bar: "Field = value" or "Field ≠ value" (red). An orange chip is a time range. The query runs on top of the chips.</p>
+<p>To add a filter:</p>
+<ul>
+<li><strong>Table</strong> — right-click a cell: Filter = … or Exclude ≠ …. The description cell has a submenu for every field of the event.</li>
+<li><strong>Details</strong> — right-click a field row.</li>
+<li><strong>Sidebar</strong> — click a value for =, Option-click for ≠.</li>
+<li><strong>Histogram</strong> — drag across it and click Filter by selection.</li>
+</ul>
+<p>A chip can be clicked to turn it off and on, switched between = and ≠ or removed from its menu, or removed with its × button.</p>
+<p>Reset All (⌘K) clears the query, every filter and the time range. Earlier queries stay in the history.</p>
+<h3 id="table"><a name="table"></a>Table</h3>
+<ul>
+<li>Default columns: Time, Computer, Log, ID, Level, Description / event data.</li>
+<li>The Columns menu (right-click) adds User, Provider, User (SID), File and RecordID. Any event field can be added with Add column. A <code>| select</code> stage sets the columns entirely.</li>
+<li>Columns can be reordered and resized; clicking the Time header flips the order.</li>
+<li><strong>Level</strong> for audit events is Audit Success / Audit Failure (from Keywords), otherwise Critical, Error, Warning, Information, Verbose.</li>
+<li><strong>Description.</strong> Common events get readable text in English or Russian: logons, Kerberos, processes, services, tasks, PowerShell, Sysmon, RDP, Defender and more. The text includes decoded values: logon types, NTSTATUS and Kerberos error codes, encryption types, <code>%%NNNN</code> codes. Risky signs are marked ⚠ (lsass access, RC4, logon without pre-authentication, DCSync signs, log clearing). Other events show "Field: value · …".</li>
+<li><strong>Time colour:</strong> red — the record has a parse error; orange — recovered from slack, from a stale chunk or after a damaged area.</li>
+<li>A bookmarked row is tinted with the bookmark colour.</li>
+<li>Clicking a row opens the event in the details panel.</li>
+<li>Right-click: filters, Bookmark, Copy row (tab-separated values), Columns.</li>
+</ul>
+<h3 id="grouping"><a name="grouping"></a>Grouping</h3>
+<p>A query with <code>| group by</code> shows a group panel on the left: event count and field values. "—" means the events have no such field. Over 20,000 groups the count is marked with "+".</p>
+<ul>
+<li>Click a group to see its events.</li>
+<li>Double-click or Turn into filters and show events turns the group values into filter chips and removes <code>group by</code> from the query.</li>
+<li>Groups are sorted by event count, largest first.</li>
+</ul>
+<h3 id="sidebar"><a name="sidebar"></a>Sidebar</h3>
+<p><strong>Presets</strong> are ready-made queries by topic: logons and accounts, Kerberos/NTLM, execution and persistence, covering tracks, resource access, log artefacts. A click replaces the query text and keeps the chips. Every preset is listed in <a href="dql.html#ready-made-queries">DQL</a>.</p>
+<p>Then come facets with counts over the <strong>whole case</strong>:</p>
+<table>
+<thead><tr><th>Section</th><th>Click</th></tr></thead>
+<tbody>
+<tr><td>Detections</td><td>Matches by rule level; a click runs <code>rulelevel = …</code>, All matched rules… opens Detections</td></tr>
+<tr><td>Log files</td><td>Filter by file; <code>dirty</code> mark, path and SHA-256 in the tooltip</td></tr>
+<tr><td>Bookmarks</td><td>Go to the event</td></tr>
+<tr><td>Hosts, Users, IP addresses</td><td>Filter "… (any role) = …"; Option-click excludes</td></tr>
+<tr><td>Logs, Computers, Event ID, Record flags</td><td>Filter =, Option-click ≠; "all values…" runs <code>group by</code> on the field</td></tr>
+</tbody></table>
+<p>Sidebar clicks <strong>narrow the current search</strong>. Jumps from other sections (entities, sessions, processes, detections, logs) start a new search.</p>
+<h2 id="histogram"><a name="histogram"></a>Histogram</h2>
+<ul>
+<li>The distribution of the current result over time (before <code>sort</code> and <code>limit</code>), about 160 bars. The bar width is chosen automatically, from 1 second to 1 year.</li>
+<li>Drag across the chart and click Filter by selection to add an orange time-range chip.</li>
+<li><strong>Outliers.</strong> With more than 1,000 events the axis spans the 0.1–99.9th percentile, so a single record dated 1601 or 2099 does not flatten the chart. A line under the chart says how many events are off the axis and has a "show all" link. The choice is remembered.</li>
+<li>Show or hide it with the Histogram toolbar button.</li>
+</ul>
+<h2 id="timeline"><a name="timeline"></a>Timeline</h2>
+<p>One stream of events with the same query and filters as Events.</p>
+<ul>
+<li>Columns: Time, Log (with a coloured dot per channel), Computer, User, ID, Description.</li>
+<li>User takes the first available of: User, TargetDomainName\TargetUserName, SubjectDomainName\SubjectUserName, AccountDomain\AccountName, Param1, the SID from System.</li>
+<li>A new day is marked with a line; a gap of more than an hour between neighbouring events with a dashed line and a "⏸ gap …" note.</li>
+</ul>
+<h2 id="logs"><a name="logs"></a>Logs</h2>
+<p>One log at a time, like Windows Event Viewer. The query and filters of Events are not touched.</p>
+<ul>
+<li><strong>Sidebar tree:</strong> Windows Logs (Application, Security, Setup, System, ForwardedEvents) and Applications and Services Logs grouped by vendor. The log is derived from the file name. Hide empty hides logs without events.</li>
+<li><strong>Header:</strong> the log, number of records (and how many were recovered from slack), the file path, Open in Events.</li>
+<li><strong>Filter:</strong> level chips (Critical, Error, Warning, Information, Verbose), plus Audit Success and Audit Failure for Security, a DQL filter field (Return) and Reset.</li>
+<li>Newest events on top. The details panel is below the table; drag the divider to resize it.</li>
+<li>Open in Events starts a new search in Events for this log with the same levels and DQL filter.</li>
+</ul>
+<h2 id="details-panel"><a name="details-panel"></a>Details panel</h2>
+<p>On the right in Events, Timeline, Sessions and Processes; at the bottom in Logs. The Details button shows and hides it; drag its edge to resize.</p>
+<h3 id="fields-tab"><a name="fields-tab"></a>Fields tab</h3>
+<ol>
+<li><strong>Matched rules</strong> — level, title, author and rule set; a click opens the rule.</li>
+<li><strong>System:</strong> description, bookmark, time in the chosen zone and in UTC (7 digits), the write time if it differs, EventID, log, provider, computer, level, user SID, EventRecordID, Task, Opcode, Keywords, ProcessID / ThreadID, file and path, flags in words.</li>
+<li><strong>Event data</strong> — every EventData and UserData field in record order. <code>%%NNNN</code> codes are shown as "text (code)".</li>
+<li><strong>Copies of this record</strong> — if copies were merged: file, chunk and offset of each.</li>
+</ol>
+<p>Right-click a field: Filter = …, Exclude ≠ …, Add column, Copy value, Copy "name: value".</p>
+<p>The Fields tab uses the case and works even if the source file is gone.</p>
+<h3 id="xml-and-hex-tabs"><a name="xml-and-hex-tabs"></a>XML and Hex tabs</h3>
+<p>The record's XML and bytes (16 per line with offset and ASCII) are read from the source log. While it is being read, or if it cannot be, the tab explains why:</p>
+<table>
+<thead><tr><th>Message</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Reading the record from the source file…</td><td>The file is being opened</td></tr>
+<tr><td>The file has not responded for more than 3 seconds…</td><td>A network share is unavailable, a disk is asleep, or macOS is waiting for permission to access the folder</td></tr>
+<tr><td>Source file not found…</td><td>The log was moved or deleted after import</td></tr>
+<tr><td>macOS denied access to the source file…</td><td>Allow access in Files and Folders</td></tr>
+<tr><td>A different record is at the stored position…</td><td>The file changed after import</td></tr>
+</tbody></table>
+<p>The path where the file is expected is shown under the message.</p>
+<h2 id="time-zone"><a name="time-zone"></a>Time zone</h2>
+<p>The clock menu on the toolbar:</p>
+<ul>
+<li>UTC (default);</li>
+<li>UTC± offset — 37 fixed offsets from −12:00 to +14:00, including +05:45 and −09:30;</li>
+<li>Time zone (with daylight saving) — 24 IANA zones;</li>
+<li>Mac local time.</li>
+</ul>
+<p>The case stores time in UTC. The zone changes times in the table and details, the time column header, the histogram axis, the day separators of the timeline, how times in queries are read and the time column of exports. The details always show UTC too. The table shows milliseconds (extra digits are cut, not rounded).</p>
+<h2 id="bookmarks-and-notes"><a name="bookmarks-and-notes"></a>Bookmarks and notes</h2>
+<ul>
+<li>⌘B (Event → Bookmark) puts a red bookmark on the selected event or removes it.</li>
+<li>Right-click → Bookmark: six colours, Note…, Remove bookmark. A note without a bookmark adds a yellow one. An event has one bookmark.</li>
+<li>Bookmarks show as the row colour, in the details and in the Bookmarks section of the sidebar; a click there goes to the event.</li>
+<li>Search: <code>tag = red</code>, <code>tag in (red, blue)</code>, <code>tag = *</code>.</li>
+<li>Bookmarks are stored in the case. Note text is not searchable and not exported.</li>
+</ul>
+<h2 id="keyboard-shortcuts"><a name="keyboard-shortcuts"></a>Keyboard shortcuts</h2>
+<table>
+<thead><tr><th>Keys</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>⌘N</td><td>New case from logs</td></tr>
+<tr><td>⌘O</td><td>Open a case</td></tr>
+<tr><td>⇧⌘W</td><td>Close the case</td></tr>
+<tr><td>⌘↩ or Return in the query bar</td><td>Run the query</td></tr>
+<tr><td>⌘K</td><td>Reset the query, filters and time range</td></tr>
+<tr><td>⌘B</td><td>Bookmark the selected event</td></tr>
+<tr><td>Option-click in the sidebar</td><td>Exclude a value (≠)</td></tr>
+<tr><td>Return / Esc in sheets</td><td>Confirm / cancel</td></tr>
+</tbody></table>
+</main>
+</body>
+</html>

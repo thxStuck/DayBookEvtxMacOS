@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="A case is a &lt;name&gt;.daybook folder into which the app parses the logs once. Everything else — search, timeline, entities, detections — works on the case.">
+<meta name="keywords" content="What a case is, Creating a case, Import options, Which files are included, Import phases, How files are parsed, Recovering records from slack, Merging copies, Record flags, Case Information">
+
+<title>Cases and import — DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Contents</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="cases-and-import"><a name="cases-and-import"></a>Cases and import</h1>
+<nav class="toc"><ul><li><a href="#what-a-case-is">What a case is</a></li><li><a href="#creating-a-case">Creating a case</a></li><li class="sub"><a href="#import-options">Import options</a></li><li><a href="#which-files-are-included">Which files are included</a></li><li><a href="#import-phases">Import phases</a></li><li><a href="#how-files-are-parsed">How files are parsed</a></li><li><a href="#recovering-records-from-slack">Recovering records from slack</a></li><li><a href="#merging-copies">Merging copies</a></li><li><a href="#record-flags">Record flags</a></li><li><a href="#case-information">Case Information</a></li></ul></nav>
+<h2 id="what-a-case-is"><a name="what-a-case-is"></a>What a case is</h2>
+<p>A case is a <code>&lt;name&gt;.daybook</code> folder into which the app parses the logs once. Everything else — search, timeline, entities, detections — works on the case.</p>
+<table>
+<thead><tr><th>File in the case folder</th><th>Contents</th></tr></thead>
+<tbody>
+<tr><td><code>case.sqlite</code></td><td>The case database: events, value dictionary, indexes, entities, bookmarks, detection results. <code>case.sqlite-wal</code> and <code>case.sqlite-shm</code> may sit next to it</td></tr>
+<tr><td><code>ts.bin</code></td><td>The time of every event (FILETIME, UTC), 8 bytes each, in time order. Time-range bounds are found in it instantly</td></tr>
+<tr><td><code>manifest.json</code></td><td>Import summary: schema version, date, chosen sources, totals (files, events, copies, recovered records, errors, duration)</td></tr>
+</tbody></table>
+<ul>
+<li>Source logs are <strong>not copied</strong> into the case. The case stores the absolute path of every file, its size, its SHA-256 (if enabled) and parsing statistics.</li>
+<li>All event fields live in the case. Only the XML and the raw bytes of a record (the XML and Hex tabs in the details) are read from the source file on demand.</li>
+<li>The case folder can be moved. If the source logs are moved, everything keeps working except the XML and Hex tabs, which then say that the source file was not found and show the path where it was expected. There is no way to point a case at a new location of its sources yet.</li>
+</ul>
+<p>Open a case with File → Open Case… (⌘O) and choose the <code>.daybook</code> folder. Recent cases are listed on the start screen. Close it with File → Close Case (⇧⌘W).</p>
+<h2 id="creating-a-case"><a name="creating-a-case"></a>Creating a case</h2>
+<ol>
+<li>File → New Case from Logs… (⌘N).</li>
+<li>Choose one or more folders with logs and/or individual <code>.evtx</code> files.</li>
+<li>Choose where to save the case. The default is <code>~/Documents/DayBook/&lt;source name&gt;.daybook</code>. If a case with that name exists, macOS asks whether to replace it.</li>
+<li>Check the import options and click Start Import.</li>
+</ol>
+<h3 id="import-options"><a name="import-options"></a>Import options</h3>
+<p>All options are on by default and remembered for the next imports.</p>
+<table>
+<thead><tr><th>Option</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>Recover records from chunk slack space</td><td>Looks for remnants of old records in the free part of chunks. Every recovered record gets the <code>carved</code> flag</td></tr>
+<tr><td>Merge identical records</td><td>The same record from the live log, a shadow copy and slack is shown as one event with the <code>hasCopies</code> flag. Off: every copy is its own row</td></tr>
+<tr><td>Compute SHA-256 of source files</td><td>Fixes the source data: the hash is shown in Case Information and goes into exports</td></tr>
+<tr><td>Run Sigma detections after import</td><td>After the case opens, the bundled rules and your rules folder run in the background. Results are saved in the case</td></tr>
+</tbody></table>
+<h2 id="which-files-are-included"><a name="which-files-are-included"></a>Which files are included</h2>
+<ul>
+<li>Folders are walked recursively; hidden files are skipped.</li>
+<li>Inside folders the app takes <code>*.evtx</code> files (extension in any case) and files without an extension that start with the <code>ElfFile\0</code> signature.</li>
+<li>Files you choose explicitly are taken regardless of extension — the format is checked by signature.</li>
+<li>Symbolic links: a chosen link is resolved; links to files inside folders are followed; links to folders are not entered (to avoid cycles).</li>
+<li>The old <code>.evt</code> format (Windows XP/2003) is recognised but not supported.</li>
+<li>A file that cannot be opened is listed under failed files in Case Information; the other files are still imported.</li>
+</ul>
+<h2 id="import-phases"><a name="import-phases"></a>Import phases</h2>
+<ol>
+<li>Finding log files.</li>
+<li>SHA-256 of source files.</li>
+<li>Parsing records (in parallel by chunk, collecting templates from all files).</li>
+<li>Recovering records from slack.</li>
+<li>Sorting by time and merging copies.</li>
+<li>Writing events to the case database — the only phase with a percentage.</li>
+<li>Field index.</li>
+<li>Database indexes.</li>
+<li>Full-text index.</li>
+<li>Registry of hosts, users and IPs.</li>
+</ol>
+<p>During the import you see the current phase, how many events are written and the elapsed time. Cancel stops the import and removes the unfinished case folder. The case opens by itself when the import is done.</p>
+<h2 id="how-files-are-parsed"><a name="how-files-are-parsed"></a>How files are parsed</h2>
+<p>The app uses its own EVTX parser and does not depend on the Windows API.</p>
+<ul>
+<li><strong>Every physical chunk.</strong> The number of chunks comes from the file size, not from the counter in the header: in live (dirty) logs that counter is stale, and the newest events sit in chunks beyond it. Such events get the <code>beyondHeader</code> flag.</li>
+<li><strong>An incomplete last chunk</strong> (shorter than 64 KiB) is not parsed. Its size is shown as "Tail, bytes" in Case Information.</li>
+<li><strong>Checksums.</strong> The CRC32 of each chunk header and of its records area are checked. On a mismatch parsing continues and the records of that chunk are flagged.</li>
+<li><strong>A damaged area</strong> inside a chunk is skipped up to the next valid record. Records after the gap get the <code>afterGap</code> flag.</li>
+<li><strong>A parse error</strong> does not drop the record: everything read so far is kept, the record gets the <code>parseError</code> flag, and the XML gets a comment where parsing stopped.</li>
+<li><strong>BinXML templates</strong> come from the same chunk. If the template is not there (as with recovered records), it is looked up in every file of the case — <code>foreignTemplate</code> flag. If it is found nowhere, values are shown as <code>Value[n]</code> — <code>missingTemplate</code> flag.</li>
+</ul>
+<h2 id="recovering-records-from-slack"><a name="recovering-records-from-slack"></a>Recovering records from slack</h2>
+<p>Slack is the free part of a chunk after its last live record. Old records often remain there.</p>
+<ul>
+<li>The area after <code>freeSpaceOffset</code> (in a chunk without a valid header — the whole chunk from byte 512) is scanned in 8-byte steps.</li>
+<li>A candidate is accepted only if everything matches: the record marker <code>0x00002A2A</code>, a size of at least 28 bytes that fits the chunk, the copy of the size at the end of the record, a valid BinXML start, and a write time between 1990 and 2100.</li>
+<li>Recovered records get the <code>carved</code> flag; their time is shown in orange.</li>
+<li>If the same record exists among live records and merging is on, the live record stays and the recovered one becomes its copy.</li>
+</ul>
+<h2 id="merging-copies"><a name="merging-copies"></a>Merging copies</h2>
+<p>Records are copies when all four of these match:</p>
+<ul>
+<li>TimeCreated to 100 ns (or the write time if there is none);</li>
+<li>computer and log (case-insensitive);</li>
+<li>RecordID;</li>
+<li>EventID.</li>
+</ul>
+<p>A live record wins over a recovered one; then the file whose path sorts first, then the lower chunk and offset. The event gets the <code>hasCopies</code> flag, and the details get a Copies of this record section listing every location: file, chunk, offset.</p>
+<div class="callout note"><p class="callout-title">Note</p><p>The file filter and per-file counts consider only the main copy of an event. How many copies from a file went into other events is shown in the "Copies merged" column of Case Information.</p></div>
+<h2 id="record-flags"><a name="record-flags"></a>Record flags</h2>
+<table>
+<thead><tr><th>Flag (for <code>flag = …</code>)</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>beyondHeader</code></td><td>The record is in a chunk beyond the chunk count in the file header (usually the newest data)</td></tr>
+<tr><td><code>stale</code></td><td>Such a chunk whose record numbers are not newer than the live ones — remnants of old data</td></tr>
+<tr><td><code>crcMismatch</code></td><td>The CRC of the chunk data does not match</td></tr>
+<tr><td><code>headerCrcMismatch</code></td><td>The CRC of the chunk header does not match</td></tr>
+<tr><td><code>carved</code></td><td>Recovered from slack</td></tr>
+<tr><td><code>parseError</code></td><td>The record was parsed only partly</td></tr>
+<tr><td><code>sizeMismatch</code></td><td>The copy of the size at the end of the record differs from the size at the start</td></tr>
+<tr><td><code>foreignTemplate</code></td><td>The template was taken from another chunk or file</td></tr>
+<tr><td><code>missingTemplate</code></td><td>No template was found; values are shown as <code>Value[n]</code></td></tr>
+<tr><td><code>timeSkew</code></td><td>TimeCreated and the time the record was written differ by more than 60 seconds</td></tr>
+<tr><td><code>invalidText</code></td><td>Invalid UTF-16; characters were replaced with U+FFFD</td></tr>
+<tr><td><code>hasCopies</code></td><td>Copies from other places were merged into this event</td></tr>
+<tr><td><code>afterGap</code></td><td>A live record after a damaged area of the chunk</td></tr>
+</tbody></table>
+<p>Where flags are visible:</p>
+<ul>
+<li>the Flags line in the event details;</li>
+<li>the time colour in the table: red for <code>parseError</code>, orange for <code>carved</code>, <code>stale</code> and <code>afterGap</code>;</li>
+<li>the Record flags section of the Events sidebar — a click adds a filter;</li>
+<li>queries such as <code>flag = carved</code> or <code>flag = timeSkew</code> and the log-artefact presets;</li>
+<li>the Record flags column in Case Information;</li>
+<li>the <code>Flags</code> column in exports.</li>
+</ul>
+<h2 id="case-information"><a name="case-information"></a>Case Information</h2>
+<p>The ⓘ button on the toolbar. At the top there is a summary:</p>
+<ul>
+<li>events, files, creation date, schema version;</li>
+<li>how many records were recovered from slack (found and unique), how many copies were merged, how many parse errors there were;</li>
+<li>import options;</li>
+<li>files that could not be opened, in red.</li>
+</ul>
+<p>Below is a table with one row per file:</p>
+<table>
+<thead><tr><th>Column</th><th>Shows</th></tr></thead>
+<tbody>
+<tr><td>File, Size, SHA-256, Version</td><td>Name (full path in the tooltip), size, hash, format version</td></tr>
+<tr><td>Dirty</td><td>The file was not closed cleanly by the system</td></tr>
+<tr><td>Chunks (header / physical)</td><td>How many chunks the header lists and how many physically exist</td></tr>
+<tr><td>Empty</td><td>Chunks without records</td></tr>
+<tr><td>Beyond header: new / stale</td><td>Chunks beyond the header count with new data and with stale data</td></tr>
+<tr><td>CRC header / data</td><td>Chunks with a wrong header or data checksum</td></tr>
+<tr><td>Tail, bytes</td><td>Size of the incomplete last chunk, which is not parsed</td></tr>
+<tr><td>Events, Recovered, Copies merged</td><td>Events from the file, how many came from slack, how many copies went into other events</td></tr>
+<tr><td>First, Last</td><td>Time of the first and last event</td></tr>
+<tr><td>Record flags</td><td>How many records have each flag</td></tr>
+</tbody></table>
+<p>Deviations are highlighted in orange. Copy table (TSV) copies the table with full paths, ready for a report.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="The app is signed locally (ad hoc) and is not notarized by Apple, which requires a paid Developer ID. macOS therefore refuses to open it the first time.">
+<meta name="keywords" content="Requirements, Installing a release, First launch, Folder access, Interface language, Help and About, Building from source, Where things are kept">
+
+<title>Installation — DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Contents</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="installation"><a name="installation"></a>Installation</h1>
+<nav class="toc"><ul><li><a href="#requirements">Requirements</a></li><li><a href="#installing-a-release">Installing a release</a></li><li class="sub"><a href="#first-launch">First launch</a></li><li class="sub"><a href="#folder-access">Folder access</a></li><li><a href="#interface-language">Interface language</a></li><li><a href="#help-and-about">Help and About</a></li><li><a href="#building-from-source">Building from source</a></li><li><a href="#where-things-are-kept">Where things are kept</a></li></ul></nav>
+<h2 id="requirements"><a name="requirements"></a>Requirements</h2>
+<ul>
+<li>macOS 14 or later.</li>
+<li>A Mac with Apple Silicon. An Intel build has not been tested.</li>
+<li>To build from source: Xcode with Swift 6. Tested with Xcode 27 on macOS 26.</li>
+</ul>
+<h2 id="installing-a-release"><a name="installing-a-release"></a>Installing a release</h2>
+<ol>
+<li>Open the <a href="https://github.com/thxStuck/DayBookEvtxMacOS/releases/latest" class="external">latest release</a> and download <code>DayBookEvtxMacOS-&lt;version&gt;-arm64.zip</code>.</li>
+<li>Unzip it and move <code>DayBookEvtxMacOS.app</code> to Applications.</li>
+<li>To verify the download, compare its SHA-256 with the value in the release notes:<pre><code>shasum -a 256 ~/Downloads/DayBookEvtxMacOS-*-arm64.zip</code></pre></li>
+</ol>
+<h3 id="first-launch"><a name="first-launch"></a>First launch</h3>
+<p>The app is signed locally (ad hoc) and is not notarized by Apple, which requires a paid Developer ID. macOS therefore refuses to open it the first time.</p>
+<ol>
+<li>Close the warning.</li>
+<li>Open System Settings → Privacy &amp; Security.</li>
+<li>Next to the message about DayBookEvtxMacOS, click Open Anyway and enter an administrator password.</li>
+</ol>
+<p>The same in Terminal — the command removes the "downloaded from the internet" mark:</p>
+<pre><code>xattr -dr com.apple.quarantine /Applications/DayBookEvtxMacOS.app</code></pre>
+<h3 id="folder-access"><a name="folder-access"></a>Folder access</h3>
+<p>The app is not sandboxed: a forensic tool has to read files wherever they are. macOS still protects Documents, Desktop, Downloads, external and network volumes separately and asks for permission the first time the app reads from them.</p>
+<ul>
+<li>Allow access, or the app cannot read the logs during import or the XML and Hex tabs of an event.</li>
+<li>If access was denied, turn it on in System Settings → Privacy &amp; Security → Files and Folders → DayBookEvtxMacOS.</li>
+<li>Every locally signed build is a new app to macOS, so the prompt may appear again after an update.</li>
+</ul>
+<h2 id="interface-language"><a name="interface-language"></a>Interface language</h2>
+<p>The interface is available in Russian and English. By default macOS picks it from the system: Russian if Russian comes first in the system languages, English otherwise.</p>
+<p>To change it in the app: <strong>DayBookEvtxMacOS → Interface Language</strong> → System Language, Русский or English. The language applies at launch, so the app offers to restart; the open case opens again.</p>
+<p>It is the same setting as System Settings → General → Language &amp; Region → Applications. It can also be set in Terminal:</p>
+<pre><code>defaults write app.daybook.evtx AppleLanguages -array en</code></pre>
+<p>Back to the system language:</p>
+<pre><code>defaults delete app.daybook.evtx AppleLanguages</code></pre>
+<h2 id="help-and-about"><a name="help-and-about"></a>Help and About</h2>
+<ul>
+<li><strong>Help → DayBookEvtxMacOS Help</strong> (⌘?) opens this documentation in the system help window, without internet access. The search field of the Help menu searches it too.</li>
+<li>The same menu has the documentation and the DQL reference online, Report a Bug… and the project page on GitHub.</li>
+<li><strong>DayBookEvtxMacOS → About DayBookEvtxMacOS</strong> shows the version, links and third-party components with their licences.</li>
+</ul>
+<h2 id="building-from-source"><a name="building-from-source"></a>Building from source</h2>
+<pre><code>git clone https://github.com/thxStuck/DayBookEvtxMacOS.git
+cd DayBookEvtxMacOS
+scripts/build.sh
+open build/DayBookEvtxMacOS.app</code></pre>
+<p>The script builds:</p>
+<ul>
+<li>the app in Release configuration — <code>build/DayBookEvtxMacOS.app</code>;</li>
+<li>the command-line tool — <code>Packages/DaybookKit/.build/release/evtxdump</code> (see <a href="export-cli.html">Export and command line</a>).</li>
+</ul>
+<p>If <code>xcode-select</code> points to the Command Line Tools, the script uses <code>DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer</code> by itself. You can also open <code>DayBookEvtxMacOS.xcodeproj</code> in Xcode and press ⌘R.</p>
+<p>The only external dependency is <a href="https://github.com/jpsim/Yams" class="external">Yams</a> (MIT) for reading Sigma YAML. Swift Package Manager downloads it on the first build.</p>
+<h2 id="where-things-are-kept"><a name="where-things-are-kept"></a>Where things are kept</h2>
+<table>
+<thead><tr><th>What</th><th>Where</th></tr></thead>
+<tbody>
+<tr><td>A case</td><td>The <code>&lt;name&gt;.daybook</code> folder wherever you saved it during import</td></tr>
+<tr><td>Source logs</td><td>Stay where they are; the case stores their absolute paths</td></tr>
+<tr><td>App settings</td><td>The <code>app.daybook.evtx</code> domain (<code>defaults read app.daybook.evtx</code>)</td></tr>
+<tr><td>Bundled Sigma rules</td><td>Inside the app: <code>Contents/Resources/rules.json</code></td></tr>
+</tbody></table>
+</main>
+</body>
+</html>

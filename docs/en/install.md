@@ -60,14 +60,11 @@ first time the app reads from them.
 The interface is available in Russian and English. By default macOS picks it from the system: Russian
 if Russian comes first in the system languages, English otherwise.
 
-To use English for this app only:
+To change it in the app: **DayBookEvtxMacOS → Interface Language** → System Language, Русский or
+English. The language applies at launch, so the app offers to restart; the open case opens again.
 
-1. System Settings → General → Language & Region.
-2. Under Applications, click +.
-3. Choose DayBookEvtxMacOS and English.
-4. Restart the app.
-
-Or in Terminal:
+It is the same setting as System Settings → General → Language & Region → Applications. It can also
+be set in Terminal:
 
 ```bash
 defaults write app.daybook.evtx AppleLanguages -array en
@@ -78,6 +75,15 @@ Back to the system language:
 ```bash
 defaults delete app.daybook.evtx AppleLanguages
 ```
+
+## Help and About
+
+- **Help → DayBookEvtxMacOS Help** (⌘?) opens this documentation in the system help window, without
+  internet access. The search field of the Help menu searches it too.
+- The same menu has the documentation and the DQL reference online, Report a Bug… and the project
+  page on GitHub.
+- **DayBookEvtxMacOS → About DayBookEvtxMacOS** shows the version, links and third-party components
+  with their licences.
 
 ## Building from source
 

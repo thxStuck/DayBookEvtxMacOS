@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="The only external dependency is Yams (MIT) for Sigma YAML.">
+<meta name="keywords" content="Principles, Components, EVTX parser, Import, Case store, Query execution, Event details, Performance, Limitations">
+
+<title>How it works — DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Contents</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="how-it-works"><a name="how-it-works"></a>How it works</h1>
+<nav class="toc"><ul><li><a href="#principles">Principles</a></li><li><a href="#components">Components</a></li><li><a href="#evtx-parser">EVTX parser</a></li><li><a href="#import">Import</a></li><li><a href="#case-store">Case store</a></li><li><a href="#query-execution">Query execution</a></li><li><a href="#event-details">Event details</a></li><li><a href="#performance">Performance</a></li><li><a href="#limitations">Limitations</a></li></ul></nav>
+<h2 id="principles"><a name="principles"></a>Principles</h2>
+<ul>
+<li><strong>Source data is only read.</strong> Logs are opened read-only and mapped into memory read-only. The app opens the case database for reading; only bookmarks and detection results are written, over a separate connection.</li>
+<li><strong>Nothing is hidden.</strong> Recovered records, chunks beyond the header, checksum errors, heuristic links, unsupported rules, limits and skips are all marked and explained in the interface.</li>
+<li><strong>Queries are not SQL.</strong> User text never becomes an SQL statement.</li>
+</ul>
+<h2 id="components"><a name="components"></a>Components</h2>
+<table>
+<thead><tr><th>Module</th><th>Does</th></tr></thead>
+<tbody>
+<tr><td>App</td><td>SwiftUI and AppKit. The event table is an <code>NSTableView</code>: a SwiftUI table does not stay smooth with millions of rows</td></tr>
+<tr><td><code>EvtxCore</code></td><td>Own EVTX and BinXML parser in Swift, no external libraries</td></tr>
+<tr><td><code>DaybookStore</code></td><td>Import, the SQLite case store, the DQL engine, entities, sessions, processes, export</td></tr>
+<tr><td><code>DaybookSigma</code></td><td>Sigma rule parsing, translation to DQL, runs, engine check</td></tr>
+<tr><td><code>evtxdump</code></td><td>Command-line tool on the same core</td></tr>
+</tbody></table>
+<p>The only external dependency is <a href="https://github.com/jpsim/Yams" class="external">Yams</a> (MIT) for Sigma YAML.</p>
+<h2 id="evtx-parser"><a name="evtx-parser"></a>EVTX parser</h2>
+<ul>
+<li>The file is memory-mapped. The format is recognised by the <code>ElfFile\0</code> signature, not the extension.</li>
+<li>64 KiB chunks are independent, so they are parsed in parallel on all cores.</li>
+<li><strong>Every physical chunk</strong> is read, not only those listed in the header. In live logs the header's chunk count is stale, and the newest events sit in chunks beyond it.</li>
+<li>The CRC32 of each chunk header and data is checked. A mismatch does not stop parsing; it flags the records.</li>
+<li>BinXML templates are parsed once per chunk and cached; nested BinXML is supported.</li>
+<li>Every value type of the format is supported: strings, numbers, GUIDs, SIDs, FILETIME, SYSTEMTIME, binary data, arrays.</li>
+<li>A record with a parse error is not lost: everything read is kept and the record is flagged.</li>
+<li>The slack space of chunks is scanned for remnants of old records (see <a href="cases-import.html#recovering-records-from-slack">Recovering records</a>).</li>
+</ul>
+<h2 id="import"><a name="import"></a>Import</h2>
+<ol>
+<li>A parallel pass over all chunks: system fields, time, record location; the template library of all files is collected on the way.</li>
+<li>Recovering records from slack with the templates of the whole case.</li>
+<li>Sorting by time. Events are numbered in time order, so any list of event numbers is already sorted by time. Identical copies are merged.</li>
+<li>A second parallel parse writes events to the database in batches of 256 chunks.</li>
+<li>Indexes: posting lists, database indexes, full-text index, entity registry.</li>
+</ol>
+<h2 id="case-store"><a name="case-store"></a>Case store</h2>
+<ul>
+<li><strong>String dictionary.</strong> Every unique value or field name is stored once, with a hash of its lower-cased form and its numeric value if it is a number.</li>
+<li><strong>Events.</strong> One row per event: time, system fields and packed "field → value" pairs. The table and the details are shown without joins.</li>
+<li><strong>Posting lists.</strong> For every "field = value" pair, a sorted, compressed list of event numbers. System properties are the same pairs with keys <code>@EventID</code>, <code>@Channel</code> and so on.</li>
+<li><strong>Full-text index</strong> — trigram FTS5 over the dictionary for substring search.</li>
+<li>**<code>ts.bin</code>** — event times in a row; a time range is a binary search.</li>
+<li><strong>XML and raw bytes</strong> are not stored: when the details open, the record is re-read from the source file at its stored location (chunk and offset). The record number is compared to notice a changed file. The exception is records with a foreign or missing template: their XML is saved at import.</li>
+</ul>
+<h2 id="query-execution"><a name="query-execution"></a>Query execution</h2>
+<p>A query is parsed into a tree. Each condition becomes a set of event numbers through the dictionary and posting lists; <code>and</code>, <code>or</code>, <code>not</code> are intersection, union and difference of sorted sets. More in <a href="dql.html#how-a-query-runs">DQL</a>.</p>
+<h2 id="event-details"><a name="event-details"></a>Event details</h2>
+<p>The event fields come from the case and appear at once. The XML and bytes of the record are read from the source file separately, on a background thread and without holding the database lock, so a slow or unavailable file does not stall the interface. While the file is being read, the XML and Hex tabs show the state: reading, the file is not responding (over 3 seconds), not found, no access, or the file changed after import.</p>
+<h2 id="performance"><a name="performance"></a>Performance</h2>
+<p>Measured on a Mac with an Apple M5 Pro; the test set is 108 logs of a domain controller (906 MB, 632,872 events):</p>
+<table>
+<thead><tr><th>Operation</th><th>Time</th></tr></thead>
+<tbody>
+<tr><td>Import</td><td>about 13 s</td></tr>
+<tr><td>Typical queries</td><td>1–380 ms</td></tr>
+<tr><td>All 2,748 Sigma rules</td><td>about 8 s</td></tr>
+<tr><td>Import of 10 copies of the set (6.4 million events)</td><td>67 s, peak memory 2.2 GB</td></tr>
+<tr><td>Sigma rules on 6.4 million events</td><td>24.5 s</td></tr>
+</tbody></table>
+<h2 id="limitations"><a name="limitations"></a>Limitations</h2>
+<table>
+<thead><tr><th>Limitation</th><th>Details</th></tr></thead>
+<tbody>
+<tr><td>Number of events</td><td>Fewer than 2³¹ per case</td></tr>
+<tr><td>Number of files</td><td>Fewer than 65,535 per case</td></tr>
+<tr><td>Memory during import</td><td>About 64 bytes per record plus the whole "field = value" index in memory until the import ends</td></tr>
+<tr><td><code>.evt</code> format</td><td>Windows XP/2003 is not supported</td></tr>
+<tr><td>Incomplete last chunk</td><td>Not parsed; its size is shown in Case Information</td></tr>
+<tr><td>File header CRC</td><td>Computed but not shown yet</td></tr>
+<tr><td>Event description</td><td>Built for display: not searchable and not exported</td></tr>
+<tr><td>EventRecordID, ProcessID, ThreadID</td><td>Shown in the details and exports, but not queryable yet</td></tr>
+<tr><td>New location of sources</td><td>Moved logs cannot be re-linked to a case yet</td></tr>
+<tr><td>Intel Macs</td><td>Not tested</td></tr>
+</tbody></table>
+</main>
+</body>
+</html>

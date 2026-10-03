@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Sigma is an open format for detection rules. The app turns every rule into a DQL query, runs it against the case and stores the result. The translation is visible in the rule card; you can copy it and run it by hand.">
+<meta name="keywords" content="What it is, Bundled rules, Your own rules folder, Running, How a rule becomes a query, logsource, Fields, Modifiers, condition, When a rule did not run, Regular expression limit, The Detections screen, Where else matches show up, Engine check">
+
+<title>Sigma detections — DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Contents</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="sigma-detections"><a name="sigma-detections"></a>Sigma detections</h1>
+<nav class="toc"><ul><li><a href="#what-it-is">What it is</a></li><li><a href="#bundled-rules">Bundled rules</a></li><li class="sub"><a href="#your-own-rules-folder">Your own rules folder</a></li><li><a href="#running">Running</a></li><li><a href="#how-a-rule-becomes-a-query">How a rule becomes a query</a></li><li class="sub"><a href="#logsource">logsource</a></li><li class="sub"><a href="#fields">Fields</a></li><li class="sub"><a href="#modifiers">Modifiers</a></li><li class="sub"><a href="#condition">condition</a></li><li class="sub"><a href="#when-a-rule-did-not-run">When a rule did not run</a></li><li class="sub"><a href="#regular-expression-limit">Regular expression limit</a></li><li><a href="#the-detections-screen">The Detections screen</a></li><li><a href="#where-else-matches-show-up">Where else matches show up</a></li><li><a href="#engine-check">Engine check</a></li></ul></nav>
+<h2 id="what-it-is"><a name="what-it-is"></a>What it is</h2>
+<p><a href="https://sigmahq.io" class="external">Sigma</a> is an open format for detection rules. The app turns every rule into a <a href="dql.html">DQL</a> query, runs it against the case and stores the result. The translation is visible in the rule card; you can copy it and run it by hand.</p>
+<h2 id="bundled-rules"><a name="bundled-rules"></a>Bundled rules</h2>
+<table>
+<thead><tr><th>Set</th><th>Rules</th><th>Version</th><th>Licence</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/SigmaHQ/sigma" class="external">SigmaHQ</a></td><td>2,554</td><td>Release 2026-07-09, r2026-04-01-50-g552f3fee4</td><td>Detection Rule License 1.1</td></tr>
+<tr><td><a href="https://github.com/Yamato-Security/hayabusa-rules" class="external">Hayabusa rules</a></td><td>194</td><td>main branch</td><td>Detection Rule License 1.1</td></tr>
+</tbody></table>
+<ul>
+<li>From SigmaHQ: <code>rules/windows/**</code> plus rules with <code>product: windows</code> from <code>rules/</code> and <code>rules-emerging-threats/</code>. From Hayabusa: <code>hayabusa/**</code> (its copies of SigmaHQ rules in <code>sigma/</code> are not taken).</li>
+<li>The 248 Hayabusa field aliases ship with the Hayabusa rules.</li>
+<li>The author of every rule is shown next to each match. The sets, versions and the full DRL 1.1 text are under Rules → Rule sets and licenses….</li>
+</ul>
+<h3 id="your-own-rules-folder"><a name="your-own-rules-folder"></a>Your own rules folder</h3>
+<ul>
+<li>Rules → Choose custom rules folder…. Every <code>.yml</code> and <code>.yaml</code> file is read, including subfolders.</li>
+<li>The set is called "Custom: &lt;folder name&gt;". Changes in the folder are picked up on the next run.</li>
+<li>Turn it off with Stop using folder “…”.</li>
+</ul>
+<h2 id="running"><a name="running"></a>Running</h2>
+<ul>
+<li>Automatically after import when Run Sigma detections after import is on (the default).</li>
+<li>By hand with Run Detections / Run Again on the Detections screen.</li>
+<li>The run is in the background. All rules are compiled first, then the substrings and masks of all rules are evaluated in one pass per field (Aho–Corasick), then the rules themselves run.</li>
+<li>Results are stored in the case and replaced by the next run. Stop keeps the previous results.</li>
+</ul>
+<h2 id="how-a-rule-becomes-a-query"><a name="how-a-rule-becomes-a-query"></a>How a rule becomes a query</h2>
+<h3 id="logsource"><a name="logsource"></a>logsource</h3>
+<table>
+<thead><tr><th>logsource</th><th>Events</th></tr></thead>
+<tbody>
+<tr><td><code>category: process_creation</code></td><td>Sysmon 1 <strong>and</strong> Security 4688</td></tr>
+<tr><td>other Sysmon categories (<code>network_connection</code>, <code>file_event</code>, <code>registry_*</code>, <code>dns_query</code>, <code>image_load</code> and more)</td><td>the matching Sysmon events</td></tr>
+<tr><td><code>ps_module</code>, <code>ps_script</code>, <code>ps_classic_*</code></td><td>PowerShell 4103, 4104, 400/600/800</td></tr>
+<tr><td><code>service: security</code>, <code>system</code>, …</td><td>the log from a table of 42 services</td></tr>
+<tr><td>only <code>product: windows</code></td><td>all logs; the rule sets the channels and EventIDs itself</td></tr>
+</tbody></table>
+<p>For the Security 4688 variant fields are renamed: <code>Image</code> → <code>NewProcessName</code>, <code>ParentImage</code> → <code>ParentProcessName</code>, <code>IntegrityLevel</code> → <code>MandatoryLabel</code> (integrity levels become <code>S-1-16-…</code> SIDs).</p>
+<p>Rules with a <code>product</code> other than <code>windows</code> are not supported.</p>
+<h3 id="fields"><a name="fields"></a>Fields</h3>
+<ul>
+<li><code>EventID</code>, <code>Channel</code>, <code>Provider_Name</code>, <code>Computer</code>, <code>Level</code>, <code>Keywords</code> and the like are system fields.</li>
+<li>Other names are matched exactly, case-sensitively.</li>
+<li>If a field does not exist in the case, a condition on it is false and <code>null</code> is true. Such fields are listed in the rule card under Fields absent from this case.</li>
+<li>Hayabusa aliases (<code>Event.EventData.X</code> and so on) apply only to Hayabusa rules.</li>
+</ul>
+<h3 id="modifiers"><a name="modifiers"></a>Modifiers</h3>
+<table>
+<thead><tr><th>Supported</th><th>Not supported</th></tr></thead>
+<tbody>
+<tr><td><code>contains</code>, <code>startswith</code>, <code>endswith</code>, <code>all</code>, <code>re</code> (flags <code>i</code>, <code>m</code>, <code>s</code>), <code>cidr</code>, <code>gt</code>, <code>gte</code>, <code>lt</code>, <code>lte</code>, <code>exists</code>, <code>cased</code>, <code>fieldref</code>, <code>base64</code>, <code>base64offset</code>, <code>windash</code>, <code>wide</code>/<code>utf16le</code> (with <code>base64</code>)</td><td><code>utf16</code>, <code>utf16be</code>, <code>expand</code>, unknown modifiers</td></tr>
+</tbody></table>
+<ul>
+<li><code>*</code> and <code>?</code> in values are masks; <code>\</code> escapes <code>*</code>, <code>?</code> and <code>\</code>.</li>
+<li>Matching is case-insensitive; <code>|cased</code> makes it case-sensitive. <code>re</code> is case-sensitive unless the <code>i</code> flag is set.</li>
+<li>Keywords are substrings in any field.</li>
+</ul>
+<h3 id="condition"><a name="condition"></a>condition</h3>
+<ul>
+<li><code>and</code>, <code>or</code>, <code>not</code>, parentheses.</li>
+<li><code>1 of …</code> and <code>all of …</code> — by name, by a <code>*</code> pattern or <code>them</code>.</li>
+<li>A list of conditions is combined with <code>or</code>.</li>
+<li>Not supported: <code>N of</code> with N ≠ 1, aggregations with <code>|</code> (<code>count()</code> and the like), correlation and multi-document rules. <code>timeframe</code> is ignored.</li>
+</ul>
+<h3 id="when-a-rule-did-not-run"><a name="when-a-rule-did-not-run"></a>When a rule did not run</h3>
+<p>No rule disappears silently. A mark next to the title in the table, with the reason in the tooltip and the card:</p>
+<table>
+<thead><tr><th>Mark</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Grey ⊘</td><td>Not evaluated (unsupported logsource, modifier, aggregation…)</td></tr>
+<tr><td>Red octagon</td><td>Evaluation error</td></tr>
+<tr><td>Orange triangle</td><td>Notes — for example, the regular expression limit</td></tr>
+</tbody></table>
+<p>The Not evaluated / with notes filter collects all such rules. With the bundled set, 2,734 rules are evaluated, 11 are not supported (six <code>file_access</code>, one <code>file_rename</code>, three with <code>count()</code> aggregation, one without a condition) and 3 Hayabusa correlation files are not loaded.</p>
+<h3 id="regular-expression-limit"><a name="regular-expression-limit"></a>Regular expression limit</h3>
+<p>A regular expression gets 2 seconds of CPU time per field value. Values that do not fit the limit count as unchecked, and the rule gets a note saying how many values on which field were not checked.</p>
+<h2 id="the-detections-screen"><a name="the-detections-screen"></a>The Detections screen</h2>
+<p><strong>Toolbar:</strong> Matched / All evaluated / Not evaluated / with notes / All rules, minimum level, search by title, author, tag, path or id, the Rules menu, and starting or stopping a run with progress.</p>
+<p><strong>Table:</strong> Level, Rule, Events, Hosts, Author, First and Last match, Rule set, Status. Double-click shows the rule's events. Context menu: Rule events, Rule events in timeline, Copy rule DQL, Copy events query (<code>rule = &quot;&lt;id&gt;&quot;</code>).</p>
+<p><strong>Rule card:</strong></p>
+<ul>
+<li>title, level, status, rule set, author, path and id, created and modified dates;</li>
+<li>notes and reasons, if any;</li>
+<li>"Matched events: N · hosts: M", the period, Events and In timeline buttons;</li>
+<li>description;</li>
+<li>How it was evaluated: logsource, variants with renamed fields, the final DQL with Run this DQL and Copy, evaluation time;</li>
+<li>tags — MITRE ATT&amp;CK techniques linking to attack.mitre.org;</li>
+<li>False positives (according to the author), references from the rule, the source YAML.</li>
+</ul>
+<p><strong>Footer:</strong> run time, how many rules were evaluated, not supported, not loaded, failed and have notes, how many matched on how many events, duration.</p>
+<h2 id="where-else-matches-show-up"><a name="where-else-matches-show-up"></a>Where else matches show up</h2>
+<ul>
+<li>In the event details — the Matched rules block with level, title, author and rule set. A click opens the rule card.</li>
+<li>In the Events sidebar — rule levels with counts and All matched rules….</li>
+<li>In queries — the <code>rule</code> and <code>rulelevel</code> fields: <code>rule = &quot;&lt;id or title&gt;&quot;</code>, <code>rulelevel &gt;= high</code>.</li>
+<li>Export of matched rules to CSV — see <a href="export-cli.html#exporting-detections">Export</a>.</li>
+</ul>
+<h2 id="engine-check"><a name="engine-check"></a>Engine check</h2>
+<p><code>evtxdump sigma &lt;case&gt; --pack rules.json --verify</code> re-checks every matched rule with an independent simplified evaluator that reads the original rule directly, and reports differences in both directions. It checks the engine itself, not the data; the app does not have it.</p>
+</main>
+</body>
+</html>

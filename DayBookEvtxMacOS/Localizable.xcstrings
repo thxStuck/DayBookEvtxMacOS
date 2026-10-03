@@ -941,6 +941,16 @@
         }
       }
     },
+    "Yams — лицензия MIT.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yams — MIT License."
+          }
+        }
+      }
+    },
     "base64 от значения с маской не поддерживается": {
       "localizations": {
         "en": {
@@ -1196,6 +1206,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Alternate data stream %@"
+          }
+        }
+      }
+    },
+    "Анализ журналов Windows (.evtx) на macOS: поиск на языке DQL, таймлайн, хосты и пользователи, сеансы входа, деревья процессов и Sigma-детекты.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows event log (.evtx) analysis on macOS: DQL search, timeline, hosts and users, logon sessions, process trees and Sigma detections."
           }
         }
       }
@@ -1978,6 +1998,26 @@
         }
       }
     },
+    "Документация": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Documentation"
+          }
+        }
+      }
+    },
+    "Документация на сайте": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Documentation Online"
+          }
+        }
+      }
+    },
     "Доступ к ресурсам": {
       "localizations": {
         "en": {
@@ -2362,6 +2402,16 @@
         }
       }
     },
+    "Идущий прогон детектов будет прерван, прежние результаты сохранятся.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The running detection pass will stop; earlier results are kept."
+          }
+        }
+      }
+    },
     "Из группы %@ удалён %@ [%@]": {
       "localizations": {
         "en": {
@@ -2650,6 +2700,16 @@
         }
       }
     },
+    "Исходные журналы открываются только на чтение и никогда не изменяются.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source logs are opened read-only and never modified."
+          }
+        }
+      }
+    },
     "Исходные файлы": {
       "localizations": {
         "en": {
@@ -2680,12 +2740,32 @@
         }
       }
     },
+    "Исходный код": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source code"
+          }
+        }
+      }
+    },
     "Исходный файл не найден — его переместили или удалили после импорта.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Source file not found — it was moved or deleted after import."
+          }
+        }
+      }
+    },
+    "Как в системе": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System Language"
           }
         }
       }
@@ -3258,6 +3338,16 @@
         }
       }
     },
+    "О программе DayBookEvtxMacOS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About DayBookEvtxMacOS"
+          }
+        }
+      }
+    },
     "Объединять одинаковые записи": {
       "localizations": {
         "en": {
@@ -3642,6 +3732,26 @@
         }
       }
     },
+    "Перезапустить DayBookEvtxMacOS сейчас? Открытый кейс откроется снова.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restart DayBookEvtxMacOS now? The open case will open again."
+          }
+        }
+      }
+    },
+    "Перезапустить сейчас": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restart Now"
+          }
+        }
+      }
+    },
     "Перейти к событию": {
       "localizations": {
         "en": {
@@ -3694,6 +3804,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Verbose"
+          }
+        }
+      }
+    },
+    "Позже": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later"
           }
         }
       }
@@ -3991,6 +4111,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rules"
+          }
+        }
+      }
+    },
+    "Правила Sigma: SigmaHQ и Hayabusa — Detection Rule License 1.1. Автор каждого правила показывается рядом с каждым срабатыванием.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sigma rules: SigmaHQ and Hayabusa — Detection Rule License 1.1. The author of every rule is shown next to each match."
           }
         }
       }
@@ -4469,6 +4599,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sessions"
+          }
+        }
+      }
+    },
+    "Сейчас идёт импорт. Перезапустите приложение, когда он закончится.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An import is running. Restart the app when it finishes."
           }
         }
       }
@@ -4966,6 +5106,26 @@
         }
       }
     },
+    "Сообщить об ошибке": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report a bug"
+          }
+        }
+      }
+    },
+    "Сообщить об ошибке…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report a Bug…"
+          }
+        }
+      }
+    },
     "Сопоставление: вход 4624 и выход 4634/4647 по TargetLogonId на том же хосте в пределах одной загрузки (границы загрузок — события 12, 6005, 4608). Привилегии — 4672 с тем же SubjectLogonId.": {
       "localizations": {
         "en": {
@@ -5098,6 +5258,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stop"
+          }
+        }
+      }
+    },
+    "Сторонние компоненты": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Third-party components"
+          }
+        }
+      }
+    },
+    "Страница проекта на GitHub": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Project Page on GitHub"
           }
         }
       }
@@ -5799,6 +5979,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "DQL Query Language"
+          }
+        }
+      }
+    },
+    "Язык запросов DQL на сайте": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DQL Reference Online"
+          }
+        }
+      }
+    },
+    "Язык интерфейса": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interface Language"
+          }
+        }
+      }
+    },
+    "Язык интерфейса изменится после перезапуска": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The interface language changes after a restart"
           }
         }
       }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Меню «Экспорт» на панели инструментов. Экспортируется текущий результат: запрос, фильтры, временное окно, а если выбрана группа — только она. Порядок строк — как на экране. После экспорта файл показывается в Finder.">
+<meta name="keywords" content="Экспорт событий, Колонки, Особенности XLSX, Экспорт детектов, Утилита командной строки evtxdump, Примеры, Отличия от приложения">
+
+<title>Экспорт и командная строка — Справка DayBookEvtxMacOS</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Содержание</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/ru/">Документация на сайте</a></header>
+<main>
+<h1 id="экспорт-и-командная-строка"><a name="экспорт-и-командная-строка"></a>Экспорт и командная строка</h1>
+<nav class="toc"><ul><li><a href="#экспорт-событий">Экспорт событий</a></li><li class="sub"><a href="#колонки">Колонки</a></li><li class="sub"><a href="#особенности-xlsx">Особенности XLSX</a></li><li><a href="#экспорт-детектов">Экспорт детектов</a></li><li><a href="#утилита-командной-строки-evtxdump">Утилита командной строки evtxdump</a></li><li class="sub"><a href="#примеры">Примеры</a></li><li class="sub"><a href="#отличия-от-приложения">Отличия от приложения</a></li></ul></nav>
+<h2 id="экспорт-событий"><a name="экспорт-событий"></a>Экспорт событий</h2>
+<p>Меню «Экспорт» на панели инструментов. Экспортируется <strong>текущий результат</strong>: запрос, фильтры, временное окно, а если выбрана группа — только она. Порядок строк — как на экране. После экспорта файл показывается в Finder.</p>
+<table>
+<thead><tr><th>Формат</th><th>Особенности</th></tr></thead>
+<tbody>
+<tr><td>CSV</td><td>Запятая, UTF-8 без BOM, строки через CRLF, кавычки по RFC 4180. Значения не меняются</td></tr>
+<tr><td>CSV для Excel (;)</td><td>Точка с запятой и BOM. Значения, начинающиеся с <code>=</code>, <code>+</code>, <code>-</code>, <code>@</code>, табуляции или CR, получают впереди апостроф, чтобы Excel не выполнил их как формулы</td></tr>
+<tr><td>JSON Lines</td><td>Одно событие — одна строка JSON. Поле <code>source_file</code> — полный путь. Повторяющиеся поля в <code>data</code> записываются массивом</td></tr>
+<tr><td>Excel (XLSX)</td><td>Лист «События» с закреплённым заголовком и автофильтром; лист «Сведения» с параметрами экспорта</td></tr>
+</tbody></table>
+<h3 id="колонки"><a name="колонки"></a>Колонки</h3>
+<table>
+<thead><tr><th>Колонка</th><th>Содержимое</th></tr></thead>
+<tbody>
+<tr><td><code>Time (&lt;пояс&gt;)</code></td><td>Время в выбранном часовом поясе, до миллисекунд</td></tr>
+<tr><td><code>TimeUTC</code></td><td>Время в UTC, 7 знаков после запятой и <code>Z</code></td></tr>
+<tr><td><code>Computer</code>, <code>Channel</code>, <code>Provider</code>, <code>EventID</code></td><td>Системные поля</td></tr>
+<tr><td><code>Level</code></td><td>Уровень числом</td></tr>
+<tr><td><code>UserSID</code>, <code>RecordID</code></td><td>SID пользователя из System и номер записи</td></tr>
+<tr><td><code>SourceFile</code>, <code>SourceSHA256</code></td><td>Имя исходного файла и его SHA-256</td></tr>
+<tr><td><code>Flags</code></td><td>Флаги записи</td></tr>
+<tr><td>Ваши колонки</td><td>Поля, которые вы добавили в таблицу</td></tr>
+<tr><td><code>EventData</code></td><td>Все поля события в виде «имя: значение | …»</td></tr>
+</tbody></table>
+<h3 id="особенности-xlsx"><a name="особенности-xlsx"></a>Особенности XLSX</h3>
+<ul>
+<li>EventID, Level и RecordID записываются числами, всё остальное — текстом, никогда не формулами.</li>
+<li>Не больше 1 048 575 строк (предел Excel). Если результат больше, приложение предложит сузить запрос.</li>
+<li>Ячейки длиннее 32 767 символов обрезаются и заканчиваются пометкой «…[обрезано: полная длина N символов]»; их число указано на листе «Сведения».</li>
+<li>Лист «Сведения»: путь кейса, время экспорта (UTC), часовой пояс, запрос, фильтры, временное окно, порядок строк, число событий, исходные файлы с SHA-256 и числом записей.</li>
+</ul>
+<div class="callout note-ru"><p class="callout-title">Примечание</p><p>Описание события (колонка «Описание / данные события» в таблице) формируется при показе и в экспорт не попадает. Все данные события есть в колонке <code>EventData</code>.</p></div>
+<h2 id="экспорт-детектов"><a name="экспорт-детектов"></a>Экспорт детектов</h2>
+<p>На экране «Детекты» сработавшие правила выгружаются в CSV — обычный или для Excel (с той же защитой от формул). Колонки: <code>Level</code>, <code>Rule</code>, <code>Events</code>, <code>Hosts</code>, первое и последнее срабатывание в выбранном поясе и в UTC, <code>Author</code>, <code>RuleSet</code> (SigmaHQ, Hayabusa или своя папка), <code>RulePath</code>, <code>RuleID</code>, <code>Status</code>, <code>Tags</code> (в том числе техники MITRE ATT&amp;CK), <code>References</code>, <code>License</code> и <code>DQL</code> — запрос, в который переведено правило.</p>
+<h2 id="утилита-командной-строки-evtxdump"><a name="утилита-командной-строки-evtxdump"></a>Утилита командной строки evtxdump</h2>
+<p>Собирается вместе с приложением скриптом <code>scripts/build.sh</code>: <code>Packages/DaybookKit/.build/release/evtxdump</code>. Использует то же ядро, что и приложение.</p>
+<table>
+<thead><tr><th>Команда</th><th>Синтаксис</th><th>Назначение</th></tr></thead>
+<tbody>
+<tr><td><code>ingest</code></td><td><code>&lt;case.daybook&gt; &lt;файлы/папки&gt;… [--no-merge] [--no-carve] [--no-hash]</code></td><td>Создать кейс. Папка кейса не должна существовать. Детекты не запускаются</td></tr>
+<tr><td><code>dql</code></td><td><code>&lt;case&gt; &quot;&lt;запрос&gt;&quot;</code></td><td>Выполнить запрос DQL. Время выводится в UTC</td></tr>
+<tr><td><code>query</code></td><td><code>&lt;case&gt; [key=value \| key!=value]… [--facet key]</code></td><td>Фильтры как в интерфейсе: первые строки результата и замеры времени</td></tr>
+<tr><td><code>entities</code></td><td><code>&lt;case&gt; [--rebuild]</code></td><td>Показать или пересобрать реестр хостов, пользователей и IP</td></tr>
+<tr><td><code>sessions</code></td><td><code>&lt;case&gt;</code></td><td>Сеансы входа и RDP</td></tr>
+<tr><td><code>processes</code></td><td><code>&lt;case&gt;</code></td><td>Деревья процессов</td></tr>
+<tr><td><code>sigma</code></td><td><code>&lt;case&gt; --pack rules.json [--dir папка] [--rule id\|путь] [--compile-only] [--verify] [--top N]</code></td><td>Выполнить правила Sigma. Результаты записываются в кейс</td></tr>
+<tr><td><code>export</code></td><td><code>&lt;case&gt; &lt;out.csv\|out.jsonl\|out.xlsx&gt; [&quot;DQL&quot;] [--fields a,b]</code></td><td>Экспорт; формат определяется по расширению</td></tr>
+<tr><td><code>stats</code></td><td><code>&lt;файлы/папки&gt;…</code></td><td>Состояние файлов и чанков без создания кейса</td></tr>
+<tr><td><code>carve</code></td><td><code>&lt;файлы/папки&gt;…</code></td><td>Статистика восстановления из slack</td></tr>
+<tr><td><code>xml</code></td><td><code>&lt;файл&gt; [--limit N] [--jsonl]</code></td><td>XML живых записей файла</td></tr>
+<tr><td><code>json</code></td><td><code>&lt;файл&gt; [--limit N]</code></td><td>Записи файла, по одной строке JSON</td></tr>
+</tbody></table>
+<h3 id="примеры"><a name="примеры"></a>Примеры</h3>
+<pre><code>evtxdump ingest case.daybook /path/to/winevt/logs
+evtxdump dql case.daybook &#x27;EventID = 4625 | group by IpAddress&#x27;
+evtxdump sigma case.daybook --pack DayBookEvtxMacOS/Resources/Rules/rules.json --top 20
+evtxdump export case.daybook out.xlsx &#x27;EventID = 4688&#x27;
+evtxdump stats /path/to/logs</code></pre>
+<h3 id="отличия-от-приложения"><a name="отличия-от-приложения"></a>Отличия от приложения</h3>
+<ul>
+<li><code>export</code> из командной строки не умеет «CSV для Excel» и выводит время только в UTC.</li>
+<li>В <code>dql</code> время в запросе понимается в UTC и только в формате <code>ГГГГ-ММ-ДД[ ЧЧ:ММ[:СС]]</code>: без долей секунды, суффикса <code>Z</code> и смещений.</li>
+<li>В <code>export</code> условия по времени в запросе не поддерживаются — запрос с ними вернёт ошибку. Используйте <code>dql</code>, чтобы найти нужное, или экспортируйте из приложения.</li>
+<li><code>sigma --verify</code> дополнительно проверяет каждое срабатывание независимым упрощённым вычислителем и сообщает о расхождениях — это проверка самого движка.</li>
+</ul>
+</main>
+</body>
+</html>

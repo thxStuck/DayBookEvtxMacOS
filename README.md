@@ -53,8 +53,8 @@ Privacy & Security → Open Anyway (an administrator password is required). Or i
 xattr -dr com.apple.quarantine /Applications/DayBookEvtxMacOS.app
 ```
 
-The interface follows the system language. To use English for this app only: System Settings →
-General → Language & Region → Applications → + → DayBookEvtxMacOS → English.
+The interface follows the system language; change it in the app with DayBookEvtxMacOS → Interface
+Language. Help → DayBookEvtxMacOS Help opens the full documentation offline.
 
 ## Build and run
 
@@ -94,7 +94,7 @@ Packages/DaybookKit/
   Sources/DaybookStore/      case store (SQLite), DQL, entities, sessions, processes, export
   Sources/DaybookSigma/      Sigma rule parsing and compilation, engine check
   Sources/evtxdump/          CLI
-scripts/                     build, rule packing, icon, string sync
+scripts/                     build, rule packing, icon, string sync, help book (make_help.py)
 docs/                        documentation site (GitHub Pages), RU and EN
 ```
 

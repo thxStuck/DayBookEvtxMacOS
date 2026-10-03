@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="During import the app builds a registry of hosts, users and IP addresses from every log of the case. The Hosts, Users and IP addresses sections show it as tables.">
+<meta name="keywords" content="Entity registry, Where entities come from, Normalisation, Table and card, Logon sessions, How a session is built, Table, RDP, Process trees, Sysmon, Security 4688, Table">
+
+<title>Entities, sessions, processes — DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Contents</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="hosts-users-ips-sessions-and-processes"><a name="hosts-users-ips-sessions-and-processes"></a>Hosts, users, IPs, sessions and processes</h1>
+<nav class="toc"><ul><li><a href="#entity-registry">Entity registry</a></li><li class="sub"><a href="#where-entities-come-from">Where entities come from</a></li><li class="sub"><a href="#normalisation">Normalisation</a></li><li class="sub"><a href="#table-and-card">Table and card</a></li><li><a href="#logon-sessions">Logon sessions</a></li><li class="sub"><a href="#how-a-session-is-built">How a session is built</a></li><li class="sub"><a href="#table">Table</a></li><li><a href="#rdp">RDP</a></li><li><a href="#process-trees">Process trees</a></li><li class="sub"><a href="#sysmon">Sysmon</a></li><li class="sub"><a href="#security-4688">Security 4688</a></li><li class="sub"><a href="#table">Table</a></li></ul></nav>
+<h2 id="entity-registry"><a name="entity-registry"></a>Entity registry</h2>
+<p>During import the app builds a registry of hosts, users and IP addresses from every log of the case. The Hosts, Users and IP addresses sections show it as tables.</p>
+<h3 id="where-entities-come-from"><a name="where-entities-come-from"></a>Where entities come from</h3>
+<p>An entity's role in an event is set by the field name (exact, case-sensitive match):</p>
+<table>
+<thead><tr><th>Fields</th><th>Entity</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>Computer</code> (System)</td><td>host</td><td>log (the computer that wrote the event)</td></tr>
+<tr><td>The SID from System/Security</td><td>user</td><td>event context</td></tr>
+<tr><td><code>Target*</code>, <code>TargetUserSid</code>, <code>TargetOutbound*</code>, <code>AccountName</code>/<code>AccountDomain</code></td><td>user</td><td>target</td></tr>
+<tr><td><code>Subject*</code>, <code>User</code>, <code>ParentUser</code></td><td>user</td><td>subject</td></tr>
+<tr><td><code>WorkstationName</code>, <code>Workstation</code>, <code>ClientName</code>, <code>SourceHostname</code></td><td>host</td><td>source</td></tr>
+<tr><td><code>DestinationHostname</code>, <code>TargetServerName</code></td><td>host</td><td>destination</td></tr>
+<tr><td><code>IpAddress</code>, <code>ClientAddress</code>, <code>SourceIp</code>, <code>SourceAddress</code>, <code>Address</code>, <code>ClientIP</code></td><td>IP</td><td>source</td></tr>
+<tr><td><code>DestinationIp</code>, <code>DestAddress</code></td><td>IP</td><td>destination</td></tr>
+</tbody></table>
+<p>Special cases: in the RDP event RCM 1149, <code>Param1</code> and <code>Param2</code> are the user and <code>Param3</code> the IP; EventLog 6011 (computer renamed) adds the previous host name to the host's other spellings.</p>
+<h3 id="normalisation"><a name="normalisation"></a>Normalisation</h3>
+<ul>
+<li><strong>Hosts.</strong> Leading <code>\\</code> is removed; <code>-</code>, <code>LOCALHOST</code>, <code>LOCAL</code>, <code>UNKNOWN</code>, <code>N/A</code> and IP addresses are dropped; a trailing <code>$</code> is removed; a fully qualified name is cut to its first label and upper-cased. <code>DC01.corp.local</code>, <code>dc01</code> and <code>DC01$</code> are one host.</li>
+<li><strong>Users.</strong> <code>DOMAIN\name</code> and <code>name@domain</code> are understood. <code>NAME$</code> in a user field is a computer account: it becomes a host with the "computer account" role. A user is identified by SID when it is known, otherwise by <code>DOMAIN\name</code>. A name without a domain joins its only variant with a domain.</li>
+<li><strong>IP addresses.</strong> Canonical form; the <code>::ffff:</code> prefix is removed; <code>127.0.0.0/8</code>, <code>::1</code>, <code>0.0.0.0</code> and <code>::</code> are dropped.</li>
+<li><strong>Built-in accounts</strong> (SYSTEM, LOCAL SERVICE, NETWORK SERVICE, DWM-&#42;, UMFD-&#42;, NT SERVICE and BUILTIN accounts and so on) are marked with a gear. In Users they can be hidden with a switch.</li>
+</ul>
+<h3 id="table-and-card"><a name="table-and-card"></a>Table and card</h3>
+<ul>
+<li>Columns: Name, other spellings (and SIDs for users), first and last seen, number of events, roles with the number of events in each.</li>
+<li>Search by name, other spelling or SID.</li>
+<li>Double-click shows every event of the entity. Context menu: Show all events, Show in timeline, Exclude from events, Copy name, Copy SID.</li>
+<li>The card on the right: first and last seen, number of events, All events and Timeline buttons.</li>
+<li><strong>Links</strong> — entities of other kinds that appear in the same events (up to 150), with the number of shared events and the period. The Events button of a link shows the events where both appear.</li>
+</ul>
+<div class="callout note"><p class="callout-title">Note</p><p>Jumping to events from the registry always starts a <strong>new search</strong>: the previous query, filters and time range are cleared and do not narrow the result. The previous query stays in the history.</p></div>
+<p>In queries, entities are matched with <code>anyhost</code>, <code>anyuser</code> and <code>anyip</code> in every role and spelling.</p>
+<h2 id="logon-sessions"><a name="logon-sessions"></a>Logon sessions</h2>
+<p>Sessions, the Logons 4624 tab.</p>
+<h3 id="how-a-session-is-built"><a name="how-a-session-is-built"></a>How a session is built</h3>
+<ul>
+<li>Security log events: logon 4624, logoff 4634 or 4647.</li>
+<li>Logon and logoff are matched by "host + boot + TargetLogonId". A LogonId is unique only within one boot of the system, so the boot is part of the key.</li>
+<li>The session ends at the earliest unused logoff that is not earlier than the logon.</li>
+<li><strong>Boots</strong> are found from Kernel-General 12, EventLog 6005 and Security 4608. Marks less than 300 seconds apart count as one boot. If a host has no such marks, all its logons are treated as one boot and the host is listed in the footer under "no boot information".</li>
+<li><strong>A privileged session</strong> has a 4672 event with the same SubjectLogonId on the same host in the same boot.</li>
+</ul>
+<h3 id="table"><a name="table"></a>Table</h3>
+<table>
+<thead><tr><th>Column</th><th>Shows</th></tr></thead>
+<tbody>
+<tr><td>Start, End, Duration</td><td>Logon and logoff time; "not closed" in orange if there is no logoff</td></tr>
+<tr><td>User</td><td><code>DOMAIN\name</code></td></tr>
+<tr><td>Type</td><td>Logon type with its name: 2 interactive, 3 network, 10 RDP and so on</td></tr>
+<tr><td>Source</td><td>Workstation and/or IP</td></tr>
+<tr><td>Priv.</td><td>"4672" if the session is privileged</td></tr>
+<tr><td>Host, LogonId</td><td></td></tr>
+</tbody></table>
+<ul>
+<li>Filter by logon type and search by user, source, host and LogonId.</li>
+<li>Selecting a row shows the logon event in the details panel. Double-click shows the session events.</li>
+<li>Context menu: Session events, Session events in timeline, Logon event (4624), Logoff event.</li>
+<li>Session events are a query: the same host, the LogonId in <code>TargetLogonId</code>, <code>SubjectLogonId</code> or <code>LogonId</code>, time from logon to logoff. You can see and change it in the query bar.</li>
+<li>The footer explains the matching rule and gives counts: sessions, not closed, logoffs without a logon.</li>
+</ul>
+<h2 id="rdp"><a name="rdp"></a>RDP</h2>
+<p>The RDP tab of Sessions.</p>
+<ul>
+<li>Source: the <code>Microsoft-Windows-TerminalServices-LocalSessionManager/Operational</code> log, events 21, 22, 23, 24, 25, 39, 40.</li>
+<li>Events are chained by computer and session number (SessionID). Event 21 starts a chain, 23 closes it. A new 21 while a chain is open closes that chain as not closed.</li>
+<li>Columns: Start, End, Host, Session, User, Address, Steps. Steps are a sequence such as "21 logon → 22 shell → 24 disconnect → 25 reconnect → 23 logoff" (currently shown in Russian in both interface languages).</li>
+<li>Context menu: first event of the chain, LSM events of this session.</li>
+<li>RCM 1149 and Security 4778/4779 are not part of the chains; they appear in the event table with descriptions and feed the entity registry. RDP logons in the Security log are type 10 sessions on the Logons 4624 tab.</li>
+</ul>
+<h2 id="process-trees"><a name="process-trees"></a>Process trees</h2>
+<p>Processes, with a Sysmon 1/5 / Security 4688 switch.</p>
+<h3 id="sysmon"><a name="sysmon"></a>Sysmon</h3>
+<ul>
+<li>Sysmon events 1 (process created) and 5 (process terminated).</li>
+<li>A node is a ProcessGuid; the parent is the ParentProcessGuid. The link is <strong>exact</strong>: Sysmon itself recorded it.</li>
+<li>If the parent's creation event is missing, a synthetic node is built from ParentImage, ParentCommandLine and ParentProcessId (orange "?" mark).</li>
+<li>A repeated creation event with the same GUID is counted in the footer as a repeated GUID.</li>
+</ul>
+<h3 id="security-4688"><a name="security-4688"></a>Security 4688</h3>
+<ul>
+<li>Events 4688 (created) and 4689 (exited).</li>
+<li>The parent is found <strong>heuristically</strong> by PID: a process whose PID equals the ProcessId field of the 4688, on the same host and in the same boot; of those, the last one started no later than the child and not exited before it started. Hexadecimal and decimal PIDs are treated as equal.</li>
+<li>Such a link is marked with 🔗 and explained: PIDs are reused, check the times.</li>
+<li>If no parent is found, a synthetic node is built from ParentProcessName and the PID.</li>
+</ul>
+<h3 id="table"><a name="table"></a>Table</h3>
+<table>
+<thead><tr><th>Column</th><th>Shows</th></tr></thead>
+<tbody>
+<tr><td>Process</td><td>Image name; full path in the tooltip</td></tr>
+<tr><td>PID, Start, End</td><td></td></tr>
+<tr><td>User, Host</td><td></td></tr>
+<tr><td>Command line</td><td></td></tr>
+</tbody></table>
+<ul>
+<li>Searching by image or command line turns the tree into a flat list (up to 5,000 rows) with an Ancestors column.</li>
+<li>Selecting a node shows its creation event in the details panel.</li>
+<li>Context menu: Go to creation event, Events of this process (Sysmon — by ProcessGuid, 4688 — by PID within the process lifetime), the same in the timeline, Copy command line, Copy path.</li>
+<li>The footer says which linking rule is used and gives counts: processes, without a creation event, linked by PID, repeated GUIDs.</li>
+</ul>
+</main>
+</body>
+</html>

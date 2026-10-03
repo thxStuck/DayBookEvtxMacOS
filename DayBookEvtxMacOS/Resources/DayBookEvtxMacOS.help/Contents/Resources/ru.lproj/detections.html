@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Sigma — открытый формат правил обнаружения. Приложение переводит каждое правило в запрос DQL, выполняет его по кейсу и сохраняет результат. Перевод виден в карточке правила, его можно скопировать и выполнить вручную.">
+<meta name="keywords" content="Что это, Правила в поставке, Своя папка правил, Запуск, Как правило переводится в запрос, logsource, Поля, Модификаторы, condition, Если правило не выполнено, Лимит регулярных выражений, Экран «Детекты», Где ещё видны срабатывания, Проверка движка">
+
+<title>Sigma-детекты — Справка DayBookEvtxMacOS</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Содержание</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/ru/">Документация на сайте</a></header>
+<main>
+<h1 id="sigma-детекты"><a name="sigma-детекты"></a>Sigma-детекты</h1>
+<nav class="toc"><ul><li><a href="#что-это">Что это</a></li><li><a href="#правила-в-поставке">Правила в поставке</a></li><li class="sub"><a href="#своя-папка-правил">Своя папка правил</a></li><li><a href="#запуск">Запуск</a></li><li><a href="#как-правило-переводится-в-запрос">Как правило переводится в запрос</a></li><li class="sub"><a href="#logsource">logsource</a></li><li class="sub"><a href="#поля">Поля</a></li><li class="sub"><a href="#модификаторы">Модификаторы</a></li><li class="sub"><a href="#condition">condition</a></li><li class="sub"><a href="#если-правило-не-выполнено">Если правило не выполнено</a></li><li class="sub"><a href="#лимит-регулярных-выражений">Лимит регулярных выражений</a></li><li><a href="#экран-детекты">Экран «Детекты»</a></li><li><a href="#где-ещё-видны-срабатывания">Где ещё видны срабатывания</a></li><li><a href="#проверка-движка">Проверка движка</a></li></ul></nav>
+<h2 id="что-это"><a name="что-это"></a>Что это</h2>
+<p><a href="https://sigmahq.io" class="external">Sigma</a> — открытый формат правил обнаружения. Приложение переводит каждое правило в запрос <a href="dql.html">DQL</a>, выполняет его по кейсу и сохраняет результат. Перевод виден в карточке правила, его можно скопировать и выполнить вручную.</p>
+<h2 id="правила-в-поставке"><a name="правила-в-поставке"></a>Правила в поставке</h2>
+<table>
+<thead><tr><th>Набор</th><th>Правил</th><th>Версия</th><th>Лицензия</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/SigmaHQ/sigma" class="external">SigmaHQ</a></td><td>2554</td><td>Release 2026-07-09, r2026-04-01-50-g552f3fee4</td><td>Detection Rule License 1.1</td></tr>
+<tr><td><a href="https://github.com/Yamato-Security/hayabusa-rules" class="external">Hayabusa rules</a></td><td>194</td><td>ветка main</td><td>Detection Rule License 1.1</td></tr>
+</tbody></table>
+<ul>
+<li>Из SigmaHQ взяты правила <code>rules/windows/**</code>, а также правила с <code>product: windows</code> из <code>rules/</code> и <code>rules-emerging-threats/</code>. Из Hayabusa — <code>hayabusa/**</code> (их копии правил SigmaHQ из папки <code>sigma/</code> не берутся).</li>
+<li>Вместе с правилами Hayabusa поставляются 248 псевдонимов полей Hayabusa.</li>
+<li>Автор каждого правила показывается рядом с каждым срабатыванием. Наборы, версии и полный текст DRL 1.1 — в меню «Правила» → «Наборы правил и лицензии…».</li>
+</ul>
+<h3 id="своя-папка-правил"><a name="своя-папка-правил"></a>Своя папка правил</h3>
+<ul>
+<li>Меню «Правила» → «Выбрать папку своих правил…». Читаются все файлы <code>.yml</code> и <code>.yaml</code>, включая вложенные папки.</li>
+<li>Набор называется «Свои: &lt;имя папки&gt;». Изменения в папке подхватываются при следующем прогоне.</li>
+<li>Отключить — «Не использовать папку «…»».</li>
+</ul>
+<h2 id="запуск"><a name="запуск"></a>Запуск</h2>
+<ul>
+<li>Автоматически после импорта, если включена опция «Запустить Sigma-детекты после импорта» (по умолчанию включена).</li>
+<li>Вручную — кнопка «Запустить детекты» / «Запустить заново» на экране «Детекты».</li>
+<li>Прогон идёт в фоне. Сначала компилируются все правила, затем подстроки и маски всех правил вычисляются одним проходом по каждому полю (алгоритм Aho–Corasick), затем выполняются сами правила.</li>
+<li>Результаты сохраняются в кейсе и заменяются при следующем прогоне. «Остановить» сохраняет прежние результаты.</li>
+</ul>
+<h2 id="как-правило-переводится-в-запрос"><a name="как-правило-переводится-в-запрос"></a>Как правило переводится в запрос</h2>
+<h3 id="logsource"><a name="logsource"></a>logsource</h3>
+<table>
+<thead><tr><th>logsource</th><th>События</th></tr></thead>
+<tbody>
+<tr><td><code>category: process_creation</code></td><td>Sysmon 1 <strong>и</strong> Security 4688</td></tr>
+<tr><td>другие категории Sysmon (<code>network_connection</code>, <code>file_event</code>, <code>registry_*</code>, <code>dns_query</code>, <code>image_load</code> и др.)</td><td>соответствующие события Sysmon</td></tr>
+<tr><td><code>ps_module</code>, <code>ps_script</code>, <code>ps_classic_*</code></td><td>PowerShell 4103, 4104, 400/600/800</td></tr>
+<tr><td><code>service: security</code>, <code>system</code>, …</td><td>журнал по таблице из 42 сервисов</td></tr>
+<tr><td>только <code>product: windows</code></td><td>все журналы; каналы и EventID задаёт само правило</td></tr>
+</tbody></table>
+<p>Для варианта Security 4688 поля переименовываются: <code>Image</code> → <code>NewProcessName</code>, <code>ParentImage</code> → <code>ParentProcessName</code>, <code>IntegrityLevel</code> → <code>MandatoryLabel</code> (уровни целостности переводятся в SID <code>S-1-16-…</code>).</p>
+<p>Правила с <code>product</code>, отличным от <code>windows</code>, не поддерживаются.</p>
+<h3 id="поля"><a name="поля"></a>Поля</h3>
+<ul>
+<li><code>EventID</code>, <code>Channel</code>, <code>Provider_Name</code>, <code>Computer</code>, <code>Level</code>, <code>Keywords</code> и т. п. — системные поля.</li>
+<li>Остальные имена сопоставляются точно, с учётом регистра.</li>
+<li>Если поля нет в кейсе, условие по нему ложно, а <code>null</code> — истинно. Такие поля перечислены в карточке правила: «Поля, которых нет в этом кейсе».</li>
+<li>Псевдонимы Hayabusa (<code>Event.EventData.X</code> и т. п.) применяются только к правилам Hayabusa.</li>
+</ul>
+<h3 id="модификаторы"><a name="модификаторы"></a>Модификаторы</h3>
+<table>
+<thead><tr><th>Поддерживаются</th><th>Не поддерживаются</th></tr></thead>
+<tbody>
+<tr><td><code>contains</code>, <code>startswith</code>, <code>endswith</code>, <code>all</code>, <code>re</code> (флаги <code>i</code>, <code>m</code>, <code>s</code>), <code>cidr</code>, <code>gt</code>, <code>gte</code>, <code>lt</code>, <code>lte</code>, <code>exists</code>, <code>cased</code>, <code>fieldref</code>, <code>base64</code>, <code>base64offset</code>, <code>windash</code>, <code>wide</code>/<code>utf16le</code> (с <code>base64</code>)</td><td><code>utf16</code>, <code>utf16be</code>, <code>expand</code>, неизвестные модификаторы</td></tr>
+</tbody></table>
+<ul>
+<li><code>*</code> и <code>?</code> в значениях — маски, <code>\</code> экранирует <code>*</code>, <code>?</code> и <code>\</code>.</li>
+<li>Сравнение без учёта регистра; <code>|cased</code> включает учёт регистра. <code>re</code> учитывает регистр, если не указан флаг <code>i</code>.</li>
+<li>Ключевые слова (keywords) — подстрока в любом поле.</li>
+</ul>
+<h3 id="condition"><a name="condition"></a>condition</h3>
+<ul>
+<li><code>and</code>, <code>or</code>, <code>not</code>, скобки.</li>
+<li><code>1 of …</code> и <code>all of …</code> — по имени, по шаблону с <code>*</code> или <code>them</code>.</li>
+<li>Условие-список объединяется через <code>or</code>.</li>
+<li>Не поддерживаются: <code>N of</code> при N ≠ 1, агрегации через <code>|</code> (<code>count()</code> и т. п.), корреляционные и многодокументные правила. <code>timeframe</code> игнорируется.</li>
+</ul>
+<h3 id="если-правило-не-выполнено"><a name="если-правило-не-выполнено"></a>Если правило не выполнено</h3>
+<p>Ни одно правило не исчезает молча. В таблице рядом с названием значок, причина — в подсказке и в карточке:</p>
+<table>
+<thead><tr><th>Значок</th><th>Что значит</th></tr></thead>
+<tbody>
+<tr><td>⊘ серый</td><td>Правило не вычислялось (неподдерживаемый logsource, модификатор, агрегация…)</td></tr>
+<tr><td>Красный восьмиугольник</td><td>Ошибка вычисления</td></tr>
+<tr><td>Оранжевый треугольник</td><td>Есть замечания — например, лимит регулярного выражения</td></tr>
+</tbody></table>
+<p>Фильтр «Не вычислены / с замечаниями» собирает все такие правила. По встроенному набору сейчас вычисляются 2734 правила, не поддерживаются 11 (шесть <code>file_access</code>, одно <code>file_rename</code>, три с агрегацией <code>count()</code>, одно без condition), не загружаются 3 корреляционных файла Hayabusa.</p>
+<h3 id="лимит-регулярных-выражений"><a name="лимит-регулярных-выражений"></a>Лимит регулярных выражений</h3>
+<p>На одно значение поля регулярному выражению отводится 2 секунды процессорного времени. Значения, не уложившиеся в лимит, считаются непроверенными, и к правилу добавляется замечание: сколько значений не проверено и по какому полю.</p>
+<h2 id="экран-детекты"><a name="экран-детекты"></a>Экран «Детекты»</h2>
+<p><strong>Панель:</strong> фильтр «Сработавшие / Все вычисленные / Не вычислены / с замечаниями / Все правила», минимальный уровень, поиск по названию, автору, тегу, пути или id, меню «Правила», запуск и остановка прогона с прогрессом.</p>
+<p><strong>Таблица:</strong> Уровень, Правило, Событий, Хостов, Автор, Первое и последнее срабатывание, Набор, Статус. Двойной клик — события правила. Контекстное меню: «События правила», «События правила в таймлайне», «Скопировать DQL правила», «Скопировать запрос событий» (<code>rule = &quot;&lt;id&gt;&quot;</code>).</p>
+<p><strong>Карточка правила:</strong></p>
+<ul>
+<li>название, уровень, статус, набор, автор, путь и id, даты создания и изменения;</li>
+<li>замечания и причины, если есть;</li>
+<li>«Сработало на N событиях, хостов: M», период, кнопки «События» и «В таймлайне»;</li>
+<li>описание;</li>
+<li>«Как проверялось»: logsource, варианты с переименованиями полей, итоговый DQL с кнопками «Выполнить этот DQL» и «Скопировать», время вычисления;</li>
+<li>теги — техники MITRE ATT&amp;CK ссылками на attack.mitre.org;</li>
+<li>«Ложные срабатывания (по мнению автора)», ссылки из правила, исходный YAML.</li>
+</ul>
+<p><strong>Подвал:</strong> время прогона, сколько правил вычислено, не поддерживается, не загружено, с ошибками и замечаниями, сколько сработало и на скольких событиях, длительность.</p>
+<h2 id="где-ещё-видны-срабатывания"><a name="где-ещё-видны-срабатывания"></a>Где ещё видны срабатывания</h2>
+<ul>
+<li>В деталях события — блок «Сработавшие правила» с уровнем, названием, автором и набором. Клик открывает карточку правила.</li>
+<li>В боковой панели раздела «События» — уровни правил со счётчиками и ссылка «Все сработавшие правила…».</li>
+<li>В запросах — поля <code>rule</code> и <code>rulelevel</code>: <code>rule = &quot;&lt;id или название&gt;&quot;</code>, <code>rulelevel &gt;= high</code>.</li>
+<li>Экспорт сработавших правил в CSV — см. <a href="export-cli.html#экспорт-детектов">Экспорт</a>.</li>
+</ul>
+<h2 id="проверка-движка"><a name="проверка-движка"></a>Проверка движка</h2>
+<p>Команда <code>evtxdump sigma &lt;кейс&gt; --pack rules.json --verify</code> перепроверяет каждое сработавшее правило независимым упрощённым вычислителем, который читает исходное правило напрямую, и сообщает о расхождениях в обе стороны. Это проверка самого движка, а не данных; в приложении её нет.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="anchors">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="A condition is field operator value. Conditions are combined with and, or, not and parentheses.">
+<meta name="keywords" content="In short, Conditions, Values and quotes, Case, Operators, Substrings and masks, Regular expressions, Subnets, Numbers, Time, Searching all fields, Comparing two fields, Fields, Event data fields, System fields and aliases, Entities, bookmarks and detections, Pipeline, Sorting, Limit, Groups, Limits, Errors, How a query runs, Ready-made queries">
+
+<title>DQL query language — DayBookEvtxMacOS Help</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+<header class="top"><a href="index.html">Contents</a><a class="external" href="https://thxstuck.github.io/DayBookEvtxMacOS/en/">Documentation online</a></header>
+<main>
+<h1 id="dql-query-language"><a name="dql-query-language"></a>DQL query language</h1>
+<nav class="toc"><ul><li><a href="#in-short">In short</a></li><li><a href="#conditions">Conditions</a></li><li class="sub"><a href="#values-and-quotes">Values and quotes</a></li><li class="sub"><a href="#case">Case</a></li><li><a href="#operators">Operators</a></li><li class="sub"><a href="#substrings-and-masks">Substrings and masks</a></li><li class="sub"><a href="#regular-expressions">Regular expressions</a></li><li class="sub"><a href="#subnets">Subnets</a></li><li><a href="#numbers">Numbers</a></li><li><a href="#time">Time</a></li><li><a href="#searching-all-fields">Searching all fields</a></li><li><a href="#comparing-two-fields">Comparing two fields</a></li><li><a href="#fields">Fields</a></li><li class="sub"><a href="#event-data-fields">Event data fields</a></li><li class="sub"><a href="#system-fields-and-aliases">System fields and aliases</a></li><li class="sub"><a href="#entities-bookmarks-and-detections">Entities, bookmarks and detections</a></li><li><a href="#pipeline">Pipeline</a></li><li class="sub"><a href="#sorting">Sorting</a></li><li class="sub"><a href="#limit">Limit</a></li><li class="sub"><a href="#groups">Groups</a></li><li><a href="#limits">Limits</a></li><li><a href="#errors">Errors</a></li><li><a href="#how-a-query-runs">How a query runs</a></li><li><a href="#ready-made-queries">Ready-made queries</a></li></ul></nav>
+<h2 id="in-short"><a name="in-short"></a>In short</h2>
+<pre><code>EventID = 4624 and LogonType in (3, 10) and not TargetUserName endswith &quot;$&quot;
+| group by TargetUserName, IpAddress
+| sort count desc
+| limit 50</code></pre>
+<ul>
+<li>Type the query in the bar above the table and run it with Return or ⌘↩. Stop interrupts a long query; a new query cancels the previous one.</li>
+<li>The query runs <strong>together with</strong> the filter chips and the chosen time range: those apply first, then the query.</li>
+<li>The clear button empties the query; Reset All (⌘K) clears the query, filters and time range.</li>
+<li>The last 50 queries are kept in the history (the clock button).</li>
+<li>The "?" button opens a short reference.</li>
+</ul>
+<h2 id="conditions"><a name="conditions"></a>Conditions</h2>
+<p>A condition is <code>field operator value</code>. Conditions are combined with <code>and</code>, <code>or</code>, <code>not</code> and parentheses.</p>
+<ul>
+<li>Precedence: <code>not</code> binds tighter than <code>and</code>, <code>and</code> tighter than <code>or</code>.</li>
+<li>Two conditions in a row without a connective mean <code>and</code>: <code>EventID = 4624 LogonType = 3</code> equals <code>EventID = 4624 and LogonType = 3</code>.</li>
+<li>Keywords can be written in any case.</li>
+</ul>
+<h3 id="values-and-quotes"><a name="values-and-quotes"></a>Values and quotes</h3>
+<ul>
+<li>Values without spaces and without the characters <code>( ) , | &quot; &#x27; = ! &lt; &gt; ~</code> can be written without quotes: <code>10.20.30.40</code>, <code>S-1-5-18</code>, <code>0x17</code>, <code>ADMIN$</code>, <code>C:\Windows\x.exe</code>, <code>*\powershell.exe</code>, <code>10.0.0.0/8</code>.</li>
+<li>Values with spaces go in double or single quotes.</li>
+<li>Inside quotes only the quote itself and <code>\\</code> are escaped. Any other <code>\</code> stays as is, so Windows paths can be pasted unchanged: <code>Image = &quot;C:\Windows\System32\cmd.exe&quot;</code>.</li>
+<li>A field name with spaces, or one that clashes with a keyword, goes in backticks: <code>`Threat Name` contains Trojan</code>.</li>
+</ul>
+<h3 id="case"><a name="case"></a>Case</h3>
+<ul>
+<li><strong>Field names</strong> are case-insensitive: <code>eventid</code>, <code>EventID</code> and <code>@EventID</code> are the same. If the case has a field with exactly that spelling, it wins over an alias of the same name: <code>User</code> is the Sysmon field, <code>user</code> is the alias for the user SID.</li>
+<li><strong>Values</strong> are compared case-insensitively, except with <code>==</code>.</li>
+</ul>
+<h2 id="operators"><a name="operators"></a>Operators</h2>
+<table>
+<thead><tr><th>Operator</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>=</code></td><td>The whole value matches, case-insensitive. A value with <code>*</code> or <code>?</code> works as a <code>like</code> mask</td></tr>
+<tr><td><code>==</code></td><td>The whole value matches, case-sensitive (with <code>*</code> or <code>?</code> — a case-insensitive mask)</td></tr>
+<tr><td><code>!=</code></td><td>Everything that is not <code>=</code>, <strong>including events without the field</strong></td></tr>
+<tr><td><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td><td>Numbers or time</td></tr>
+<tr><td><code>between a and b</code></td><td>Numbers or time in a range, both bounds included</td></tr>
+<tr><td><code>in (a, b, …)</code> / <code>not in (…)</code></td><td>One of the values (up to 10,000 values)</td></tr>
+<tr><td><code>contains</code> or <code>~</code></td><td>Substring</td></tr>
+<tr><td><code>not contains</code> or <code>!~</code></td><td>No such substring (including events without the field)</td></tr>
+<tr><td><code>startswith</code>, <code>endswith</code></td><td>Start or end of the value</td></tr>
+<tr><td><code>like</code></td><td>Mask: <code>*</code> any characters, <code>?</code> one character; the mask covers the whole value</td></tr>
+<tr><td><code>matches</code> or <code>regex</code></td><td>Regular expression</td></tr>
+<tr><td><code>cidr</code></td><td>Address in a subnet: <code>IpAddress cidr 10.0.0.0/8</code></td></tr>
+<tr><td><code>exists</code> / <code>not exists</code></td><td>The field is present / absent</td></tr>
+</tbody></table>
+<p>After a field name, <code>not</code> is allowed only before <code>in</code>, <code>contains</code> and <code>exists</code>. Otherwise put <code>not</code> before the condition: <code>not Image endswith &quot;\explorer.exe&quot;</code>.</p>
+<h3 id="substrings-and-masks"><a name="substrings-and-masks"></a>Substrings and masks</h3>
+<ul>
+<li><code>contains</code>, <code>startswith</code> and <code>endswith</code> match literally: <code>*</code>, <code>?</code>, <code>%</code>, <code>_</code> are ordinary characters. An empty value matches nothing.</li>
+<li><code>like</code> and <code>=</code> with <code>*</code>/<code>?</code> are masks. There is no way to escape <code>*</code> and <code>?</code> themselves.</li>
+<li>All of them are case-insensitive.</li>
+</ul>
+<h3 id="regular-expressions"><a name="regular-expressions"></a>Regular expressions</h3>
+<ul>
+<li>The ICU engine (<code>NSRegularExpression</code>), case-insensitive.</li>
+<li>A match anywhere in the value counts. Anchor with <code>^</code> and <code>$</code>.</li>
+<li>The expression is run on every unique value of the field, in parallel.</li>
+<li>Each value gets 2 seconds of CPU time. A value that takes longer is skipped. Detections report this as a note on the rule; the query bar does not show such a warning yet.</li>
+</ul>
+<h3 id="subnets"><a name="subnets"></a>Subnets</h3>
+<p><code>cidr</code> accepts IPv4 and IPv6: <code>address/prefix</code>, or a single address without a prefix. Field values such as <code>::ffff:10.1.2.3</code>, <code>[192.168.1.1]</code> and <code>fe80::1%12</code> are understood.</p>
+<h2 id="numbers"><a name="numbers"></a>Numbers</h2>
+<ul>
+<li><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code> and <code>between</code> work only with numbers: decimal (a minus sign is allowed) or hexadecimal <code>0x…</code>. Non-numeric values are left out of such selections.</li>
+<li><code>=</code> compares <strong>text</strong>: <code>TicketEncryptionType = 0x17</code> finds <code>0x17</code> but not <code>23</code>; <code>LogonType = 03</code> does not find <code>3</code>.</li>
+</ul>
+<h2 id="time"><a name="time"></a>Time</h2>
+<p>The <code>time</code> field (also <code>timestamp</code>, <code>timecreated</code>) is the event's TimeCreated, or the write time if there is none.</p>
+<pre><code>time &gt;= &quot;2026-09-30 10:00&quot; and time &lt; &quot;2026-09-30 12:00&quot;
+time between &quot;2026-09-30 10:00&quot; and &quot;2026-09-30 12:00:30.5&quot;
+time &gt;= 2026-09-30T07:00Z</code></pre>
+<ul>
+<li>Format: <code>YYYY-MM-DD[ HH:MM[:SS[.fffffff]]]</code>, a space or <code>T</code> between date and time. A date alone means 00:00; up to 7 fraction digits.</li>
+<li>Without a suffix the time is read <strong>in the chosen display time zone</strong>. <code>Z</code> means UTC; <code>+03:00</code> or <code>-05:00</code> is an explicit offset (with a colon).</li>
+<li>A value with a space goes in quotes.</li>
+<li><code>time = …</code> means "within this second".</li>
+<li><code>between</code> includes both bounds, in any order.</li>
+<li><code>time</code> supports <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>between</code>, <code>=</code>, <code>!=</code>. <code>in</code>, grouping and <code>exists</code> are not supported for time.</li>
+</ul>
+<div class="callout note"><p class="callout-title">Note</p><p>Changing the time zone does not re-run the current query: its times were read in the previous zone. Run the query again.</p></div>
+<p>A time range is easier to set on the histogram: drag across it and click Filter by selection. The range appears as an orange chip.</p>
+<h2 id="searching-all-fields"><a name="searching-all-fields"></a>Searching all fields</h2>
+<p>A quoted string without a field name looks for a substring in every field of the event, including system ones:</p>
+<pre><code>&quot;mimikatz&quot;
+&quot;mimikatz&quot; &quot;sekurlsa&quot;            — both substrings (implicit and)
+EventID = 4104 | search &quot;Invoke-WebRequest&quot;</code></pre>
+<p>It is a case-insensitive substring search, not a word search. An unquoted word is a field name.</p>
+<h2 id="comparing-two-fields"><a name="comparing-two-fields"></a>Comparing two fields</h2>
+<p>A right-hand side in backticks is another field:</p>
+<pre><code>Image endswith `OriginalFileName`
+TargetUserName != `SubjectUserName`</code></pre>
+<ul>
+<li>Operators: <code>=</code>, <code>==</code>, <code>!=</code>, <code>contains</code>/<code>~</code>, <code>startswith</code>, <code>endswith</code>.</li>
+<li>The first value of each field is used, among events that have both fields (<code>!=</code> also includes events missing one of them).</li>
+<li>Event data fields (EventData/UserData) are compared, not system fields.</li>
+</ul>
+<h2 id="fields"><a name="fields"></a>Fields</h2>
+<h3 id="event-data-fields"><a name="event-data-fields"></a>Event data fields</h3>
+<ul>
+<li><code>&lt;Data Name=&quot;X&quot;&gt;</code> gives field <code>X</code>; an unnamed <code>&lt;Data&gt;</code> gives field <code>Data</code> (it may repeat).</li>
+<li>For UserData the name is the path below the root element joined with dots; an attribute is <code>path.attribute</code>.</li>
+<li>When a record's template is missing, fields are named <code>Value[0]</code>, <code>Value[1]</code>, …</li>
+<li>An unknown field name is an error that suggests similar names.</li>
+</ul>
+<h3 id="system-fields-and-aliases"><a name="system-fields-and-aliases"></a>System fields and aliases</h3>
+<table>
+<thead><tr><th>Write</th><th>Key</th><th>Contains</th></tr></thead>
+<tbody>
+<tr><td><code>EventID</code>, <code>id</code>, <code>event_id</code></td><td><code>@EventID</code></td><td>The event code as a decimal number (without Qualifiers)</td></tr>
+<tr><td><code>channel</code>, <code>log</code></td><td><code>@Channel</code></td><td>The log, e.g. <code>Security</code>, <code>Microsoft-Windows-Sysmon/Operational</code></td></tr>
+<tr><td><code>provider</code>, <code>provider_name</code></td><td><code>@Provider</code></td><td>The provider name</td></tr>
+<tr><td><code>host</code>, <code>computer</code></td><td><code>@Computer</code></td><td>The Computer field as written in the event</td></tr>
+<tr><td><code>level</code></td><td><code>@Level</code></td><td>Level as a number or a word (see below)</td></tr>
+<tr><td><code>user</code>, <code>userid</code>, <code>sid</code></td><td><code>@UserID</code></td><td>The SID from System/Security</td></tr>
+<tr><td><code>file</code>, <code>source</code></td><td><code>@Source</code></td><td>The source file name (with folders if names clash)</td></tr>
+<tr><td><code>flag</code>, <code>flags</code></td><td><code>@Flag</code></td><td>Record flags, see <a href="cases-import.html#record-flags">Cases and import</a></td></tr>
+<tr><td><code>task</code>, <code>opcode</code></td><td><code>@Task</code>, <code>@Opcode</code></td><td>Numbers from System</td></tr>
+<tr><td><code>keywords</code></td><td><code>@Keywords</code></td><td>16 hex digits: <code>0x8020000000000000</code></td></tr>
+</tbody></table>
+<p>The level can be a number or a word with <code>=</code>, <code>!=</code>, <code>in</code>: <code>critical</code> = 1, <code>error</code> = 2, <code>warning</code> = 3, <code>information</code>/<code>info</code> = 4 (also matches 0), <code>verbose</code> = 5. Russian words work too.</p>
+<p>Audit results in the Security log are in <code>keywords</code>: success is <code>0x8020000000000000</code>, failure is <code>0x8010000000000000</code>.</p>
+<div class="callout warning"><p class="callout-title">Warning</p><p>The record number (EventRecordID), ProcessID and ThreadID are stored in the case and shown in the details, but cannot be queried yet.</p></div>
+<h3 id="entities-bookmarks-and-detections"><a name="entities-bookmarks-and-detections"></a>Entities, bookmarks and detections</h3>
+<table>
+<thead><tr><th>Field</th><th>Operators</th><th>Finds</th></tr></thead>
+<tbody>
+<tr><td><code>anyhost</code>, <code>anyuser</code>, <code>anyip</code></td><td><code>=</code>, <code>!=</code>, <code>in</code></td><td>Events of an entity in every role: a host in any spelling, an IP in any form, a user by name, <code>DOMAIN\name</code>, <code>name@domain</code> or SID</td></tr>
+<tr><td><code>tag</code> (<code>bookmark</code>)</td><td><code>=</code>, <code>!=</code>, <code>in</code>, <code>exists</code></td><td>Bookmarks by colour: <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>blue</code>, <code>purple</code>; <code>tag = *</code> — any</td></tr>
+<tr><td><code>rule</code></td><td><code>=</code>, <code>!=</code>, <code>in</code>, <code>contains</code>, <code>exists</code></td><td>Events matched by a rule, by id or title; <code>rule exists</code> — any rule</td></tr>
+<tr><td><code>rulelevel</code></td><td><code>=</code>, <code>!=</code>, <code>in</code>, <code>&lt;</code>, <code>&gt;</code>…</td><td>By level of matched rules: <code>informational</code>, <code>low</code>, <code>medium</code>, <code>high</code>, <code>critical</code></td></tr>
+</tbody></table>
+<p>Examples: <code>anyip = 10.20.30.40</code>, <code>anyuser = &quot;CORP\j.doe&quot;</code>, <code>tag = red</code>, <code>rulelevel &gt;= high</code>.</p>
+<h2 id="pipeline"><a name="pipeline"></a>Pipeline</h2>
+<p>Stages follow the conditions after <code>|</code>. The <code>|</code> before a stage keyword is optional, and a query can start with a stage: <code>| group by IpAddress</code>.</p>
+<table>
+<thead><tr><th>Stage</th><th>Does</th></tr></thead>
+<tbody>
+<tr><td><code>where &lt;condition&gt;</code></td><td>Adds a condition with <code>and</code>. Can repeat</td></tr>
+<tr><td><code>search &quot;text&quot;</code></td><td>Adds a substring search over all fields</td></tr>
+<tr><td><code>select f1, f2</code> (<code>project</code>)</td><td>Sets the table columns: time first, then these fields, then the description. Does not filter events</td></tr>
+<tr><td><code>group by f1, f2</code></td><td>Groups with counts, largest first by default. Events without the field fall into the "—" group. Up to 20,000 groups</td></tr>
+<tr><td><code>sort f [asc\|desc]</code> (<code>order by</code>)</td><td>Sorting. Only the <strong>first</strong> key is used</td></tr>
+<tr><td><code>limit n</code> (<code>take</code>)</td><td>The first n rows or groups</td></tr>
+</tbody></table>
+<h3 id="sorting"><a name="sorting"></a>Sorting</h3>
+<ul>
+<li><code>sort time desc</code> / <code>sort time</code> — newest first / oldest first. Without <code>sort time</code> the table keeps its current order.</li>
+<li>By another field: numbers compare as numbers, text compares "naturally" (<code>file2</code> &lt; <code>file10</code>). Ties are ordered by time; events without the field come last.</li>
+<li>With <code>group by</code>: <code>sort count</code> — ascending, <code>sort count desc</code> — descending (the default), <code>sort &lt;group field&gt;</code> — by value.</li>
+</ul>
+<h3 id="limit"><a name="limit"></a>Limit</h3>
+<ul>
+<li>Without sorting <code>limit n</code> gives the <strong>n earliest</strong> events; with <code>sort time desc</code> — the n newest.</li>
+<li>The histogram uses the result before <code>sort</code> and <code>limit</code>.</li>
+</ul>
+<h3 id="groups"><a name="groups"></a>Groups</h3>
+<p>Click a group to see its events. Double-click or Turn into filters and show events turns the group values into filter chips and removes the <code>group by</code> stage.</p>
+<h2 id="limits"><a name="limits"></a>Limits</h2>
+<table>
+<thead><tr><th>What</th><th>Limit</th></tr></thead>
+<tbody>
+<tr><td>Query length</td><td>199,999 tokens</td></tr>
+<tr><td>Parenthesis depth</td><td>about 62 levels</td></tr>
+<tr><td><code>in</code> list</td><td>10,000 values</td></tr>
+<tr><td>Regular expression</td><td>2 s of CPU time per value</td></tr>
+<tr><td>Groups</td><td>20,000</td></tr>
+<tr><td>Query history</td><td>50 (25 shown in the menu)</td></tr>
+</tbody></table>
+<p>There is no overall query timeout: stop a long query with Stop.</p>
+<h2 id="errors"><a name="errors"></a>Errors</h2>
+<p>An error is shown under the query bar with the character position:</p>
+<table>
+<thead><tr><th>Query</th><th>Message</th></tr></thead>
+<tbody>
+<tr><td><code>EventID = &quot;4624</code></td><td>Unclosed quote (position 11)</td></tr>
+<tr><td><code>(EventID = 1</code></td><td>Expected “)” (position 13)</td></tr>
+<tr><td><code>EventID =</code></td><td>Expected a value</td></tr>
+<tr><td><code>EventID = 4624 foo</code></td><td>An operator is expected after “foo” (=, !=, &lt;, &gt;, contains, in, …)</td></tr>
+<tr><td><code>EventID = 1 \| limit x</code></td><td>A number is expected after limit</td></tr>
+<tr><td><code>Foo = 1</code></td><td>Unknown field “Foo” with suggestions of similar names</td></tr>
+</tbody></table>
+<h2 id="how-a-query-runs"><a name="how-a-query-runs"></a>How a query runs</h2>
+<ul>
+<li>During import every unique string — a value or a field name — goes into a dictionary once. Events are numbered in time order. For every "field = value" pair the case keeps a sorted list of event numbers, a posting list. System properties are stored the same way, as fields <code>@EventID</code>, <code>@Channel</code> and so on.</li>
+<li>A query is parsed into a tree and <strong>never becomes SQL</strong>: your text reaches the fixed dictionary queries only as a parameter. An SQL injection attempt in a value simply finds nothing.</li>
+<li>Each condition finds the matching dictionary values: a hash for <code>=</code>, a trigram full-text index for substrings, a numeric index for <code>&lt;</code> and <code>&gt;</code>, a scan for regular expressions and subnets. Their posting lists are then merged.</li>
+<li><code>and</code>, <code>or</code> and <code>not</code> are intersection, union and difference of sorted sets. Negation never materialises every event. Time conditions are a binary search over the array of timestamps.</li>
+</ul>
+<h2 id="ready-made-queries"><a name="ready-made-queries"></a>Ready-made queries</h2>
+<p>These are the presets in the Events sidebar. You can open, change and run them.</p>
+<p><strong>Logons and accounts</strong></p>
+<pre><code>EventID = 4624 | group by LogonType, TargetUserName
+EventID = 4625 | group by TargetUserName, IpAddress, SubStatus
+EventID = 4625 | group by IpAddress | sort count desc
+EventID = 4624 and LogonType = 3 and not TargetUserName endswith &quot;$&quot; | group by IpAddress, TargetUserName
+EventID = 4624 and LogonType in (10, 7) | group by IpAddress, TargetUserName
+EventID = 4648 | group by SubjectUserName, TargetUserName, TargetServerName
+EventID = 4672 and not SubjectUserName in (SYSTEM, &quot;LOCAL SERVICE&quot;, &quot;NETWORK SERVICE&quot;) and not SubjectUserName endswith &quot;$&quot;
+EventID in (4720, 4722, 4724, 4725, 4726, 4728, 4732, 4756, 4738) | group by EventID, TargetUserName</code></pre>
+<p><strong>Kerberos and NTLM</strong></p>
+<pre><code>EventID = 4769 and TicketEncryptionType = 0x17 and not ServiceName endswith &quot;$&quot;
+EventID = 4768 and PreAuthType = 0
+EventID = 4776 | group by TargetUserName, Workstation</code></pre>
+<p><strong>Execution and persistence</strong></p>
+<pre><code>EventID = 4688 or (provider = &quot;Microsoft-Windows-Sysmon&quot; and EventID = 1)
+(EventID = 7045 and channel = System) or EventID = 4697
+EventID = 4698 or (channel = &quot;Microsoft-Windows-TaskScheduler/Operational&quot; and EventID = 106)
+EventID = 4104 and (ScriptBlockText contains FromBase64String or ScriptBlockText contains &quot;Invoke-Expression&quot; or ScriptBlockText contains DownloadString or ScriptBlockText contains &quot;-enc&quot; or ScriptBlockText contains IEX)
+provider = &quot;Microsoft-Windows-Sysmon&quot; and EventID = 3 | group by Image, DestinationIp, DestinationPort
+provider = &quot;Microsoft-Windows-Sysmon&quot; and EventID = 13 and TargetObject contains &quot;\CurrentVersion\Run&quot;</code></pre>
+<p><strong>Covering tracks</strong></p>
+<pre><code>(EventID = 1102 and channel = Security) or (EventID = 104 and channel = System) or (EventID = 1100 and channel = Security)
+EventID = 4616 or (provider = &quot;Microsoft-Windows-Kernel-General&quot; and EventID = 1)
+provider = &quot;Microsoft-Windows-Windows Defender&quot; and EventID in (1116, 1117, 5001, 5007)</code></pre>
+<p><strong>Resource access and log artefacts</strong></p>
+<pre><code>EventID in (5140, 5145) and ShareName in (&quot;\\\\*\\ADMIN$&quot;, &quot;\\\\*\\C$&quot;, &quot;\\\\*\\IPC$&quot;) | group by IpAddress, ShareName, SubjectUserName
+flag = carved
+flag = beyondHeader and not flag = stale
+flag = timeSkew
+flag = parseError</code></pre>
+</main>
+</body>
+</html>
