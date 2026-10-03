@@ -122,7 +122,7 @@ struct LogsView: View {
             if let label = v.viewerLog, let src = model.store.sources.first(where: { $0.name == label }) {
                 header(v, src)
                 Divider()
-                FilterBar(model: v)
+                FilterBar(model: v, showsReset: false)
                 Divider()
                 // Table above, details below (Event Viewer layout); plain SwiftUI split with a
                 // draggable divider instead of NSSplitView.

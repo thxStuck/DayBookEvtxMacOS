@@ -4,97 +4,108 @@
 
 # DayBookEvtxMacOS
 
-Нативное приложение для macOS для просмотра и анализа журналов Windows (`.evtx`) в стиле SIEM:
-выбираете папку с журналами (например, `C/Windows/System32/winevt/logs` из триажа) — все файлы
-разбираются в кейс, дальше быстрый поиск, фильтры кликом, таймлайн, реестр хостов и пользователей,
-сеансы, дерево процессов и Sigma-детекты.
+**English** · [Русский](README.ru.md) · [Documentation](https://thxstuck.github.io/DayBookEvtxMacOS/en/) ·
+[Download](https://github.com/thxStuck/DayBookEvtxMacOS/releases/latest)
 
-*A native macOS app for Windows event log (`.evtx`) forensics: SIEM-like search, timeline,
-host/user registry, logon sessions, process trees and Sigma detections. UI in Russian and English.*
+A native macOS app for viewing and analysing Windows event logs (`.evtx`), SIEM-style. Pick a folder
+with logs (for example `C/Windows/System32/winevt/logs` from a triage collection) — every file is
+parsed into a case, and you get fast search, click-to-filter, a timeline, a registry of hosts and
+users, logon sessions, process trees and Sigma detections.
 
-## Возможности
+## Features
 
-- **Собственный парсер EVTX** (Swift, без внешних библиотек): все физические чанки, а не только
-  перечисленные в устаревшем заголовке; проверка CRC; восстановление удалённых записей из slack
-  с флагом `carved`; объединение копий одной записи (живой журнал, VSS, slack) с указанием всех мест.
-- **Язык запросов DQL** в стиле PDQL/KQL: `EventID = 4624 and LogonType in (3, 10) | group by IpAddress`.
-  Запрос не превращается в SQL — выполняется как операции над множествами.
-- **Клик по значению** в таблице, деталях или сайдбаре добавляет фильтр `=` / `≠`.
-- **Часовой пояс отображения** UTC±HH:MM или IANA — для отчётов заказчику; время хранится в UTC.
-- **Таймлайн** выбранных журналов, гистограмма по времени, закладки и заметки.
-- **Журналы** — просмотр отдельного журнала как в «Просмотре событий» Windows.
-- **Реестр хостов, пользователей и IP** со связями, **сеансы входа и RDP**, **дерево процессов**
-  (Sysmon по ProcessGuid, Security 4688 по PID — эвристика помечена).
-- **Sigma-детекты**: правила SigmaHQ и Hayabusa в поставке и своя папка правил. Каждое правило
-  переводится в DQL, который виден и выполняется вручную; неподдерживаемые правила показаны с причиной.
-- **Экспорт** в CSV, CSV для Excel (с защитой от формул), JSON Lines и XLSX — время в выбранном поясе
-  и UTC, исходный файл, RecordID и SHA-256 файла.
-- **Прозрачность**: эвристики, пропуски, лимиты и восстановленные данные всегда помечены.
+- **Own EVTX parser** (Swift, no external libraries): every physical chunk, not only those listed in a
+  stale header; CRC checks; recovery of deleted records from slack space with a `carved` flag; copies
+  of one record (live log, VSS, slack) merged into one event that lists every location.
+- **DQL query language** in the style of PDQL/KQL:
+  `EventID = 4624 and LogonType in (3, 10) | group by IpAddress`. Queries run as set operations and
+  never become SQL.
+- **Click-to-filter** on any value in the table, the details or the sidebar.
+- **Display time zone** — UTC±HH:MM or IANA, for reports; time is stored in UTC.
+- **Timeline** of the selected logs, a time histogram, bookmarks and notes.
+- **Logs** — one log at a time, like Windows Event Viewer.
+- **Registry of hosts, users and IPs** with links, **logon and RDP sessions**, **process trees**
+  (Sysmon by ProcessGuid, Security 4688 by PID — the heuristic is marked).
+- **Sigma detections**: 2,748 bundled SigmaHQ and Hayabusa rules plus your own rules folder. Every rule
+  becomes DQL you can see and run by hand; unsupported rules are listed with the reason.
+- **Export** to CSV, CSV for Excel (formula-safe), JSON Lines and XLSX — time in the chosen zone and
+  UTC, source file, RecordID and the file's SHA-256.
+- **Transparency**: heuristics, skips, limits and recovered data are always marked.
+- Russian and English user interface.
 
-Исходные файлы открываются только на чтение и никогда не изменяются.
+Source files are opened read-only and never modified.
 
-## Требования
+## Requirements
 
-- macOS 14 или новее; собирается и проверялась на Apple Silicon (сборка под Intel не проверялась).
-- Для сборки — Xcode с Swift 6 (проверялось на Xcode 27, macOS 26).
+- macOS 14 or later; built and tested on Apple Silicon (an Intel build has not been tested).
+- To build: Xcode with Swift 6 (tested with Xcode 27 on macOS 26).
 
-## Скачать
+## Download
 
-Готовая сборка для Apple Silicon — в [Releases](https://github.com/thxStuck/DayBookEvtxMacOS/releases/latest).
-Распакуйте архив и перенесите `DayBookEvtxMacOS.app` в «Программы».
+The ready build for Apple Silicon is in [Releases](https://github.com/thxStuck/DayBookEvtxMacOS/releases/latest).
+Unzip it and move `DayBookEvtxMacOS.app` to Applications.
 
-Приложение подписано локально (ad-hoc) и не нотаризовано Apple — для этого нужен платный
-Developer ID. Поэтому при первом запуске macOS откажется его открывать: закройте окно
-предупреждения, затем «Системные настройки» → «Конфиденциальность и безопасность» →
-«Всё равно открыть» (понадобится пароль администратора). Или в Терминале:
+The app is signed locally (ad hoc) and is not notarized by Apple, which needs a paid Developer ID.
+macOS therefore refuses to open it the first time: close the warning, then System Settings →
+Privacy & Security → Open Anyway (an administrator password is required). Or in Terminal:
 
 ```bash
 xattr -dr com.apple.quarantine /Applications/DayBookEvtxMacOS.app
 ```
 
-## Сборка и запуск
+The interface follows the system language. To use English for this app only: System Settings →
+General → Language & Region → Applications → + → DayBookEvtxMacOS → English.
+
+## Build and run
 
 ```bash
 scripts/build.sh
 open build/DayBookEvtxMacOS.app
 ```
 
-Или откройте `DayBookEvtxMacOS.xcodeproj` в Xcode и нажмите ⌘R.
-Если `xcode-select` указывает на Command Line Tools, скрипт сам использует
-`DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`.
+Or open `DayBookEvtxMacOS.xcodeproj` in Xcode and press ⌘R. If `xcode-select` points to the Command
+Line Tools, the script uses `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer` by itself.
 
-## Утилита командной строки
+## Documentation
 
-`Packages/DaybookKit/.build/release/evtxdump` (собирается тем же скриптом):
+Full documentation in English and Russian is at
+[thxstuck.github.io/DayBookEvtxMacOS](https://thxstuck.github.io/DayBookEvtxMacOS/en/): cases and
+import, working with events, the complete DQL reference, entities, sessions and processes, Sigma
+detections, export, how the app works, FAQ. The page sources are in [`docs/`](docs/).
+
+## Command-line tool
+
+`Packages/DaybookKit/.build/release/evtxdump` (built by the same script):
 
 ```bash
-evtxdump ingest case.daybook /path/to/winevt/logs     # импорт в кейс
+evtxdump ingest case.daybook /path/to/winevt/logs     # import into a case
 evtxdump dql case.daybook 'EventID = 4625 | group by IpAddress'
 evtxdump sigma case.daybook --pack DayBookEvtxMacOS/Resources/Rules/rules.json
 evtxdump export case.daybook out.xlsx 'EventID = 4688'
-evtxdump stats /path/to/logs                           # состояние файлов и чанков
+evtxdump stats /path/to/logs                           # state of files and chunks
 ```
 
-## Структура
+## Structure
 
 ```
-DayBookEvtxMacOS/            приложение (SwiftUI + AppKit), локализация RU/EN
+DayBookEvtxMacOS/            the app (SwiftUI + AppKit), RU/EN localization
 Packages/DaybookKit/
-  Sources/EvtxCore/          парсер EVTX и BinXML
-  Sources/DaybookStore/      хранилище кейса (SQLite), DQL, сущности, сеансы, процессы, экспорт
-  Sources/DaybookSigma/      разбор и компиляция правил Sigma, проверка движка
+  Sources/EvtxCore/          EVTX and BinXML parser
+  Sources/DaybookStore/      case store (SQLite), DQL, entities, sessions, processes, export
+  Sources/DaybookSigma/      Sigma rule parsing and compilation, engine check
   Sources/evtxdump/          CLI
-scripts/                     сборка, упаковка правил, иконка, синхронизация строк
+scripts/                     build, rule packing, icon, string sync
+docs/                        documentation site (GitHub Pages), RU and EN
 ```
 
-## Лицензия
+## License
 
-Все права на код приложения принадлежат автору — см. [LICENSE](LICENSE). Изменять и
-распространять код без разрешения нельзя. **Issue приветствуются**: ошибки, идеи, вопросы.
+All rights to the app's code belong to the author — see [LICENSE](LICENSE). You may not modify or
+distribute the code without permission. **Issues are welcome**: bugs, ideas, questions.
 
-Сторонние компоненты сохраняют свои лицензии:
-- правила [SigmaHQ](https://github.com/SigmaHQ/sigma) и
-  [Hayabusa](https://github.com/Yamato-Security/hayabusa-rules) —
+Third-party components keep their own licenses:
+- [SigmaHQ](https://github.com/SigmaHQ/sigma) and
+  [Hayabusa](https://github.com/Yamato-Security/hayabusa-rules) rules —
   [Detection Rule License 1.1](DayBookEvtxMacOS/Resources/Rules/DRL-1.1.md);
-  автор каждого правила указан в правиле и показывается в приложении рядом с каждым срабатыванием;
+  the author of every rule is stated in the rule and shown in the app next to every match;
 - [Yams](https://github.com/jpsim/Yams) — MIT.

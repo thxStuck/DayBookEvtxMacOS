@@ -198,6 +198,8 @@ struct RowSplitHandle: View {
 
 struct FilterBar: View {
     let model: CaseModel
+    /// The log viewer resets with its own button, which also clears its level chips and DQL field.
+    var showsReset = true
 
     var body: some View {
         HStack(spacing: 8) {
@@ -217,7 +219,7 @@ struct FilterBar: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: 28, alignment: .leading)
             }
-            if model.hasSearch {
+            if showsReset && model.hasSearch {
                 Button {
                     model.resetSearch()
                 } label: {
