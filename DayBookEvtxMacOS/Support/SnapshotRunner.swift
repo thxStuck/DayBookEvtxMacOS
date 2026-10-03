@@ -33,6 +33,14 @@ enum SnapshotRunner {
             }
             await pause(1.0)
             if let w = NSApp.windows.first(where: { $0.isVisible }) {
+                // Resizing must not overwrite the window frame and column widths that the user's
+                // own launches restore (AppKit saves both into the standard settings by itself).
+                w.setFrameAutosaveName("")
+                func stopAutosave(_ v: NSView) {
+                    if let split = v as? NSSplitView { split.autosaveName = nil }
+                    v.subviews.forEach(stopAutosave)
+                }
+                if let root = w.contentView { stopAutosave(root) }
                 w.setFrame(NSRect(x: 40, y: 40, width: 1700, height: 1000), display: true)
             }
             await pause(1.5)
@@ -138,6 +146,8 @@ enum SnapshotRunner {
             state("4-search")
             for _ in 0..<40 where model.detail?.row.id != model.selectedId { await pause(0.1) }
             if let d = model.detail { snapView(dir, "4-search-inspector", FieldsContent(model: model, detail: d), size: CGSize(width: 520, height: 900)) }
+            for _ in 0..<30 where model.detail?.sourceState == .pending { await pause(0.1) }
+            log("   detail fields=\(model.detail?.fields.count ?? -1) source=\(model.detail.map { "\($0.sourceState)" } ?? "-") xml=\(model.detail?.xml != nil) raw=\(model.detail?.raw?.count ?? 0)")
 
             if let preset = Presets.all.flatMap(\.items).first(where: { $0.query.contains("FromBase64String") }) {
                 model.runQuery(text: preset.query)
@@ -167,11 +177,20 @@ enum SnapshotRunner {
             model.mode = .hosts
             await pause(1.0)
             state("7-hosts")
+            // A jump to an entity's events is a new search: a query left from earlier work must
+            // not narrow it (a rule query once hid every event of an IP).
+            model.runQuery(text: "EventID = 4625")
+            await settle()
+            if let ip = model.entities[.ip]?.max(by: { $0.events < $1.events }) {
+                model.showEvents(of: [ip])
+                await settle()
+                log("   pivot to IP \(ip.display): result=\(model.result.count) entity events=\(ip.events) query='\(model.queryText)' filters=\(model.filters.count)")
+            }
             model.runQuery(text: "")
             model.clearFilters()
             // The least active host: a timeline scoped to one machine.
             if let host = model.entities[.host]?.min(by: { $0.events < $1.events }) {
-                model.showEvents(of: host, timeline: true)
+                model.showEvents(of: [host], timeline: true)
             }
             await pause(1.5)
             state("8-timeline-host")

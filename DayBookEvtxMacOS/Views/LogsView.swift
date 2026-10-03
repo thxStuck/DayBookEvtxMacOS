@@ -158,11 +158,8 @@ struct LogsView: View {
                 Text("\(src.records.formatted()) записей\(src.carved > 0 ? String(localized: " + \(src.carved.formatted()) восстановлено из slack") : "")")
                     .font(.callout).foregroundStyle(.secondary)
                 Spacer(minLength: 8)
-                Button("Открыть в «Событиях»") {
-                    model.addFilter(key: CaseSchema.SystemKey.source, value: src.name, negated: false)
-                    model.mode = .events
-                }
-                .help("Показать этот журнал в разделе «События» фильтром по файлу (вместе с текущим запросом)")
+                Button("Открыть в «Событиях»") { model.showSource(src.name, query: v.queryText) }
+                    .help("Новый поиск в разделе «События»: этот журнал с теми же уровнями и фильтром DQL")
             }
             Text(src.path).font(.caption).foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle).textSelection(.enabled)
             HStack(spacing: 6) {

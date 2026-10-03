@@ -93,7 +93,7 @@ final class AppModel {
     private(set) var recentCases: [URL] = []
 
     init() {
-        recentCases = (UserDefaults.standard.stringArray(forKey: "recentCases") ?? [])
+        recentCases = (AppDefaults.store.stringArray(forKey: "recentCases") ?? [])
             .map { URL(fileURLWithPath: $0) }
             .filter { FileManager.default.fileExists(atPath: $0.appendingPathComponent(CaseSchema.databaseName).path) }
         // `-openCase <path>` opens a case at launch (scripting and UI tests).
@@ -108,9 +108,9 @@ final class AppModel {
             let caseURL = URL(fileURLWithPath: args[j + 1])
             try? FileManager.default.removeItem(at: caseURL)
             var o = ImportOptions()
-            o.carveSlack = UserDefaults.standard.object(forKey: "import.carveSlack") as? Bool ?? true
-            o.mergeDuplicates = UserDefaults.standard.object(forKey: "import.mergeDuplicates") as? Bool ?? true
-            o.hashSources = UserDefaults.standard.object(forKey: "import.hashSources") as? Bool ?? true
+            o.carveSlack = AppDefaults.store.object(forKey: "import.carveSlack") as? Bool ?? true
+            o.mergeDuplicates = AppDefaults.store.object(forKey: "import.mergeDuplicates") as? Bool ?? true
+            o.hashSources = AppDefaults.store.object(forKey: "import.hashSources") as? Bool ?? true
             startImport(sources: [URL(fileURLWithPath: args[i + 1])], caseURL: caseURL, options: o)
         }
     }
@@ -174,7 +174,7 @@ final class AppModel {
                 await MainActor.run {
                     self?.importState = nil
                     self?.open(caseURL)
-                    if UserDefaults.standard.object(forKey: "import.runDetections") as? Bool ?? true {
+                    if AppDefaults.store.object(forKey: "import.runDetections") as? Bool ?? true {
                         self?.caseModel?.runDetections()
                     }
                 }
@@ -214,6 +214,6 @@ final class AppModel {
         recentCases.removeAll { $0.standardizedFileURL == url.standardizedFileURL }
         recentCases.insert(url, at: 0)
         recentCases = Array(recentCases.prefix(10))
-        UserDefaults.standard.set(recentCases.map(\.path), forKey: "recentCases")
+        AppDefaults.store.set(recentCases.map(\.path), forKey: "recentCases")
     }
 }

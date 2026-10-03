@@ -8,6 +8,7 @@ struct DayBookApp: App {
         Window("DayBookEvtxMacOS", id: "main") {
             ContentView(app: app)
                 .frame(minWidth: 1100, minHeight: 640)
+                .defaultAppStorage(AppDefaults.store)
         }
         .commands {
             CommandGroup(replacing: .newItem) {

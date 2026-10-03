@@ -216,9 +216,17 @@ struct FilterBar: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: 28, alignment: .leading)
-                Button("Сбросить") { model.clearFilters() }
-                    .buttonStyle(.borderless)
-                    .fixedSize()
+            }
+            if model.hasSearch {
+                Button {
+                    model.resetSearch()
+                } label: {
+                    Label("Сбросить всё", systemImage: "xmark.circle")
+                }
+                .buttonStyle(.borderless)
+                .fixedSize()
+                .keyboardShortcut("k", modifiers: .command)
+                .help("Очистить запрос, фильтры и интервал времени (⌘K). Прежние запросы остаются в истории.")
             }
             if model.querying { ProgressView().controlSize(.small) }
             Text("\((model.isGrouped && model.selectedGroup == nil ? model.filtered.count : model.result.count).formatted()) событий")

@@ -92,15 +92,15 @@ struct EntitiesView: View {
                 }
                 .contextMenu(forSelectionType: Int.self) { ids in
                     if let id = ids.first, let e = model.entity(id) {
-                        Button("Показать все события") { model.showEvents(of: e) }
-                        Button("Показать в таймлайне") { model.showEvents(of: e, timeline: true) }
-                        Button("Исключить из событий") { model.showEvents(of: e, negated: true) }
+                        Button("Показать все события") { model.showEvents(of: [e]) }
+                        Button("Показать в таймлайне") { model.showEvents(of: [e], timeline: true) }
+                        Button("Исключить из событий") { model.showEvents(of: [e], negated: true) }
                         Divider()
                         Button("Копировать имя") { EventTableCoordinator.copy(e.display) }
                         if let sid = e.sid { Button("Копировать SID") { EventTableCoordinator.copy(sid) } }
                     }
                 } primaryAction: { ids in
-                    if let id = ids.first, let e = model.entity(id) { model.showEvents(of: e) }
+                    if let id = ids.first, let e = model.entity(id) { model.showEvents(of: [e]) }
                 }
                 .onChange(of: selection) { _, id in model.selectEntity(id.flatMap { model.entity($0) }) }
             }
@@ -126,8 +126,8 @@ struct EntityDetailView: View {
                     labeled(String(localized: "Последнее"), e.lastTs.map { model.formatter.string($0) } ?? "—")
                     labeled(String(localized: "Событий"), e.events.formatted())
                     HStack {
-                        Button("Все события") { model.showEvents(of: e) }
-                        Button("Таймлайн") { model.showEvents(of: e, timeline: true) }
+                        Button("Все события") { model.showEvents(of: [e]) }
+                        Button("Таймлайн") { model.showEvents(of: [e], timeline: true) }
                     }
                     Divider()
                     Text("Связи").font(.headline)
@@ -144,10 +144,7 @@ struct EntityDetailView: View {
                                         .font(.caption).foregroundStyle(.secondary)
                                 }
                                 Spacer()
-                                Button("События") {
-                                    model.addFilter(key: CaseModel.filterKey(other.kind), value: CaseModel.filterValue(other), negated: false)
-                                    model.showEvents(of: e)
-                                }
+                                Button("События") { model.showEvents(of: [e, other]) }
                                 .controlSize(.small)
                                 .help("События, где встречаются обе сущности")
                             }

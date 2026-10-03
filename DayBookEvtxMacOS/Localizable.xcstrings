@@ -911,11 +911,22 @@
       "shouldTranslate": false
     },
     "XML недоступен: исходный файл не найден или запись повреждена.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "XML unavailable: the source file is missing or the record is damaged."
+          }
+        }
+      }
+    },
+    "XML этой записи не собирается: запись повреждена. Сырые байты — на вкладке «Hex».": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This record's XML cannot be built: the record is damaged. The raw bytes are on the Hex tab."
           }
         }
       }
@@ -982,6 +993,16 @@
     },
     "logsource: %@": {
       "shouldTranslate": false
+    },
+    "macOS не дала доступ к исходному файлу. Разрешите доступ к папке: «Системные настройки» → «Конфиденциальность и безопасность» → «Файлы и папки».": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS denied access to the source file. Allow access to the folder in System Settings → Privacy & Security → Files and Folders."
+          }
+        }
+      }
     },
     "rulelevel = %@": {
       "shouldTranslate": false
@@ -1265,6 +1286,16 @@
         }
       }
     },
+    "В кейсе нет положения этой записи в исходном файле.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The case has no position of this record in the source file."
+          }
+        }
+      }
+    },
     "В приложении нет пакета правил rules.json": {
       "localizations": {
         "en": {
@@ -1322,6 +1353,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "View"
+          }
+        }
+      }
+    },
+    "Вкладка «Поля» берёт данные из кейса и от исходного файла не зависит.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Fields tab uses data stored in the case and does not depend on the source file."
           }
         }
       }
@@ -2639,6 +2680,16 @@
         }
       }
     },
+    "Исходный файл не найден — его переместили или удалили после импорта.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source file not found — it was moved or deleted after import."
+          }
+        }
+      }
+    },
     "Как проверялось": {
       "localizations": {
         "en": {
@@ -3021,6 +3072,16 @@
         }
       }
     },
+    "Не удалось прочитать исходный файл: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not read the source file: %@"
+          }
+        }
+      }
+    },
     "Не удалось разобрать время «%@». Формат: ГГГГ-ММ-ДД ЧЧ:ММ[:СС] (в выбранном часовом поясе; суффикс Z — UTC)": {
       "localizations": {
         "en": {
@@ -3183,6 +3244,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "New Case from Logs…"
+          }
+        }
+      }
+    },
+    "Новый поиск в разделе «События»: этот журнал с теми же уровнями и фильтром DQL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New search in Events: this log with the same levels and DQL filter"
           }
         }
       }
@@ -3419,6 +3490,26 @@
         }
       }
     },
+    "Очистить запрос": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear query"
+          }
+        }
+      }
+    },
+    "Очистить запрос, фильтры и интервал времени (⌘K). Прежние запросы остаются в истории.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear the query, filters and time range (⌘K). Earlier queries stay in the history."
+          }
+        }
+      }
+    },
     "Очистка журналов (1102 / 104 / 1100)": {
       "localizations": {
         "en": {
@@ -3571,6 +3662,16 @@
         }
       }
     },
+    "По сохранённому положению в файле другая запись: файл изменился после импорта.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A different record is at the stored position: the file changed after import."
+          }
+        }
+      }
+    },
     "Подмена процесса %@ (%@)": {
       "localizations": {
         "en": {
@@ -3704,6 +3805,7 @@
       }
     },
     "Показать этот журнал в разделе «События» фильтром по файлу (вместе с текущим запросом)": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -4251,6 +4353,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reset"
+          }
+        }
+      }
+    },
+    "Сбросить всё": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset All"
           }
         }
       }
@@ -5001,6 +5113,7 @@
       }
     },
     "Сырые байты недоступны.": {
+      "extractionState": "stale",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -5288,6 +5401,16 @@
         }
       }
     },
+    "Файл не отвечает дольше 3 секунд: сетевая папка недоступна, диск спит или macOS ждёт разрешения на доступ к папке.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The file has not responded for more than 3 seconds: a network share is unavailable, a disk is asleep, or macOS is waiting for permission to access the folder."
+          }
+        }
+      }
+    },
     "Файлы журналов": {
       "localizations": {
         "en": {
@@ -5540,6 +5663,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Display time zone. The case stores times in UTC."
+          }
+        }
+      }
+    },
+    "Читаю запись из исходного файла…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading the record from the source file…"
           }
         }
       }

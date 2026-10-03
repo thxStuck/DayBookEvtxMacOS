@@ -53,12 +53,33 @@ public struct EventField: Sendable, Hashable {
     public let value: String
 }
 
+/// Where an event's XML and raw bytes stand. The case holds the parsed fields; the record itself
+/// is re-read from its source file on demand, and that file can be slow, moved or changed.
+public enum SourceRecordState: Sendable, Equatable {
+    /// Not read from the source file yet.
+    case pending
+    case loaded
+    /// The source file is gone (moved or deleted after import).
+    case missingFile
+    /// macOS refused access to the source file.
+    case noAccess
+    case unreadable(String)
+    /// Another record is at the stored position: the file changed after import.
+    case recordMismatch
+    /// The case has no position of the record in its source file.
+    case noLocation
+}
+
 public struct EventDetail: Sendable {
     public let row: EventRow
     public let fields: [EventField]
-    public let xml: String?
-    public let raw: [UInt8]?
+    public internal(set) var xml: String?
+    public internal(set) var raw: [UInt8]?
     public let duplicates: [(source: Int, chunk: Int, offset: Int)]
+    /// The source file the record is re-read from.
+    public let sourcePath: String?
+    public internal(set) var sourceState: SourceRecordState
+    let location: (chunk: Int, offset: Int)?
 }
 
 /// A value of a field with its number of events.
@@ -309,15 +330,22 @@ public final class CaseStore: @unchecked Sendable {
         }
     }
 
+    /// Fields and XML from the case, then the record from its source file (CLI and tests).
     public func detail(_ id: UInt32) throws -> EventDetail? {
+        try caseDetail(id).map(readSourceRecord)
+    }
+
+    /// Everything the case database holds about an event. It never touches the source file, so
+    /// it is fast even when that file is slow or gone; XML and raw bytes follow from
+    /// `readSourceRecord`.
+    public func caseDetail(_ id: UInt32) throws -> EventDetail? {
         guard let row = try rows([id]).first else { return nil }
         let keys = row.pairs.map(\.key), values = row.pairs.map(\.value)
         let names = try strings(keys), vals = try strings(values)
         let fields = zip(names, vals).map { EventField(key: $0.0, value: $0.1) }
 
         var xml: String?
-        var raw: [UInt8]?
-        var location: (chunk: Int, off: Int)?
+        var location: (chunk: Int, offset: Int)?
         try rowsLock.withLock {
             let c = try rowsDB.prepare("SELECT xml FROM xml_cache WHERE ev = ?")
             c.bind(1, Int64(id))
@@ -326,30 +354,67 @@ public final class CaseStore: @unchecked Sendable {
             l.bind(1, Int64(id))
             if try l.step() { location = (Int(l.int64(0)), Int(l.int64(1))) }
         }
-        if let location, let file = sourceFile(row.source), location.chunk < file.physicalChunkCount {
-            let chunk = EvtxChunk(file: file, index: location.chunk)
-            if let ref = chunk.record(at: location.off), ref.recordId == row.recordId {
-                if xml == nil { xml = try? chunk.xml(ref) }
-                raw = Array(chunk.rawBytes(ref))
-            }
-        }
         var dups: [(Int, Int, Int)] = []
         try rowsLock.withLock {
             let d = try rowsDB.prepare("SELECT src, chunk, off FROM dup WHERE ev = ?")
             d.bind(1, Int64(id))
             while try d.step() { dups.append((Int(d.int64(0)), Int(d.int64(1)), Int(d.int64(2)))) }
         }
-        return EventDetail(row: row, fields: fields, xml: xml, raw: raw,
-                           duplicates: dups.map { (source: $0.0, chunk: $0.1, offset: $0.2) })
+        let path = row.source >= 0 && row.source < sources.count ? sources[row.source].path : nil
+        return EventDetail(row: row, fields: fields, xml: xml, raw: nil,
+                           duplicates: dups.map { (source: $0.0, chunk: $0.1, offset: $0.2) },
+                           sourcePath: path, sourceState: location == nil ? .noLocation : .pending,
+                           location: location)
+    }
+
+    /// Re-reads the record from its source file for XML and raw bytes. It can block for a long
+    /// time on a slow or unreachable file: call it off the main thread.
+    public func readSourceRecord(_ detail: EventDetail) -> EventDetail {
+        guard detail.sourceState == .pending, let location = detail.location else { return detail }
+        var d = detail
+        let file: EvtxFile
+        do {
+            file = try sourceFile(detail.row.source)
+        } catch let error as EvtxError {
+            d.sourceState = Self.sourceState(for: error)
+            return d
+        } catch {
+            d.sourceState = .unreadable(String(describing: error))
+            return d
+        }
+        guard location.chunk < file.physicalChunkCount else {
+            d.sourceState = .recordMismatch
+            return d
+        }
+        let chunk = EvtxChunk(file: file, index: location.chunk)
+        guard let ref = chunk.record(at: location.offset), ref.recordId == detail.row.recordId else {
+            d.sourceState = .recordMismatch
+            return d
+        }
+        if d.xml == nil { d.xml = try? chunk.xml(ref) }
+        d.raw = Array(chunk.rawBytes(ref))
+        d.sourceState = .loaded
+        return d
+    }
+
+    static func sourceState(for error: EvtxError) -> SourceRecordState {
+        if case let .io(_, code) = error {
+            switch code {
+            case ENOENT, ENOTDIR: return .missingFile
+            case EACCES, EPERM: return .noAccess
+            default: break
+            }
+        }
+        return .unreadable(error.description)
     }
 
     /// Source files are re-opened lazily (read-only) to render XML and hex on demand. The file is
     /// opened outside `rowsLock`: a slow open (network share, sleeping disk, a macOS privacy
     /// prompt) must not stall the table, which reads its rows under that lock.
-    private func sourceFile(_ id: Int) -> EvtxFile? {
-        guard id >= 0, id < sources.count else { return nil }
+    private func sourceFile(_ id: Int) throws -> EvtxFile {
+        guard id >= 0, id < sources.count else { throw EvtxError.io(path: "source #\(id)", errno: ENOENT) }
         if let f = fileLock.withLock({ openFiles[id] }) { return f }
-        guard let f = try? EvtxFile(url: URL(fileURLWithPath: sources[id].path)) else { return nil }
+        let f = try EvtxFile(url: URL(fileURLWithPath: sources[id].path))
         return fileLock.withLock {
             if let opened = openFiles[id] { return opened }
             openFiles[id] = f

@@ -20,9 +20,12 @@ struct DetailView: View {
                 .padding(8)
                 Divider()
                 switch tab {
-                case 0: FieldsView(model: model, detail: d)
-                case 1: MonoTextView(text: d.xml ?? String(localized: "XML недоступен: исходный файл не найден или запись повреждена."))
-                default: MonoTextView(text: d.raw.map(Self.hexDump) ?? String(localized: "Сырые байты недоступны."))
+                case 0:
+                    FieldsView(model: model, detail: d)
+                case 1:
+                    if let xml = d.xml { MonoTextView(text: xml) } else { SourceStateView(detail: d) }
+                default:
+                    if let raw = d.raw { MonoTextView(text: Self.hexDump(raw)) } else { SourceStateView(detail: d) }
                 }
             }
         } else {
@@ -44,6 +47,57 @@ struct DetailView: View {
             out += " |" + String(chunk.map { $0 >= 0x20 && $0 < 0x7F ? Character(Unicode.Scalar($0)) : "." }) + "|\n"
         }
         return out
+    }
+}
+
+/// Why XML or raw bytes are not shown (yet): the record is re-read from its source file, which
+/// may be slow, moved, changed or closed to the app.
+private struct SourceStateView: View {
+    let detail: EventDetail
+    @State private var slow = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            switch detail.sourceState {
+            case .pending:
+                HStack(spacing: 8) {
+                    ProgressView().controlSize(.small)
+                    Text("Читаю запись из исходного файла…")
+                }
+                if slow {
+                    Text("Файл не отвечает дольше 3 секунд: сетевая папка недоступна, диск спит или macOS ждёт разрешения на доступ к папке.")
+                        .foregroundStyle(.orange)
+                }
+            case .loaded:
+                Text("XML этой записи не собирается: запись повреждена. Сырые байты — на вкладке «Hex».")
+            case .missingFile:
+                Text("Исходный файл не найден — его переместили или удалили после импорта.")
+            case .noAccess:
+                Text("macOS не дала доступ к исходному файлу. Разрешите доступ к папке: «Системные настройки» → «Конфиденциальность и безопасность» → «Файлы и папки».")
+            case let .unreadable(reason):
+                Text("Не удалось прочитать исходный файл: \(reason)")
+            case .recordMismatch:
+                Text("По сохранённому положению в файле другая запись: файл изменился после импорта.")
+            case .noLocation:
+                Text("В кейсе нет положения этой записи в исходном файле.")
+            }
+            if let path = detail.sourcePath {
+                Text(path)
+                    .font(.system(size: 11, design: .monospaced))
+                    .foregroundStyle(.secondary)
+                    .textSelection(.enabled)
+            }
+            Text("Вкладка «Поля» берёт данные из кейса и от исходного файла не зависит.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .task(id: detail.row.id) {
+            slow = false
+            try? await Task.sleep(for: .seconds(3))
+            if !Task.isCancelled { slow = true }
+        }
     }
 }
 

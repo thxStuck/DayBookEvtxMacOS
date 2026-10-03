@@ -76,9 +76,9 @@ final class CaseModel {
     private(set) var groupsTruncated = false
     private(set) var selectedGroup: DQLGroupRow?
     private(set) var histogram: Histogram?
-    var histogramFullRange = UserDefaults.standard.bool(forKey: "histogramFullRange") {
+    var histogramFullRange = AppDefaults.store.bool(forKey: "histogramFullRange") {
         didSet {
-            UserDefaults.standard.set(histogramFullRange, forKey: "histogramFullRange")
+            AppDefaults.store.set(histogramFullRange, forKey: "histogramFullRange")
             let store = self.store, events = filtered, full = histogramFullRange
             Task { [weak self] in
                 let h = await Task.detached { HistogramBuilder.build(store: store, events: events, fullRange: full) }.value
@@ -108,7 +108,7 @@ final class CaseModel {
     var timeZone: TimeZoneChoice {
         didSet {
             formatter = TimeFormatter(zone: timeZone)
-            UserDefaults.standard.set(timeZone.storageValue, forKey: "timeZone")
+            AppDefaults.store.set(timeZone.storageValue, forKey: "timeZone")
             displayGeneration += 1
         }
     }
@@ -136,8 +136,8 @@ final class CaseModel {
     private(set) var analysisError: String?
 
     /// Right-hand event details panel (events and timeline); opened by clicking an event.
-    var showDetails = UserDefaults.standard.object(forKey: "showDetails") as? Bool ?? true {
-        didSet { UserDefaults.standard.set(showDetails, forKey: "showDetails") }
+    var showDetails = AppDefaults.store.object(forKey: "showDetails") as? Bool ?? true {
+        didSet { AppDefaults.store.set(showDetails, forKey: "showDetails") }
     }
 
     /// Log viewer ("Журналы"): a second model over the same case with its own query state,
@@ -188,13 +188,13 @@ final class CaseModel {
     private(set) var tags: [UInt32: EventTag] = [:]
     @ObservationIgnored private var annotations: CaseAnnotations?
     private(set) var facets: [FacetSection] = []
-    var history: [String] = UserDefaults.standard.stringArray(forKey: "queryHistory") ?? []
+    var history: [String] = AppDefaults.store.stringArray(forKey: "queryHistory") ?? []
 
     init(store: CaseStore, url: URL, viewer: Bool = false) {
         self.store = store
         self.url = url
         isViewer = viewer
-        let zone = TimeZoneChoice(storageValue: UserDefaults.standard.string(forKey: "timeZone") ?? "utc")
+        let zone = TimeZoneChoice(storageValue: AppDefaults.store.string(forKey: "timeZone") ?? "utc")
         timeZone = zone
         formatter = TimeFormatter(zone: zone)
         let all = ResultSet(range: 0..<UInt32(store.eventCount))
@@ -293,6 +293,20 @@ final class CaseModel {
         guard let i = filters.firstIndex(where: { $0.id == id }) else { return }
         filters[i].negated.toggle()
         runQuery()
+    }
+
+    /// Something narrows the events: a query, a filter or a time window.
+    var hasSearch: Bool {
+        !queryText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !filters.isEmpty
+            || timeFrom != nil || timeTo != nil
+    }
+
+    /// Clears the query, the filters and the time window («Сбросить всё», ⌘K).
+    func resetSearch() {
+        filters.removeAll()
+        timeFrom = nil
+        timeTo = nil
+        runQuery(text: "")
     }
 
     func clearFilters() {
@@ -397,7 +411,7 @@ final class CaseModel {
             history.removeAll { $0 == trimmed }
             history.insert(trimmed, at: 0)
             history = Array(history.prefix(50))
-            UserDefaults.standard.set(history, forKey: "queryHistory")
+            AppDefaults.store.set(history, forKey: "queryHistory")
         }
     }
 
@@ -490,16 +504,21 @@ final class CaseModel {
     func select(_ id: UInt32?) {
         guard id != selectedId else { return }
         selectedId = id
-        // Details re-read the record from its source file: done off the main thread, so a
-        // slow disk (or a pending macOS privacy prompt for the evidence folder) never freezes
-        // the window. Answers for an older selection are dropped. A GCD thread rather than the
-        // Swift task pool: an open() that hangs must not take a pool thread the UI depends on.
+        // Fields come from the case and appear at once. XML and raw bytes are re-read from the
+        // source file, which can be slow or unreachable (network share, sleeping disk, a pending
+        // macOS privacy prompt); the panel shows that state instead of waiting. Answers for an
+        // older selection are dropped. GCD threads rather than the Swift task pool: an open()
+        // that hangs must not take a pool thread the UI depends on.
         if let id {
             let store = self.store
             Task { [weak self] in
-                let d = await runOffPool { try? store.detail(id) }
+                let d = await runOffPool { try? store.caseDetail(id) }
                 guard let self, self.selectedId == id else { return }
                 self.detail = d
+                guard let d, d.sourceState == .pending else { return }
+                let full = await runOffPool { store.readSourceRecord(d) }
+                guard self.selectedId == id else { return }
+                self.detail = full
             }
         } else {
             detail = nil
@@ -631,7 +650,7 @@ final class CaseModel {
         detectionProgress = (0, 0)
         detectionError = nil
         let store = self.store
-        let folder = UserDefaults.standard.string(forKey: RuleLibrary.customFolderKey)
+        let folder = AppDefaults.store.string(forKey: RuleLibrary.customFolderKey)
         let activity = ActivityToken("Sigma-детекты")
         Task { [weak self] in
             let outcome: Result<SigmaRunner.Summary, Error> = await runOffPool {
@@ -673,11 +692,28 @@ final class CaseModel {
         mode = .detections
     }
 
-    /// Runs a query and switches to the events table (used by analysis screens).
+    /// A jump from another screen (an entity, session, process, rule or log) starts a new search
+    /// in the events view. The query, filters and time window left from earlier work would
+    /// silently narrow it: a rule query left from «Детекты» hid every event of an IP. Earlier
+    /// queries stay in the query history.
+    private func newSearch(timeline: Bool, filters: [FieldFilter] = [], query: String = "") {
+        self.filters = filters
+        timeFrom = nil
+        timeTo = nil
+        mode = timeline ? .timeline : .events
+        runQuery(text: query)
+    }
+
+    /// Runs a query as a new search in the events table (analysis screens, rules).
     func showQuery(_ q: String, timeline: Bool = false) {
         if let owner { owner.showQuery(q, timeline: timeline); return }
-        mode = timeline ? .timeline : .events
-        runQuery(text: q)
+        newSearch(timeline: timeline, query: q)
+    }
+
+    /// One log file in the events view with the viewer's level and DQL filter, as a new search.
+    func showSource(_ name: String, query: String) {
+        if let owner { owner.showSource(name, query: query); return }
+        newSearch(timeline: false, filters: [FieldFilter(key: CaseSchema.SystemKey.source, value: name)], query: query)
     }
 
     /// DQL time literal in UTC (exact, independent of the display zone).
@@ -751,9 +787,18 @@ final class CaseModel {
         }
     }
 
-    /// Shows every event of an entity (all roles) in the events view.
-    func showEvents(of e: EntityInfo, negated: Bool = false, timeline: Bool = false) {
-        if let owner { owner.showEvents(of: e, negated: negated, timeline: timeline); return }
+    /// Every event of the given entities (all roles at once) as a new search: a jump from the
+    /// host, user and IP screens.
+    func showEvents(of entities: [EntityInfo], negated: Bool = false, timeline: Bool = false) {
+        if let owner { owner.showEvents(of: entities, negated: negated, timeline: timeline); return }
+        newSearch(timeline: timeline, filters: entities.map {
+            FieldFilter(key: Self.filterKey($0.kind), value: Self.filterValue($0), negated: negated)
+        })
+    }
+
+    /// Narrows the current search to an entity (sidebar clicks in the events view).
+    func filterEvents(by e: EntityInfo, negated: Bool = false, timeline: Bool = false) {
+        if let owner { owner.filterEvents(by: e, negated: negated, timeline: timeline); return }
         addFilter(key: Self.filterKey(e.kind), value: Self.filterValue(e), negated: negated)
         mode = timeline ? .timeline : .events
     }

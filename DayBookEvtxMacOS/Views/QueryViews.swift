@@ -19,6 +19,16 @@ struct QueryBar: View {
                     .textFieldStyle(.plain)
                     .lineLimit(1...5)
                     .onSubmit { model.runQuery() }
+                if !model.queryText.isEmpty {
+                    Button {
+                        model.runQuery(text: "")
+                    } label: {
+                        Image(systemName: "xmark.circle.fill").foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.borderless)
+                    .padding(.top, 2)
+                    .help("Очистить запрос")
+                }
                 if model.querying {
                     Button("Стоп") { model.cancelQuery() }
                 } else {

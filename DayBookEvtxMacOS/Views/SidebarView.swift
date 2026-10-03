@@ -159,11 +159,11 @@ struct SidebarView: View {
                     Text(e.events.formatted()).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
                 }
                 .contentShape(Rectangle())
-                .onTapGesture { model.showEvents(of: e, negated: NSEvent.modifierFlags.contains(.option)) }
+                .onTapGesture { model.filterEvents(by: e, negated: NSEvent.modifierFlags.contains(.option)) }
                 .contextMenu {
-                    Button("Показать все события") { model.showEvents(of: e) }
-                    Button("Показать в таймлайне") { model.showEvents(of: e, timeline: true) }
-                    Button("Исключить") { model.showEvents(of: e, negated: true) }
+                    Button("Показать все события") { model.filterEvents(by: e) }
+                    Button("Показать в таймлайне") { model.filterEvents(by: e, timeline: true) }
+                    Button("Исключить") { model.filterEvents(by: e, negated: true) }
                 }
                 .help(([e.sid].compactMap { $0 } + e.aliases).joined(separator: "\n"))
             }
