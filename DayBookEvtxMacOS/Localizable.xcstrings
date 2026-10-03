@@ -1,0 +1,6912 @@
+{
+  "sourceLanguage": "ru",
+  "strings": {
+    "": {
+      "shouldTranslate": false
+    },
+    " (источник %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " (source %@)"
+          }
+        }
+      }
+    },
+    " (позиция %lld)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " (position %lld)"
+          }
+        }
+      }
+    },
+    " + %@ восстановлено из slack": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " + %@ recovered from slack"
+          }
+        }
+      }
+    },
+    " · нет данных о загрузках: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " · no boot information: %@"
+          }
+        }
+      }
+    },
+    " · повторных GUID %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " · repeated GUIDs %lld"
+          }
+        }
+      }
+    },
+    " · связано по PID %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " · linked by PID %@"
+          }
+        }
+      }
+    },
+    " · успешно": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " · success"
+          }
+        }
+      }
+    },
+    " с %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " from %@"
+          }
+        }
+      }
+    },
+    " с %@ (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " from %@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": " с %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    " ⚠ без преаутентификации": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " ⚠ no pre-authentication"
+          }
+        }
+      }
+    },
+    "%@\n%@": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@\n%2$@"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "%@ · chunk %lld · offset %lld": {
+      "shouldTranslate": false
+    },
+    "%@ · id %@": {
+      "shouldTranslate": false
+    },
+    "%@ записей%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ records%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ записей%2$@"
+          }
+        }
+      }
+    },
+    "%@ из %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ of %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ из %2$@"
+          }
+        }
+      }
+    },
+    "%@ мс": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ms"
+          }
+        }
+      }
+    },
+    "%@ с": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ s"
+          }
+        }
+      }
+    },
+    "%@ соб. · %@ – %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ev. · %@ – %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ соб. · %2$@ – %3$@"
+          }
+        }
+      }
+    },
+    "%@ событий": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ events"
+          }
+        }
+      }
+    },
+    "%@ событий · %lld файлов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "events: %@ · files: %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ событий · %2$lld файлов"
+          }
+        }
+      }
+    },
+    "%@ – %@": {
+      "shouldTranslate": false
+    },
+    "%@ — %@": {
+      "shouldTranslate": false
+    },
+    "%@ — %lld правил": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ — rules: %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ — %2$lld правил"
+          }
+        }
+      }
+    },
+    "%@%@ групп": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@%@ groups"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@%2$@ групп"
+          }
+        }
+      }
+    },
+    "%@Доступ к процессу: %@ → %@ (права %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@Process access: %@ → %@ (access %@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@Доступ к процессу: %2$@ → %3$@ (права %4$@)"
+          }
+        }
+      }
+    },
+    "%lld": {
+      "shouldTranslate": false
+    },
+    "%lld %@": {
+      "shouldTranslate": false
+    },
+    "%lld д %lld ч": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld d %lld h"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld д %2$lld ч"
+          }
+        }
+      }
+    },
+    "%lld мин %lld с": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min %lld s"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld мин %2$lld с"
+          }
+        }
+      }
+    },
+    "%lld с": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld s"
+          }
+        }
+      }
+    },
+    "%lld ч %lld мин": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld h %lld min"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld ч %2$lld мин"
+          }
+        }
+      }
+    },
+    "%lld — %@": {
+      "shouldTranslate": false
+    },
+    "(образ неизвестен)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(image unknown)"
+          }
+        }
+      }
+    },
+    "(пользовательские правила)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(custom rules)"
+          }
+        }
+      }
+    },
+    ", изменено %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ", modified %@"
+          }
+        }
+      }
+    },
+    "0": {
+      "shouldTranslate": false
+    },
+    "4672": {
+      "shouldTranslate": false
+    },
+    "=": {
+      "shouldTranslate": false
+    },
+    "?": {
+      "shouldTranslate": false
+    },
+    "AS-REP roasting (4768 без preauth)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AS-REP roasting (4768 without preauth)"
+          }
+        }
+      }
+    },
+    "BITS: задание %@ → %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BITS: job %@ → %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "BITS: задание %1$@ → %2$@"
+          }
+        }
+      }
+    },
+    "CRC заг. / данных": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CRC header / data"
+          }
+        }
+      }
+    },
+    "CRC чанка не совпадает": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "chunk CRC mismatch"
+          }
+        }
+      }
+    },
+    "CSV": {
+      "shouldTranslate": false
+    },
+    "CSV для Excel (;)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CSV for Excel (;)"
+          }
+        }
+      }
+    },
+    "DNS-запрос %@ → %@ (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DNS query %@ → %@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "DNS-запрос %1$@ → %2$@ (%3$@)"
+          }
+        }
+      }
+    },
+    "DQL: EventID = 4624 and LogonType = 3 | group by IpAddress, TargetUserName": {
+      "shouldTranslate": false
+    },
+    "DayBookEvtxMacOS": {
+      "shouldTranslate": false
+    },
+    "Defender: действие над %@ — %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Defender: action on %@ — %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Defender: действие над %1$@ — %2$@"
+          }
+        }
+      }
+    },
+    "Defender: изменена конфигурация %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Defender: configuration changed %@"
+          }
+        }
+      }
+    },
+    "Defender: обнаружения и действия": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Defender: detections and actions"
+          }
+        }
+      }
+    },
+    "Excel (XLSX)": {
+      "shouldTranslate": false
+    },
+    "Hex": {
+      "shouldTranslate": false
+    },
+    "IP (любая роль)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP (any role)"
+          }
+        }
+      }
+    },
+    "IP-адреса": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP addresses"
+          }
+        }
+      }
+    },
+    "JSON Lines": {
+      "shouldTranslate": false
+    },
+    "Kerberoasting (RC4 TGS, 4769)": {
+      "shouldTranslate": false
+    },
+    "Kerberos TGS %@ для %@%@%@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kerberos TGS %@ for %@%@%@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Kerberos TGS %1$@ для %2$@%3$@%4$@%5$@"
+          }
+        }
+      }
+    },
+    "Kerberos TGT для %@%@%@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kerberos TGT for %@%@%@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Kerberos TGT для %1$@%2$@%3$@%4$@"
+          }
+        }
+      }
+    },
+    "LogonId": {
+      "shouldTranslate": false
+    },
+    "NTLM-аутентификации (4776)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NTLM authentications (4776)"
+          }
+        }
+      }
+    },
+    "NTLM-проверка %@%@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NTLM validation %@%@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "NTLM-проверка %1$@%2$@%3$@"
+          }
+        }
+      }
+    },
+    "NetBIOS/DNS-имя компьютера изменено": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Computer NetBIOS/DNS name changed"
+          }
+        }
+      }
+    },
+    "OK": {
+      "shouldTranslate": false
+    },
+    "PID": {
+      "shouldTranslate": false
+    },
+    "Password spraying: неудачи по источнику": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password spraying: failures by source"
+          }
+        }
+      }
+    },
+    "PowerShell ScriptBlock (4104)": {
+      "shouldTranslate": false
+    },
+    "PowerShell: подозрительное": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PowerShell: suspicious"
+          }
+        }
+      }
+    },
+    "RDP": {
+      "shouldTranslate": false
+    },
+    "RDP-входы (тип 10)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP logons (type 10)"
+          }
+        }
+      }
+    },
+    "RDP: аутентификация %@%@ с %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP: authentication %@%@ from %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "RDP: аутентификация %1$@%2$@ с %3$@"
+          }
+        }
+      }
+    },
+    "RDP: вход %@ с %@ (сеанс %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP: logon %@ from %@ (session %@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "RDP: вход %1$@ с %2$@ (сеанс %3$@)"
+          }
+        }
+      }
+    },
+    "RDP: выход %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP: logoff %@"
+          }
+        }
+      }
+    },
+    "RDP: запуск оболочки %@ с %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP: shell start %@ from %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "RDP: запуск оболочки %1$@ с %2$@"
+          }
+        }
+      }
+    },
+    "RDP: отключение %@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP: disconnect %@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "RDP: отключение %1$@%2$@"
+          }
+        }
+      }
+    },
+    "RDP: переподключение %@ с %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP: reconnect %@ from %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "RDP: переподключение %1$@ с %2$@"
+          }
+        }
+      }
+    },
+    "RDP: переподключение %@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP: reconnect %@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "RDP: переподключение %1$@%2$@"
+          }
+        }
+      }
+    },
+    "RDP: сеанс отключён %@ с %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP: session disconnected %@ from %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "RDP: сеанс отключён %1$@ с %2$@"
+          }
+        }
+      }
+    },
+    "RDP: сессии (LSM / RCM)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RDP: sessions (LSM / RCM)"
+          }
+        }
+      }
+    },
+    "RFC 4180, запятая, UTF-8; значения без изменений": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RFC 4180, comma, UTF-8; values unchanged"
+          }
+        }
+      }
+    },
+    "SHA-256 исходных файлов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SHA-256 of source files"
+          }
+        }
+      }
+    },
+    "SID · другие написания": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SID · other spellings"
+          }
+        }
+      }
+    },
+    "Security 4688": {
+      "shouldTranslate": false
+    },
+    "Security 4688/4689 — связь по PID": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Security 4688/4689 — linked by PID"
+          }
+        }
+      }
+    },
+    "Sysmon 1/5": {
+      "shouldTranslate": false
+    },
+    "Sysmon 1/5 — связь по ProcessGuid": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sysmon 1/5 — linked by ProcessGuid"
+          }
+        }
+      }
+    },
+    "Sysmon: автозапуск в реестре (13)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sysmon: registry autoruns (13)"
+          }
+        }
+      }
+    },
+    "Sysmon: сетевые соединения (3)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sysmon: network connections (3)"
+          }
+        }
+      }
+    },
+    "TimeCreated ≠ время записи": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TimeCreated ≠ record write time"
+          }
+        }
+      }
+    },
+    "Type 1 (полный токен, UAC отключён/встроенный администратор)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type 1 (full token, UAC off / built-in administrator)"
+          }
+        }
+      }
+    },
+    "Type 2 (повышенный токен)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type 2 (elevated token)"
+          }
+        }
+      }
+    },
+    "Type 3 (ограниченный токен)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type 3 (limited token)"
+          }
+        }
+      }
+    },
+    "UTC": {
+      "shouldTranslate": false
+    },
+    "WinRM: создание сеанса %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WinRM: session creation %@"
+          }
+        }
+      }
+    },
+    "XML": {
+      "shouldTranslate": false
+    },
+    "XML недоступен: исходный файл не найден или запись повреждена.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "XML unavailable: the source file is missing or the record is damaged."
+          }
+        }
+      }
+    },
+    "YAML не является словарём": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "YAML is not a mapping"
+          }
+        }
+      }
+    },
+    "base64 от значения с маской не поддерживается": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "base64 of a value with wildcards is not supported"
+          }
+        }
+      }
+    },
+    "between работает с числами и временем": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "between works with numbers and time"
+          }
+        }
+      }
+    },
+    "condition ссылается на неизвестный идентификатор «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "condition refers to an unknown identifier “%@”"
+          }
+        }
+      }
+    },
+    "fieldref с «%@» не поддерживается": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fieldref with “%@” is not supported"
+          }
+        }
+      }
+    },
+    "logsource product «%@» — не журналы Windows": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "logsource product “%@” is not Windows logs"
+          }
+        }
+      }
+    },
+    "logsource: %@": {
+      "shouldTranslate": false
+    },
+    "rulelevel = %@": {
+      "shouldTranslate": false
+    },
+    "wide/utf16le без base64 не поддерживается": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wide/utf16le without base64 is not supported"
+          }
+        }
+      }
+    },
+    "windash: слишком много вариантов (%lld позиций)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "windash: too many variants (%lld positions)"
+          }
+        }
+      }
+    },
+    "«%@ of %@» не находит идентификаторов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@ of %@” matches no identifiers"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "«%1$@ of %2$@» не находит идентификаторов"
+          }
+        }
+      }
+    },
+    "«%@ of …» поддерживается только для 1 и all": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@ of …” is supported only for 1 and all"
+          }
+        }
+      }
+    },
+    "«%@» со значением «%@» — не число": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” with value “%@” is not a number"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "«%1$@» со значением «%2$@» — не число"
+          }
+        }
+      }
+    },
+    "·": {
+      "shouldTranslate": false
+    },
+    "· %@ с": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "· %@ s"
+          }
+        }
+      }
+    },
+    "· правил %@: вычислено %@, не поддерживается %@, не загружено %@, ошибок %@, с замечаниями %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "· rules %@: evaluated %@, unsupported %@, not loaded %@, errors %@, with notes %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "· правил %1$@: вычислено %2$@, не поддерживается %3$@, не загружено %4$@, ошибок %5$@, с замечаниями %6$lld"
+          }
+        }
+      }
+    },
+    "· сработало %@ на %@ событиях": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "· rules matched: %@ · events: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "· сработало %1$@ на %2$@ событиях"
+          }
+        }
+      }
+    },
+    "Автор": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Author"
+          }
+        }
+      }
+    },
+    "Автор каждого правила показан в его карточке и в деталях события — этого требует лицензия DRL 1.1. Псевдонимы полей Hayabusa взяты из config/eventkey_alias.txt репозитория hayabusa-rules и применяются только к правилам Hayabusa.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each rule's author is shown in its card and in the event details, as the DRL 1.1 license requires. Hayabusa field aliases come from config/eventkey_alias.txt in the hayabusa-rules repository and apply to Hayabusa rules only."
+          }
+        }
+      }
+    },
+    "Автор: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Author: %@"
+          }
+        }
+      }
+    },
+    "Автор: %@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Author: %@ · %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Автор: %1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "Админ-шары (5140 / 5145)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Admin shares (5140 / 5145)"
+          }
+        }
+      }
+    },
+    "Адрес": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Address"
+          }
+        }
+      }
+    },
+    "Алиасы: host, channel, provider, id (EventID), level, user (SID), file, flag, time": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aliases: host, channel, provider, id (EventID), level, user (SID), file, flag, time"
+          }
+        }
+      }
+    },
+    "Альтернативный поток данных %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alternate data stream %@"
+          }
+        }
+      }
+    },
+    "Аудит отказа": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audit Failure"
+          }
+        }
+      }
+    },
+    "Аудит успеха": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audit Success"
+          }
+        }
+      }
+    },
+    "Без пустых": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide empty"
+          }
+        }
+      }
+    },
+    "Будут проверены правила SigmaHQ и Hayabusa из поставки (и папка своих правил, если выбрана). Каждое правило переводится в DQL; что не удалось перевести, будет показано с причиной. Результаты сохраняются в кейсе.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The bundled SigmaHQ and Hayabusa rules (and your rules folder, if set) will be evaluated. Every rule is translated to DQL; anything that cannot be translated is listed with the reason. Results are saved in the case."
+          }
+        }
+      }
+    },
+    "В 4688 записан только PID родителя: связь восстановлена эвристически (значок 🔗). PID переиспользуются, проверяйте по времени.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4688 records only the parent PID: links are reconstructed heuristically (🔗 icon). PIDs are reused — check the times."
+          }
+        }
+      }
+    },
+    "В XLSX помещается не больше 1 048 575 строк, а в результате %lld. Сузьте запрос или выберите CSV / JSON Lines.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "XLSX holds at most 1,048,575 rows and the result has %lld. Narrow the query or choose CSV / JSON Lines."
+          }
+        }
+      }
+    },
+    "В выбранных источниках не найдено ни одного файла EVTX": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No EVTX files were found in the selected sources"
+          }
+        }
+      }
+    },
+    "В группу %@ добавлен %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Added %2$@ to group %1$@ [%3$@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "В группу %1$@ добавлен %2$@ [%3$@]"
+          }
+        }
+      }
+    },
+    "В приложении нет пакета правил rules.json": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app has no rules.json rule pack"
+          }
+        }
+      }
+    },
+    "В таймлайне": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In timeline"
+          }
+        }
+      }
+    },
+    "Версия": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
+          }
+        }
+      }
+    },
+    "Версия: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version: %@"
+          }
+        }
+      }
+    },
+    "Весь диапазон · обрезать выбросы": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full range · trim outliers"
+          }
+        }
+      }
+    },
+    "Вид": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View"
+          }
+        }
+      }
+    },
+    "Включена задача %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task enabled %@"
+          }
+        }
+      }
+    },
+    "Включена учётная запись %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account enabled %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Включена учётная запись %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Включить": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable"
+          }
+        }
+      }
+    },
+    "Вне оси: %@ раньше, %@ позже · показать всё": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off the axis: %@ earlier, %@ later · show all"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Вне оси: %1$@ раньше, %2$@ позже · показать всё"
+          }
+        }
+      }
+    },
+    "Восстанавливать записи из slack-области чанков": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recover records from chunk slack space"
+          }
+        }
+      }
+    },
+    "Восстановл.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovered"
+          }
+        }
+      }
+    },
+    "Восстановление записей из slack": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovering records from slack"
+          }
+        }
+      }
+    },
+    "Восстановленные из slack": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovered from slack"
+          }
+        }
+      }
+    },
+    "Восстановлено из slack: найдено %@, уникальных %@ · схлопнуто копий: %@ · ошибок разбора: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recovered from slack: found %@, unique %@ · copies merged: %@ · parse errors: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Восстановлено из slack: найдено %1$@, уникальных %2$@ · схлопнуто копий: %3$@ · ошибок разбора: %4$@"
+          }
+        }
+      }
+    },
+    "Временное окно": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time window"
+          }
+        }
+      }
+    },
+    "Время": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time"
+          }
+        }
+      }
+    },
+    "Время UTC": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time UTC"
+          }
+        }
+      }
+    },
+    "Время записи (UTC)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record write time (UTC)"
+          }
+        }
+      }
+    },
+    "Время событий хранится в UTC (FILETIME, 100 нс); отображение — в выбранном поясе.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Event times are stored in UTC (FILETIME, 100 ns) and displayed in the selected zone."
+          }
+        }
+      }
+    },
+    "Все (%lld)…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All (%lld)…"
+          }
+        }
+      }
+    },
+    "Все вычисленные": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All evaluated"
+          }
+        }
+      }
+    },
+    "Все правила": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All rules"
+          }
+        }
+      }
+    },
+    "Все события": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All events"
+          }
+        }
+      }
+    },
+    "Все сработавшие правила…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All matched rules…"
+          }
+        }
+      }
+    },
+    "Все типы": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All types"
+          }
+        }
+      }
+    },
+    "Встроенная учётная запись": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Built-in account"
+          }
+        }
+      }
+    },
+    "Вход 4624 → выход 4634/4647": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logon 4624 → logoff 4634/4647"
+          }
+        }
+      }
+    },
+    "Входы (4624 → 4634/4647)": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logons (4624 → 4634/4647)"
+          }
+        }
+      }
+    },
+    "Входы 4624": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logons 4624"
+          }
+        }
+      }
+    },
+    "Входы и учётные записи": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logons and accounts"
+          }
+        }
+      }
+    },
+    "Выберите журнал": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a log"
+          }
+        }
+      }
+    },
+    "Выберите папку с журналами или файлы .evtx": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a logs folder or .evtx files"
+          }
+        }
+      }
+    },
+    "Выберите правило": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select a rule"
+          }
+        }
+      }
+    },
+    "Выберите строку в таблице.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select a row in the table."
+          }
+        }
+      }
+    },
+    "Выберите сущность": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select an entity"
+          }
+        }
+      }
+    },
+    "Выбрать": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose"
+          }
+        }
+      }
+    },
+    "Выбрать папку своих правил…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose custom rules folder…"
+          }
+        }
+      }
+    },
+    "Выключить": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disable"
+          }
+        }
+      }
+    },
+    "Выполнение и закрепление": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Execution and persistence"
+          }
+        }
+      }
+    },
+    "Выполнить": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run"
+          }
+        }
+      }
+    },
+    "Выполнить этот DQL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run this DQL"
+          }
+        }
+      }
+    },
+    "Выход %@ (сеанс %@, тип %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logoff %@ (session %@, type %@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Выход %1$@ (сеанс %2$@, тип %3$@)"
+          }
+        }
+      }
+    },
+    "Где сохранить кейс": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where to save the case"
+          }
+        }
+      }
+    },
+    "Гистограмма": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Histogram"
+          }
+        }
+      }
+    },
+    "Готово": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "Данные события": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Event data"
+          }
+        }
+      }
+    },
+    "Действие задачи %@ завершено (код %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task action %@ completed (code %@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Действие задачи %1$@ завершено (код %2$@)"
+          }
+        }
+      }
+    },
+    "Детали": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Details"
+          }
+        }
+      }
+    },
+    "Детекты": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detections"
+          }
+        }
+      }
+    },
+    "Детекты для этого кейса ещё не запускались": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detections have not been run for this case yet"
+          }
+        }
+      }
+    },
+    "Детекты не выполнены: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detections failed: "
+          }
+        }
+      }
+    },
+    "Детекты не запускались": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detections not run"
+          }
+        }
+      }
+    },
+    "Длительность": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duration"
+          }
+        }
+      }
+    },
+    "Для anyhost/anyuser/anyip поддерживаются =, !=, in": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "anyhost/anyuser/anyip support =, !=, in"
+          }
+        }
+      }
+    },
+    "Для rule поддерживаются =, !=, in, contains, exists (по id или названию правила)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rule supports =, !=, in, contains, exists (by rule id or title)"
+          }
+        }
+      }
+    },
+    "Для rulelevel поддерживаются =, !=, in, <, <=, >, >=": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rulelevel supports =, !=, in, <, <=, >, >="
+          }
+        }
+      }
+    },
+    "Для tag поддерживаются =, !=, in, exists": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tag supports =, !=, in, exists"
+          }
+        }
+      }
+    },
+    "Для поля time используйте <, <=, >, >=, between": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For the time field use <, <=, >, >=, between"
+          }
+        }
+      }
+    },
+    "Для поля time используйте <, >, between": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For the time field use <, >, between"
+          }
+        }
+      }
+    },
+    "Для поля time используйте between": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For the time field use between"
+          }
+        }
+      }
+    },
+    "Для фиксации исходных данных (chain of custody): хеш попадает в сведения о кейсе и в экспорт.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For chain of custody: the hash goes into the case information and exports."
+          }
+        }
+      }
+    },
+    "До 1 048 575 строк. Значения записываются как текст, а не формулы; второй лист — сведения об экспорте: запрос, фильтры, часовой пояс, исходные файлы с SHA-256": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up to 1,048,575 rows. Values are written as text, not formulas; the second sheet holds export information: query, filters, time zone, source files with SHA-256"
+          }
+        }
+      }
+    },
+    "Добавить колонку «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add column “%@”"
+          }
+        }
+      }
+    },
+    "Доступ к ресурсам": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resource access"
+          }
+        }
+      }
+    },
+    "Доступ к сетевой папке %@%@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Network share access %@%@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Доступ к сетевой папке %1$@%2$@ [%3$@]"
+          }
+        }
+      }
+    },
+    "Другие написания": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other spellings"
+          }
+        }
+      }
+    },
+    "Журнал": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log"
+          }
+        }
+      }
+    },
+    "Журналы": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logs"
+          }
+        }
+      }
+    },
+    "Журналы Windows": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows Logs"
+          }
+        }
+      }
+    },
+    "Журналы приложений и служб": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applications and Services Logs"
+          }
+        }
+      }
+    },
+    "Жёлтая": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yellow"
+          }
+        }
+      }
+    },
+    "За заголовком: новые / устар.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beyond header: new / stale"
+          }
+        }
+      }
+    },
+    "Завершение": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End"
+          }
+        }
+      }
+    },
+    "Завершение работы Windows": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows shutdown"
+          }
+        }
+      }
+    },
+    "Завершение работы ОС": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OS shutdown"
+          }
+        }
+      }
+    },
+    "Завершён процесс %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Process exited %@"
+          }
+        }
+      }
+    },
+    "Загружен драйвер %@ (подпись: %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Driver loaded %@ (signature: %@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Загружен драйвер %1$@ (подпись: %2$@)"
+          }
+        }
+      }
+    },
+    "Закладка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bookmark"
+          }
+        }
+      }
+    },
+    "Закладки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bookmarks"
+          }
+        }
+      }
+    },
+    "Закрыть": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        }
+      }
+    },
+    "Закрыть кейс": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close Case"
+          }
+        }
+      }
+    },
+    "Заметка к событию": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Event note"
+          }
+        }
+      }
+    },
+    "Заметка…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note…"
+          }
+        }
+      }
+    },
+    "Замечание": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note"
+          }
+        }
+      }
+    },
+    "Запись событий в базу кейса": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing events to the case database"
+          }
+        }
+      }
+    },
+    "Запланированные задачи (4698 / 106)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scheduled tasks (4698 / 106)"
+          }
+        }
+      }
+    },
+    "Запрос DQL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DQL query"
+          }
+        }
+      }
+    },
+    "Запрос не превращается в SQL: он разбирается и выполняется как операции над множествами, поэтому SQL-инъекции невозможны.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A query is never turned into SQL: it is parsed and executed as set operations, so SQL injection is impossible."
+          }
+        }
+      }
+    },
+    "Запуск": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        }
+      }
+    },
+    "Запуск Windows": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows startup"
+          }
+        }
+      }
+    },
+    "Запуск ОС": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OS startup"
+          }
+        }
+      }
+    },
+    "Запуск действия задачи %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task action started %@: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Запуск действия задачи %1$@: %2$@"
+          }
+        }
+      }
+    },
+    "Запуск консоли PowerShell": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PowerShell console started"
+          }
+        }
+      }
+    },
+    "Запустить Sigma-детекты после импорта": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run Sigma detections after import"
+          }
+        }
+      }
+    },
+    "Запустить детекты": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run Detections"
+          }
+        }
+      }
+    },
+    "Запустить заново": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run Again"
+          }
+        }
+      }
+    },
+    "Зарегистрирована задача %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task registered %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Зарегистрирована задача %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Здесь будут её связи с хостами, пользователями и IP.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Its links to hosts, users and IPs will appear here."
+          }
+        }
+      }
+    },
+    "Зелёная": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Green"
+          }
+        }
+      }
+    },
+    "Из группы %@ удалён %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removed %2$@ from group %1$@ [%3$@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Из группы %1$@ удалён %2$@ [%3$@]"
+          }
+        }
+      }
+    },
+    "Изменена задача %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task changed %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Изменена задача %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Изменена политика аудита [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Audit policy changed [%@]"
+          }
+        }
+      }
+    },
+    "Изменена политика домена %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Domain policy changed %@"
+          }
+        }
+      }
+    },
+    "Изменена учётная запись %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account changed %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Изменена учётная запись %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Изменение системного времени (4616)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System time change (4616)"
+          }
+        }
+      }
+    },
+    "Изменения учётных записей и групп": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account and group changes"
+          }
+        }
+      }
+    },
+    "Изменено время создания файла %@ (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File creation time changed %@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Изменено время создания файла %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "Изменено системное время: %@ → %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System time changed: %@ → %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Изменено системное время: %1$@ → %2$@"
+          }
+        }
+      }
+    },
+    "Изменено системное время: %@ → %@ (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System time changed: %@ → %@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Изменено системное время: %1$@ → %2$@ (%3$@)"
+          }
+        }
+      }
+    },
+    "Именованный канал %@ (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Named pipe %@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Именованный канал %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "Импорт журналов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importing logs"
+          }
+        }
+      }
+    },
+    "Имя": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "Индекс полей": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Field index"
+          }
+        }
+      }
+    },
+    "Индексы базы": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Database indexes"
+          }
+        }
+      }
+    },
+    "Исключить": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclude"
+          }
+        }
+      }
+    },
+    "Исключить  ≠ %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclude  ≠ %@"
+          }
+        }
+      }
+    },
+    "Исключить  ≠ значение": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclude  ≠ value"
+          }
+        }
+      }
+    },
+    "Исключить из событий": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclude from events"
+          }
+        }
+      }
+    },
+    "Исключить: %@ ≠ %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclude: %@ ≠ %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Исключить: %1$@ ≠ %2$@"
+          }
+        }
+      }
+    },
+    "История запросов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Query history"
+          }
+        }
+      }
+    },
+    "История пуста": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History is empty"
+          }
+        }
+      }
+    },
+    "Источник": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Provider"
+          }
+        }
+      }
+    },
+    "Источники:": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sources:"
+          }
+        }
+      }
+    },
+    "Исходные файлы": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source files"
+          }
+        }
+      }
+    },
+    "Исходные файлы открываются только для чтения и не изменяются.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source files are opened read-only and are never modified."
+          }
+        }
+      }
+    },
+    "Исходный YAML": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Source YAML"
+          }
+        }
+      }
+    },
+    "Как проверялось": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How it was evaluated"
+          }
+        }
+      }
+    },
+    "Кейс": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Case"
+          }
+        }
+      }
+    },
+    "Кейс: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Case: %@"
+          }
+        }
+      }
+    },
+    "Кол-во": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Count"
+          }
+        }
+      }
+    },
+    "Колонки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Columns"
+          }
+        }
+      }
+    },
+    "Командная строка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Command line"
+          }
+        }
+      }
+    },
+    "Компиляция %@ мс, предрасчёт подстрок %@ мс (%@ предикатов), вычисление %@ мс": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compile %@ ms, substring prefetch %@ ms (%@ predicates), evaluation %@ ms"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Компиляция %1$@ мс, предрасчёт подстрок %2$@ мс (%3$@ предикатов), вычисление %4$@ мс"
+          }
+        }
+      }
+    },
+    "Компьютер": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Computer"
+          }
+        }
+      }
+    },
+    "Компьютеры": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Computers"
+          }
+        }
+      }
+    },
+    "Конец": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End"
+          }
+        }
+      }
+    },
+    "Копии этой записи": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copies of this record"
+          }
+        }
+      }
+    },
+    "Копий схлопнуто": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copies merged"
+          }
+        }
+      }
+    },
+    "Копировать": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        }
+      }
+    },
+    "Копировать SID": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy SID"
+          }
+        }
+      }
+    },
+    "Копировать «имя: значение»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy “name: value”"
+          }
+        }
+      }
+    },
+    "Копировать значение": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy value"
+          }
+        }
+      }
+    },
+    "Копировать имя": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy name"
+          }
+        }
+      }
+    },
+    "Копировать командную строку": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy command line"
+          }
+        }
+      }
+    },
+    "Копировать путь": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy path"
+          }
+        }
+      }
+    },
+    "Копировать строку": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy row"
+          }
+        }
+      }
+    },
+    "Копировать таблицу (TSV)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy table (TSV)"
+          }
+        }
+      }
+    },
+    "Красная": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red"
+          }
+        }
+      }
+    },
+    "Критический": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Critical"
+          }
+        }
+      }
+    },
+    "Ложные срабатывания (по мнению автора)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "False positives (according to the author)"
+          }
+        }
+      }
+    },
+    "Локальное время Mac": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mac local time"
+          }
+        }
+      }
+    },
+    "Любой уровень": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Any level"
+          }
+        }
+      }
+    },
+    "Модуль %@ загружен в %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Module %@ loaded into %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Модуль %1$@ загружен в %2$@"
+          }
+        }
+      }
+    },
+    "Модуль PowerShell: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PowerShell module: %@"
+          }
+        }
+      }
+    },
+    "Набор": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rule set"
+          }
+        }
+      }
+    },
+    "Наборы правил": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rule sets"
+          }
+        }
+      }
+    },
+    "Наборы правил и лицензии…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rule sets and licenses…"
+          }
+        }
+      }
+    },
+    "Нажмите на значение в таблице, деталях или боковой панели, чтобы добавить фильтр": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Click a value in the table, details or sidebar to add a filter"
+          }
+        }
+      }
+    },
+    "Начало": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        }
+      }
+    },
+    "Начать импорт": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Import"
+          }
+        }
+      }
+    },
+    "Не вычислены / с замечаниями": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not evaluated / with notes"
+          }
+        }
+      }
+    },
+    "Не использовать папку «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop using folder “%@”"
+          }
+        }
+      }
+    },
+    "Не удалось открыть кейс: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not open the case: "
+          }
+        }
+      }
+    },
+    "Не удалось разобрать время «%@». Формат: ГГГГ-ММ-ДД ЧЧ:ММ[:СС] (в выбранном часовом поясе; суффикс Z — UTC)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not parse the time “%@”. Format: YYYY-MM-DD HH:MM[:SS] (in the selected time zone; suffix Z means UTC)"
+          }
+        }
+      }
+    },
+    "Не удалось сохранить закладку: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not save the bookmark: "
+          }
+        }
+      }
+    },
+    "Не удалось сохранить заметку: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not save the note: "
+          }
+        }
+      }
+    },
+    "Недавние кейсы": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent cases"
+          }
+        }
+      }
+    },
+    "Незакрытая кавычка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unclosed quote"
+          }
+        }
+      }
+    },
+    "Неизвестная стадия: ожидалось where, select, group by, sort, limit или search": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown stage: expected where, select, group by, sort, limit or search"
+          }
+        }
+      }
+    },
+    "Неизвестное поле «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown field “%@”"
+          }
+        }
+      }
+    },
+    "Неизвестный оператор": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown operator"
+          }
+        }
+      }
+    },
+    "Неизвестный оператор «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown operator “%@”"
+          }
+        }
+      }
+    },
+    "Некорректная подсеть «%@» (ожидается, например, 10.0.0.0/8)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid network “%@” (expected e.g. 10.0.0.0/8)"
+          }
+        }
+      }
+    },
+    "Нет связей или загрузка…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No links, or still loading…"
+          }
+        }
+      }
+    },
+    "Нет события создания этого процесса в журнале: узел собран из полей родителя у дочерних процессов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The log has no creation event for this process: the node is built from the parent fields of its children"
+          }
+        }
+      }
+    },
+    "Неудачные входы (4625)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed logons (4625)"
+          }
+        }
+      }
+    },
+    "Неудачный вход %@ (тип %@%@)%@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed logon %@ (type %@%@)%@: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Неудачный вход %1$@ (тип %2$@%3$@)%4$@: %5$@"
+          }
+        }
+      }
+    },
+    "Новые службы (7045 / 4697)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New services (7045 / 4697)"
+          }
+        }
+      }
+    },
+    "Новый кейс из журналов…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New Case from Logs…"
+          }
+        }
+      }
+    },
+    "Объединять одинаковые записи": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Merge identical records"
+          }
+        }
+      }
+    },
+    "Одна и та же запись из живого журнала, теневой копии и slack показывается одним событием с флагом «есть копии»; все места нахождения видны в деталях. Если выключить — каждая копия будет отдельной строкой.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The same record from the live log, a shadow copy and slack is shown as one event flagged “has copies”; every location is listed in the details. When off, each copy is a separate row."
+          }
+        }
+      }
+    },
+    "Ожидалась «(» со списком значений": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected “(” with a list of values"
+          }
+        }
+      }
+    },
+    "Ожидалась «)»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected “)”"
+          }
+        }
+      }
+    },
+    "Ожидалось «and» в between": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected “and” in between"
+          }
+        }
+      }
+    },
+    "Ожидалось значение": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected a value"
+          }
+        }
+      }
+    },
+    "Ожидалось имя поля": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected a field name"
+          }
+        }
+      }
+    },
+    "Ожидался «|» или конец запроса": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Expected “|” or the end of the query"
+          }
+        }
+      }
+    },
+    "Операция над объектом AD: %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AD object operation: %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Операция над объектом AD: %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Описание": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description"
+          }
+        }
+      }
+    },
+    "Описание / данные события": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Description / event data"
+          }
+        }
+      }
+    },
+    "Оранжевая": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orange"
+          }
+        }
+      }
+    },
+    "Особенности журналов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log artifacts"
+          }
+        }
+      }
+    },
+    "Остановить": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
+          }
+        }
+      }
+    },
+    "Остатки старых записей после freeSpaceOffset. Каждая восстановленная запись помечается флагом carved.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remnants of old records after freeSpaceOffset. Every recovered record is flagged carved."
+          }
+        }
+      }
+    },
+    "Отключена задача %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task disabled %@"
+          }
+        }
+      }
+    },
+    "Отключена учётная запись %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account disabled %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Отключена учётная запись %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Открыть в «Событиях»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open in Events"
+          }
+        }
+      }
+    },
+    "Открыть кейс DayBook": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open DayBook Case"
+          }
+        }
+      }
+    },
+    "Открыть кейс…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Case…"
+          }
+        }
+      }
+    },
+    "Открыть правило на экране «Детекты»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the rule on the Detections screen"
+          }
+        }
+      }
+    },
+    "Отмена": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Очистка журналов (1102 / 104 / 1100)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log clearing (1102 / 104 / 1100)"
+          }
+        }
+      }
+    },
+    "Ошибка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error"
+          }
+        }
+      }
+    },
+    "Ошибка в регулярном выражении: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular expression error: "
+          }
+        }
+      }
+    },
+    "Ошибка вычисления": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evaluation error"
+          }
+        }
+      }
+    },
+    "Ошибка преаутентификации Kerberos %@%@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kerberos pre-authentication failed %@%@: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Ошибка преаутентификации Kerberos %1$@%2$@: %3$@"
+          }
+        }
+      }
+    },
+    "Ошибки разбора": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parse errors"
+          }
+        }
+      }
+    },
+    "Папка с правилами Sigma (.yml)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folder with Sigma rules (.yml)"
+          }
+        }
+      }
+    },
+    "Параметры импорта": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import Options"
+          }
+        }
+      }
+    },
+    "Параметры импорта: carving %@ · объединение копий %@ · SHA-256 %@ · полнотекстовый индекс %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import options: carving %@ · merge copies %@ · SHA-256 %@ · full-text index %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Параметры импорта: carving %1$@ · объединение копий %2$@ · SHA-256 %3$@ · полнотекстовый индекс %4$@"
+          }
+        }
+      }
+    },
+    "Первое": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First"
+          }
+        }
+      }
+    },
+    "Первое появление": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First seen"
+          }
+        }
+      }
+    },
+    "Первое событие цепочки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First event of the chain"
+          }
+        }
+      }
+    },
+    "Перейти к событию": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go to event"
+          }
+        }
+      }
+    },
+    "Перейти к событию создания": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go to creation event"
+          }
+        }
+      }
+    },
+    "Подмена процесса %@ (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Process tampering %@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Подмена процесса %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "Подробно": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbose"
+          }
+        }
+      }
+    },
+    "Поиск по имени, алиасу, SID": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search by name, alias, SID"
+          }
+        }
+      }
+    },
+    "Поиск по образу или командной строке": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search by image or command line"
+          }
+        }
+      }
+    },
+    "Поиск файлов журналов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Looking for log files"
+          }
+        }
+      }
+    },
+    "Поиск: название, автор, тег, путь": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search: title, author, tag, path"
+          }
+        }
+      }
+    },
+    "Поиск: пользователь, источник, хост, LogonId": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search: user, source, host, LogonId"
+          }
+        }
+      }
+    },
+    "Показаны %lld из %@ — все значения…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Showing %lld of %@ — all values…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Показаны %1$lld из %2$@ — все значения…"
+          }
+        }
+      }
+    },
+    "Показать в таймлайне": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show in timeline"
+          }
+        }
+      }
+    },
+    "Показать все события": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show all events"
+          }
+        }
+      }
+    },
+    "Показать или скрыть гистограмму по времени": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show or hide the time histogram"
+          }
+        }
+      }
+    },
+    "Показать или скрыть панель деталей": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show or hide the details panel"
+          }
+        }
+      }
+    },
+    "Показать этот журнал в разделе «События» фильтром по файлу (вместе с текущим запросом)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show this log in Events as a file filter (together with the current query)"
+          }
+        }
+      }
+    },
+    "Полнотекстовый индекс": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full-text index"
+          }
+        }
+      }
+    },
+    "Пользователи": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Users"
+          }
+        }
+      }
+    },
+    "Пользователь": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "User"
+          }
+        }
+      }
+    },
+    "Пользователь %@ инициировал выход": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "User %@ initiated logoff"
+          }
+        }
+      }
+    },
+    "Пользователь (SID)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "User (SID)"
+          }
+        }
+      }
+    },
+    "Пользователь (любая роль)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "User (any role)"
+          }
+        }
+      }
+    },
+    "Поля": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fields"
+          }
+        }
+      }
+    },
+    "Поля, которых нет в этом кейсе": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fields absent from this case"
+          }
+        }
+      }
+    },
+    "Попытка задать пароль DSRM [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attempt to set the DSRM password [%@]"
+          }
+        }
+      }
+    },
+    "Попытка смены пароля %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password change attempt %@"
+          }
+        }
+      }
+    },
+    "Порядок строк": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Row order"
+          }
+        }
+      }
+    },
+    "После limit ожидается число": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A number is expected after limit"
+          }
+        }
+      }
+    },
+    "После not ожидается in, contains или exists": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "in, contains or exists is expected after not"
+          }
+        }
+      }
+    },
+    "После search ожидается строка в кавычках": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A quoted string is expected after search"
+          }
+        }
+      }
+    },
+    "После «%@» ожидается оператор (=, !=, <, >, contains, in, …)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An operator is expected after “%@” (=, !=, <, >, contains, in, …)"
+          }
+        }
+      }
+    },
+    "Последнее": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last"
+          }
+        }
+      }
+    },
+    "Похожие: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Similar: "
+          }
+        }
+      }
+    },
+    "Правила": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rules"
+          }
+        }
+      }
+    },
+    "Правила SigmaHQ и Hayabusa из поставки (DRL 1.1) и папка своих правил, если выбрана. Идёт в фоне после открытия кейса; результаты сохраняются в кейсе, их можно перезапустить на экране «Детекты».": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bundled SigmaHQ and Hayabusa rules (DRL 1.1) plus your rules folder, if set. Runs in the background after the case opens; results are saved in the case and can be re-run on the Detections screen."
+          }
+        }
+      }
+    },
+    "Правила: SigmaHQ, Hayabusa — DRL 1.1": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rules: SigmaHQ, Hayabusa — DRL 1.1"
+          }
+        }
+      }
+    },
+    "Правило": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rule"
+          }
+        }
+      }
+    },
+    "Правило не вычислялось": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rule was not evaluated"
+          }
+        }
+      }
+    },
+    "Превратить в фильтры и показать события": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn into filters and show events"
+          }
+        }
+      }
+    },
+    "Предки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancestors"
+          }
+        }
+      }
+    },
+    "Предупреждение": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warning"
+          }
+        }
+      }
+    },
+    "Предыдущее завершение работы было непредвиденным": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The previous shutdown was unexpected"
+          }
+        }
+      }
+    },
+    "Пресеты": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Presets"
+          }
+        }
+      }
+    },
+    "Привил.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Priv."
+          }
+        }
+      }
+    },
+    "Привилегированные входы (4672)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privileged logons (4672)"
+          }
+        }
+      }
+    },
+    "Проверка доступа: %@\\%@%@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access check: %@\\%@%@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Проверка доступа: %1$@\\%2$@%3$@ [%4$@]"
+          }
+        }
+      }
+    },
+    "Прогон %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Run %@"
+          }
+        }
+      }
+    },
+    "Продлён билет Kerberos %@ для %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kerberos ticket renewed %@ for %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Продлён билет Kerberos %1$@ для %2$@"
+          }
+        }
+      }
+    },
+    "Просмотр и анализ журналов Windows (.evtx) на macOS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows event log (.evtx) viewer and analyzer for macOS"
+          }
+        }
+      }
+    },
+    "Процесс": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Process"
+          }
+        }
+      }
+    },
+    "Процесс %@: %@ ← %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Process %@: %@ ← %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Процесс %1$@: %2$@ ← %3$@ [%4$@]"
+          }
+        }
+      }
+    },
+    "Процесс %@: %@ ← %@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Process %@: %@ ← %@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Процесс %1$@: %2$@ ← %3$@%4$@"
+          }
+        }
+      }
+    },
+    "Процесс завершён: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Process exited: %@"
+          }
+        }
+      }
+    },
+    "Процессов %@ · без события создания %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Processes %@ · without creation event %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Процессов %1$@ · без события создания %2$@"
+          }
+        }
+      }
+    },
+    "Процессы": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Processes"
+          }
+        }
+      }
+    },
+    "Пустых": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empty"
+          }
+        }
+      }
+    },
+    "Путь": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Path"
+          }
+        }
+      }
+    },
+    "Разбор записей": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parsing records"
+          }
+        }
+      }
+    },
+    "Разделы": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sections"
+          }
+        }
+      }
+    },
+    "Размер": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Size"
+          }
+        }
+      }
+    },
+    "Реестр %@: %@%@ (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registry %@: %@%@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Реестр %1$@: %2$@%3$@ (%4$@)"
+          }
+        }
+      }
+    },
+    "Реестр хостов, пользователей и IP": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registry of hosts, users and IPs"
+          }
+        }
+      }
+    },
+    "Родитель определён по PID (эвристика): последний процесс с этим PID на том же хосте и в той же загрузке, ещё не завершённый": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parent found by PID (heuristic): the latest process with this PID on the same host and boot that had not yet exited"
+          }
+        }
+      }
+    },
+    "Роли": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roles"
+          }
+        }
+      }
+    },
+    "Сброс пароля %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password reset %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Сброс пароля %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Сбросить": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset"
+          }
+        }
+      }
+    },
+    "Сведения": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Information"
+          }
+        }
+      }
+    },
+    "Сведения о кейсе": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Case Information"
+          }
+        }
+      }
+    },
+    "Свои: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom: "
+          }
+        }
+      }
+    },
+    "Связи": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Links"
+          }
+        }
+      }
+    },
+    "Связь родитель → потомок записана Sysmon (ParentProcessGuid) — точная.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The parent → child link is recorded by Sysmon (ParentProcessGuid) — exact."
+          }
+        }
+      }
+    },
+    "Сделать «=»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make “=”"
+          }
+        }
+      }
+    },
+    "Сделать «≠»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Make “≠”"
+          }
+        }
+      }
+    },
+    "Сеанс": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session"
+          }
+        }
+      }
+    },
+    "Сеансов %@ · незакрытых %@ · выходов без входа %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessions %@ · open %@ · logoffs without logon %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Сеансов %1$@ · незакрытых %2$@ · выходов без входа %3$@"
+          }
+        }
+      }
+    },
+    "Сеансы": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessions"
+          }
+        }
+      }
+    },
+    "Сетевые входы (тип 3)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Network logons (type 3)"
+          }
+        }
+      }
+    },
+    "Сеть: %@ → %@:%@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Network: %@ → %@:%@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Сеть: %1$@ → %2$@:%3$@%4$@"
+          }
+        }
+      }
+    },
+    "Синтаксис DQL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DQL Syntax"
+          }
+        }
+      }
+    },
+    "Синяя": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blue"
+          }
+        }
+      }
+    },
+    "Система": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System"
+          }
+        }
+      }
+    },
+    "Скопировать": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        }
+      }
+    },
+    "Скопировать DQL правила": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy rule DQL"
+          }
+        }
+      }
+    },
+    "Скопировать запрос событий": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy events query"
+          }
+        }
+      }
+    },
+    "Скрыть встроенные учётки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide built-in accounts"
+          }
+        }
+      }
+    },
+    "Скрыть журналы без событий (файлы остаются в кейсе и в сведениях о кейсе)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide logs without events (the files stay in the case and in Case Information)"
+          }
+        }
+      }
+    },
+    "Слева — журналы кейса, как в «Просмотре событий» Windows. События выбранного журнала показываются здесь, новые сверху; это не меняет запрос в разделе «События».": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On the left are the case's logs, as in Windows Event Viewer. The selected log's events appear here, newest first; this does not change the query in Events."
+          }
+        }
+      }
+    },
+    "Слишком большой файл для XLSX (больше 4 ГБ)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The file is too large for XLSX (over 4 GB)"
+          }
+        }
+      }
+    },
+    "Слишком глубокая вложенность скобок": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parentheses are nested too deeply"
+          }
+        }
+      }
+    },
+    "Слишком длинный запрос": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The query is too long"
+          }
+        }
+      }
+    },
+    "Слишком длинный список значений": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The list of values is too long"
+          }
+        }
+      }
+    },
+    "Служба %@ неожиданно завершилась": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service %@ terminated unexpectedly"
+          }
+        }
+      }
+    },
+    "Служба %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service %@: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Служба %1$@: %2$@"
+          }
+        }
+      }
+    },
+    "Служба журналов событий запущена": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Event log service started"
+          }
+        }
+      }
+    },
+    "Служба журналов событий остановлена": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Event log service stopped"
+          }
+        }
+      }
+    },
+    "Смещение UTC±": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UTC± offset"
+          }
+        }
+      }
+    },
+    "Событие": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Event"
+          }
+        }
+      }
+    },
+    "Событие входа (4624)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logon event (4624)"
+          }
+        }
+      }
+    },
+    "Событие выхода": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logoff event"
+          }
+        }
+      }
+    },
+    "Событие не выбрано": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No event selected"
+          }
+        }
+      }
+    },
+    "Событий": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events"
+          }
+        }
+      }
+    },
+    "Событий в кейсе: %@ · файлов: %lld · создан: %@ · схема %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events in case: %@ · files: %lld · created: %@ · schema %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Событий в кейсе: %1$@ · файлов: %2$lld · создан: %3$@ · схема %4$@"
+          }
+        }
+      }
+    },
+    "Событий в экспорте": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events exported"
+          }
+        }
+      }
+    },
+    "События": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events"
+          }
+        }
+      }
+    },
+    "События LSM этого сеанса": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "LSM events of this session"
+          }
+        }
+      }
+    },
+    "События правила": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rule events"
+          }
+        }
+      }
+    },
+    "События правила в таймлайне": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rule events in timeline"
+          }
+        }
+      }
+    },
+    "События с аномальными датами (например, 1601 год) не попадают на ось по умолчанию, но остаются в таблице и запросах": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events with anomalous dates (e.g. year 1601) are left off the axis by default but stay in the table and queries"
+          }
+        }
+      }
+    },
+    "События сеанса": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session events"
+          }
+        }
+      }
+    },
+    "События сеанса в таймлайне": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session events in timeline"
+          }
+        }
+      }
+    },
+    "События этого процесса": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events of this process"
+          }
+        }
+      }
+    },
+    "События этого процесса в таймлайне": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events of this process in timeline"
+          }
+        }
+      }
+    },
+    "События, где встречаются обе сущности": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events where both entities occur"
+          }
+        }
+      }
+    },
+    "События, единый таймлайн или реестр хостов, пользователей и IP": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Events, unified timeline or the registry of hosts, users and IPs"
+          }
+        }
+      }
+    },
+    "Создан файл %@ (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File created %@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Создан файл %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "Создана задача %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task created %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Создана задача %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Создана учётная запись %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account created %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Создана учётная запись %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Создание процессов (4688 / Sysmon 1)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Process creation (4688 / Sysmon 1)"
+          }
+        }
+      }
+    },
+    "Создано %@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Created %@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Создано %1$@%2$@"
+          }
+        }
+      }
+    },
+    "Создать кейс": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create Case"
+          }
+        }
+      }
+    },
+    "Сокрытие следов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Defense evasion"
+          }
+        }
+      }
+    },
+    "Сопоставление: вход 4624 и выход 4634/4647 по TargetLogonId на том же хосте в пределах одной загрузки (границы загрузок — события 12, 6005, 4608). Привилегии — 4672 с тем же SubjectLogonId.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matching: logon 4624 and logoff 4634/4647 by TargetLogonId on the same host within one boot (boot boundaries: events 12, 6005, 4608). Privileges: 4672 with the same SubjectLogonId."
+          }
+        }
+      }
+    },
+    "Сортировка по времени и дедупликация": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sorting by time and deduplication"
+          }
+        }
+      }
+    },
+    "Сохранить": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        }
+      }
+    },
+    "Специальные привилегии: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Special privileges: %@"
+          }
+        }
+      }
+    },
+    "Сработавшие": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matched"
+          }
+        }
+      }
+    },
+    "Сработавшие правила (%lld)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matched rules (%lld)"
+          }
+        }
+      }
+    },
+    "Сработало на %lld событиях, хостов: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Matched events: %lld · hosts: %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Сработало на %1$lld событиях, хостов: %2$lld"
+          }
+        }
+      }
+    },
+    "Сравнение «%@» возможно только с числом (или для поля time)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparison “%@” works only with a number (or the time field)"
+          }
+        }
+      }
+    },
+    "Сравнение двух полей поддерживает =, ==, !=, contains, startswith, endswith": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparing two fields supports =, ==, !=, contains, startswith, endswith"
+          }
+        }
+      }
+    },
+    "Ссылки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "References"
+          }
+        }
+      }
+    },
+    "Статистика импорта по каждому файлу: чанки, CRC, восстановленные записи, копии, SHA-256": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import statistics per file: chunks, CRC, recovered records, copies, SHA-256"
+          }
+        }
+      }
+    },
+    "Статус": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
+        }
+      }
+    },
+    "Стоп": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop"
+          }
+        }
+      }
+    },
+    "Считать SHA-256 исходных файлов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compute SHA-256 of source files"
+          }
+        }
+      }
+    },
+    "Сырые байты недоступны.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raw bytes unavailable."
+          }
+        }
+      }
+    },
+    "Таймлайн": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timeline"
+          }
+        }
+      }
+    },
+    "Теги": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tags"
+          }
+        }
+      }
+    },
+    "Тип": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type"
+          }
+        }
+      }
+    },
+    "Тип запуска службы %@: %@ → %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service start type %@: %@ → %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Тип запуска службы %1$@: %2$@ → %3$@"
+          }
+        }
+      }
+    },
+    "Точка с запятой и BOM. Значения, начинающиеся с = + - @, получают апостроф впереди, чтобы Excel не выполнял их как формулы (Excel апостроф не показывает)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semicolon and BOM. Values starting with = + - @ get a leading apostrophe so Excel does not run them as formulas (Excel does not display it)"
+          }
+        }
+      }
+    },
+    "Убрать закладку": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove bookmark"
+          }
+        }
+      }
+    },
+    "Убрать колонку «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove column “%@”"
+          }
+        }
+      }
+    },
+    "Удалена задача %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task deleted %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Удалена задача %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Удалена учётная запись %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account deleted %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Удалена учётная запись %1$@ [%2$@]"
+          }
+        }
+      }
+    },
+    "Удалить": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "Удалён файл %@ (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File deleted %@ (%@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Удалён файл %1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "Уровень": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Level"
+          }
+        }
+      }
+    },
+    "Уровень правила": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rule level"
+          }
+        }
+      }
+    },
+    "Уровень правила: informational, low, medium, high, critical": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rule level: informational, low, medium, high, critical"
+          }
+        }
+      }
+    },
+    "Условия по ним ложны (а «поле: null» — истинно), поэтому отсутствие срабатываний не означает, что активности не было.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conditions on them are false (and “field: null” is true), so no matches does not mean there was no activity."
+          }
+        }
+      }
+    },
+    "Успешные входы (4624)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Successful logons (4624)"
+          }
+        }
+      }
+    },
+    "Успешный вход %@ (тип %@%@)%@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Successful logon %@ (type %@%@)%@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Успешный вход %1$@ (тип %2$@%3$@)%4$@%5$@"
+          }
+        }
+      }
+    },
+    "Установлена служба %@: %@ (%@, %@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service installed %@: %@ (%@, %@)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Установлена служба %1$@: %2$@ (%3$@, %4$@)"
+          }
+        }
+      }
+    },
+    "Установлена служба %@: %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service installed %@: %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Установлена служба %1$@: %2$@ [%3$@]"
+          }
+        }
+      }
+    },
+    "Устаревшие чанки (остатки)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stale chunks (remnants)"
+          }
+        }
+      }
+    },
+    "Учётная запись заблокирована: %@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account locked out: %@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Учётная запись заблокирована: %1$@%2$@"
+          }
+        }
+      }
+    },
+    "Учётная запись разблокирована: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Account unlocked: %@"
+          }
+        }
+      }
+    },
+    "Файл": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File"
+          }
+        }
+      }
+    },
+    "Файлы журналов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log files"
+          }
+        }
+      }
+    },
+    "Фильтр  = %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter  = %@"
+          }
+        }
+      }
+    },
+    "Фильтр  = значение": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter  = value"
+          }
+        }
+      }
+    },
+    "Фильтр DQL, например EventID = 4624": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DQL filter, e.g. EventID = 4624"
+          }
+        }
+      }
+    },
+    "Фильтр по выделению": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter by selection"
+          }
+        }
+      }
+    },
+    "Фильтр, затем стадии через «|». Значения без пробелов можно писать без кавычек; сравнение «=» без учёта регистра.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A filter, then stages separated by “|”. Values without spaces need no quotes; “=” is case-insensitive."
+          }
+        }
+      }
+    },
+    "Фильтр: %@ = %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter: %@ = %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Фильтр: %1$@ = %2$@"
+          }
+        }
+      }
+    },
+    "Фильтры": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filters"
+          }
+        }
+      }
+    },
+    "Фиолетовая": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purple"
+          }
+        }
+      }
+    },
+    "Флаг": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flag"
+          }
+        }
+      }
+    },
+    "Флаги": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flags"
+          }
+        }
+      }
+    },
+    "Флаги записей": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Record flags"
+          }
+        }
+      }
+    },
+    "Флаги: carved, beyondHeader, stale, afterGap, parseError, timeSkew, foreignTemplate": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flags: carved, beyondHeader, stale, afterGap, parseError, timeSkew, foreignTemplate"
+          }
+        }
+      }
+    },
+    "Хвост, байт": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tail, bytes"
+          }
+        }
+      }
+    },
+    "Хост": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host"
+          }
+        }
+      }
+    },
+    "Хост (любая роль)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host (any role)"
+          }
+        }
+      }
+    },
+    "Хостов": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hosts"
+          }
+        }
+      }
+    },
+    "Хосты": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hosts"
+          }
+        }
+      }
+    },
+    "Цепочки TerminalServices-LocalSessionManager": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TerminalServices-LocalSessionManager chains"
+          }
+        }
+      }
+    },
+    "Цепочки строятся по SessionID хоста в журнале TerminalServices-LocalSessionManager: 21 начинает цепочку, 23 закрывает.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chains are built per host SessionID in the TerminalServices-LocalSessionManager log: 21 starts a chain, 23 ends it."
+          }
+        }
+      }
+    },
+    "Чанки за заголовком (новые данные)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chunks beyond the header (new data)"
+          }
+        }
+      }
+    },
+    "Чанков (заголовок / физ.)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chunks (header / physical)"
+          }
+        }
+      }
+    },
+    "Часовой пояс (с переходом на летнее время)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time zone (with daylight saving)"
+          }
+        }
+      }
+    },
+    "Часовой пояс колонки времени": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time zone of the time column"
+          }
+        }
+      }
+    },
+    "Часовой пояс отображения. В кейсе время хранится в UTC.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Display time zone. The case stores times in UTC."
+          }
+        }
+      }
+    },
+    "Шаги": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steps"
+          }
+        }
+      }
+    },
+    "Экспорт": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export"
+          }
+        }
+      }
+    },
+    "Экспорт (UTC)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exported (UTC)"
+          }
+        }
+      }
+    },
+    "Экспорт не удался: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export failed: "
+          }
+        }
+      }
+    },
+    "Экспорт результата": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export Result"
+          }
+        }
+      }
+    },
+    "Экспорт сработавших правил": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export matched rules"
+          }
+        }
+      }
+    },
+    "Экспорт сработавших правил — CSV для Excel…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export matched rules — CSV for Excel…"
+          }
+        }
+      }
+    },
+    "Экспорт сработавших правил — CSV…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export matched rules — CSV…"
+          }
+        }
+      }
+    },
+    "Экспорт текущего результата": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export the current result"
+          }
+        }
+      }
+    },
+    "Явные учётные данные (4648)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explicit credentials (4648)"
+          }
+        }
+      }
+    },
+    "Явные учётные данные: %@ → %@ на %@%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explicit credentials: %@ → %@ on %@%@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Явные учётные данные: %1$@ → %2$@ на %3$@%4$@"
+          }
+        }
+      }
+    },
+    "Язык запросов DQL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DQL Query Language"
+          }
+        }
+      }
+    },
+    "Ячеек, обрезанных до 32 767 символов (лимит Excel)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cells cut to 32,767 characters (Excel limit)"
+          }
+        }
+      }
+    },
+    "агрегация в condition («%@») не поддерживается": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "aggregation in condition (“%@”) is not supported"
+          }
+        }
+      }
+    },
+    "билет истёк": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ticket expired"
+          }
+        }
+      }
+    },
+    "восстановлено из slack": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "recovered from slack"
+          }
+        }
+      }
+    },
+    "время в выбранном поясе (Z — UTC)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "time in the selected zone (Z means UTC)"
+          }
+        }
+      }
+    },
+    "все журналы (каналы задаёт само правило)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "all logs (the rule itself sets the channels)"
+          }
+        }
+      }
+    },
+    "вход вне разрешённого времени": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "logon outside allowed hours"
+          }
+        }
+      }
+    },
+    "вход с неразрешённой рабочей станции": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "logon from a workstation that is not allowed"
+          }
+        }
+      }
+    },
+    "входы по сети и RDP": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "network and RDP logons"
+          }
+        }
+      }
+    },
+    "высокий": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "high"
+          }
+        }
+      }
+    },
+    "группировка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "grouping"
+          }
+        }
+      }
+    },
+    "да": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "yes"
+          }
+        }
+      }
+    },
+    "для поля «%@» (вся EventData) поддерживается только contains": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "for field “%@” (the whole EventData) only contains is supported"
+          }
+        }
+      }
+    },
+    "есть копии в других файлах/slack (см. «Копии этой записи»)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "has copies in other files/slack (see “Copies of this record”)"
+          }
+        }
+      }
+    },
+    "журнал": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "log"
+          }
+        }
+      }
+    },
+    "загрузка правил…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "loading rules…"
+          }
+        }
+      }
+    },
+    "имя поля с пробелами — в обратных кавычках": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "a field name with spaces goes in backquotes"
+          }
+        }
+      }
+    },
+    "интерактивный": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "interactive"
+          }
+        }
+      }
+    },
+    "информ.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "info"
+          }
+        }
+      }
+    },
+    "источник": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "source"
+          }
+        }
+      }
+    },
+    "категория logsource «%@» не сопоставлена журналам .evtx": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "logsource category “%@” is not mapped to .evtx logs"
+          }
+        }
+      }
+    },
+    "ключевое слово с маской внутри («%@») не поддерживается": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "a keyword with an inner wildcard (“%@”) is not supported"
+          }
+        }
+      }
+    },
+    "контекст события": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "event context"
+          }
+        }
+      }
+    },
+    "копия размера записи не совпадает": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "record size copy mismatch"
+          }
+        }
+      }
+    },
+    "корреляционное правило Sigma — не поддерживается": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sigma correlation rule — not supported"
+          }
+        }
+      }
+    },
+    "критический": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "critical"
+          }
+        }
+      }
+    },
+    "кэшированная разблокировка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cached unlock"
+          }
+        }
+      }
+    },
+    "кэшированный RDP": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cached RDP"
+          }
+        }
+      }
+    },
+    "кэшированный интерактивный": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cached interactive"
+          }
+        }
+      }
+    },
+    "локальное хранилище учётных данных недоступно": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "local credential store unavailable"
+          }
+        }
+      }
+    },
+    "маска: * и ?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wildcards: * and ?"
+          }
+        }
+      }
+    },
+    "межсетевой экран аутентификации": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "authentication firewall"
+          }
+        }
+      }
+    },
+    "модификатор expand (плейсхолдеры) не поддерживается": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "the expand modifier (placeholders) is not supported"
+          }
+        }
+      }
+    },
+    "модификатор «%@» не поддерживается": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "modifier “%@” is not supported"
+          }
+        }
+      }
+    },
+    "модификаторы %@ несовместимы с %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "modifiers %@ cannot be combined with %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "модификаторы %1$@ несовместимы с %2$@"
+          }
+        }
+      }
+    },
+    "назначение": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "destination"
+          }
+        }
+      }
+    },
+    "не загружено: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "not loaded: "
+          }
+        }
+      }
+    },
+    "не закрыт": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "not closed"
+          }
+        }
+      }
+    },
+    "не разобрано условие «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "could not parse condition “%@”"
+          }
+        }
+      }
+    },
+    "не удалось прочитать файл как UTF-8": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "could not read the file as UTF-8"
+          }
+        }
+      }
+    },
+    "не указан": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "not specified"
+          }
+        }
+      }
+    },
+    "неверное имя или пароль": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bad user name or password"
+          }
+        }
+      }
+    },
+    "неверный пароль": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wrong password"
+          }
+        }
+      }
+    },
+    "неизвестный модификатор «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unknown modifier “%@”"
+          }
+        }
+      }
+    },
+    "некорректный UTF-16": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "invalid UTF-16"
+          }
+        }
+      }
+    },
+    "неожиданный конец condition": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unexpected end of condition"
+          }
+        }
+      }
+    },
+    "неподдерживаемая структура detection «%@»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unsupported detection structure “%@”"
+          }
+        }
+      }
+    },
+    "несколько YAML-документов в файле (коллекция правил или корреляция Sigma) — не поддерживается": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "several YAML documents in one file (a rule collection or Sigma correlation) — not supported"
+          }
+        }
+      }
+    },
+    "нет": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no"
+          }
+        }
+      }
+    },
+    "нет condition": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no condition"
+          }
+        }
+      }
+    },
+    "нет detection": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no detection"
+          }
+        }
+      }
+    },
+    "нет title": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no title"
+          }
+        }
+      }
+    },
+    "нет «)» в condition": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "missing “)” in condition"
+          }
+        }
+      }
+    },
+    "нет сужающих условий по системным полям": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no narrowing conditions on system fields"
+          }
+        }
+      }
+    },
+    "нет цели после «of»": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no target after “of”"
+          }
+        }
+      }
+    },
+    "низкий": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "low"
+          }
+        }
+      }
+    },
+    "новые учётные данные": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "new credentials"
+          }
+        }
+      }
+    },
+    "ограничение учётной записи": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "account restriction"
+          }
+        }
+      }
+    },
+    "отрицания: != и not": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "negation: != and not"
+          }
+        }
+      }
+    },
+    "ошибка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "error"
+          }
+        }
+      }
+    },
+    "ошибка YAML: ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "YAML error: "
+          }
+        }
+      }
+    },
+    "ошибка разбора": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "parse error"
+          }
+        }
+      }
+    },
+    "пакетный": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "batch"
+          }
+        }
+      }
+    },
+    "пауза %lld д %lld ч %lld мин": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gap %lld d %lld h %lld min"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "пауза %1$lld д %2$lld ч %3$lld мин"
+          }
+        }
+      }
+    },
+    "пауза %lld ч %lld мин": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gap %lld h %lld min"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "пауза %1$lld ч %2$lld мин"
+          }
+        }
+      }
+    },
+    "по времени, по возрастанию": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "by time, ascending"
+          }
+        }
+      }
+    },
+    "по времени, по убыванию": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "by time, descending"
+          }
+        }
+      }
+    },
+    "по полю запроса": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "by the query's sort field"
+          }
+        }
+      }
+    },
+    "подстрока (также startswith, endswith)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "substring (also startswith, endswith)"
+          }
+        }
+      }
+    },
+    "поиск по всем полям": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "search in every field"
+          }
+        }
+      }
+    },
+    "поле «%@» (%@) не индексируется": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "field “%@” (%@) is not indexed"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "поле «%1$@» (%2$@) не индексируется"
+          }
+        }
+      }
+    },
+    "пользователь не существует": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "user does not exist"
+          }
+        }
+      }
+    },
+    "после повреждённого участка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "after a damaged area"
+          }
+        }
+      }
+    },
+    "правил: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rules: %lld"
+          }
+        }
+      }
+    },
+    "прежнее имя": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "previous name"
+          }
+        }
+      }
+    },
+    "путь · SHA-256 · записей": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "path · SHA-256 · records"
+          }
+        }
+      }
+    },
+    "разблокировка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unlock"
+          }
+        }
+      }
+    },
+    "рассинхронизация времени": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "clock skew"
+          }
+        }
+      }
+    },
+    "регулярное выражение": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "regular expression"
+          }
+        }
+      }
+    },
+    "регулярное выражение «%@» по полю %@: проверка %lld знач. прервана по лимиту %@ с процессорного времени на значение — совпадения в них не проверены": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "regular expression “%@” on field %@: checking %lld values stopped at the limit of %@ s CPU time per value — they were not checked for matches"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "регулярное выражение «%1$@» по полю %2$@: проверка %3$lld знач. прервана по лимиту %4$@ с процессорного времени на значение — совпадения в них не проверены"
+          }
+        }
+      }
+    },
+    "регулярное выражение не компилируется (ICU): ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "regular expression does not compile (ICU): "
+          }
+        }
+      }
+    },
+    "сервер в неверном состоянии": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "server in the wrong state"
+          }
+        }
+      }
+    },
+    "сервер не найден": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "server not found"
+          }
+        }
+      }
+    },
+    "сервер требует только Kerberos (U2U)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "server requires Kerberos only (U2U)"
+          }
+        }
+      }
+    },
+    "сервис logsource «%@» не сопоставлен журналу": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "logsource service “%@” is not mapped to a log"
+          }
+        }
+      }
+    },
+    "сетевой": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "network"
+          }
+        }
+      }
+    },
+    "сетевой, открытый пароль": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "network, cleartext password"
+          }
+        }
+      }
+    },
+    "слишком много кандидатов: %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "too many candidates: %lld"
+          }
+        }
+      }
+    },
+    "служба": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "service"
+          }
+        }
+      }
+    },
+    "сортировка и колонки": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sorting and columns"
+          }
+        }
+      }
+    },
+    "средний": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "medium"
+          }
+        }
+      }
+    },
+    "срок действия пароля истёк": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "password expired"
+          }
+        }
+      }
+    },
+    "срок действия учётной записи истёк": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "account expired"
+          }
+        }
+      }
+    },
+    "субъект": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "subject"
+          }
+        }
+      }
+    },
+    "тип входа не разрешён": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "logon type not granted"
+          }
+        }
+      }
+    },
+    "требуется смена пароля": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "password must change"
+          }
+        }
+      }
+    },
+    "успешно": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "success"
+          }
+        }
+      }
+    },
+    "устаревший чанк": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "stale chunk"
+          }
+        }
+      }
+    },
+    "уч. запись компьютера": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "computer account"
+          }
+        }
+      }
+    },
+    "учётная запись заблокирована": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "account locked out"
+          }
+        }
+      }
+    },
+    "учётная запись не найдена": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "account not found"
+          }
+        }
+      }
+    },
+    "учётная запись отключена": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "account disabled"
+          }
+        }
+      }
+    },
+    "учётная запись отключена или заблокирована": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "account disabled or locked out"
+          }
+        }
+      }
+    },
+    "флаги i/m/s допустимы только с re": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "flags i/m/s are allowed only with re"
+          }
+        }
+      }
+    },
+    "цель": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "target"
+          }
+        }
+      }
+    },
+    "чанк за заголовком (новые данные)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "chunk beyond the header (new data)"
+          }
+        }
+      }
+    },
+    "числа: < <= > >= between": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "numbers: < <= > >= between"
+          }
+        }
+      }
+    },
+    "шаблон из другого чанка": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "template from another chunk"
+          }
+        }
+      }
+    },
+    "шаблон не найден": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "template not found"
+          }
+        }
+      }
+    },
+    "—": {
+      "shouldTranslate": false
+    },
+    "• %@": {
+      "shouldTranslate": false
+    },
+    "…[обрезано: полная длина %lld символов]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "…[cut: full length %lld characters]"
+          }
+        }
+      }
+    },
+    "≠": {
+      "shouldTranslate": false
+    },
+    "≥ высокий": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥ high"
+          }
+        }
+      }
+    },
+    "≥ низкий": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥ low"
+          }
+        }
+      }
+    },
+    "≥ средний": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "≥ medium"
+          }
+        }
+      }
+    },
+    "⚠ Defender обнаружил %@ в %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠ Defender detected %@ in %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "⚠ Defender обнаружил %1$@ в %2$@"
+          }
+        }
+      }
+    },
+    "⚠ Defender: защита в реальном времени отключена": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠ Defender: real-time protection disabled"
+          }
+        }
+      }
+    },
+    "⚠ Журнал %@ очищен [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠ Log %@ cleared [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "⚠ Журнал %1$@ очищен [%2$@]"
+          }
+        }
+      }
+    },
+    "⚠ Журнал безопасности очищен [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠ Security log cleared [%@]"
+          }
+        }
+      }
+    },
+    "⚠ Репликация каталога (возможен DCSync): %@ [%@]": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠ Directory replication (possible DCSync): %@ [%@]"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "new",
+            "value": "⚠ Репликация каталога (возможен DCSync): %1$@ [%2$@]"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

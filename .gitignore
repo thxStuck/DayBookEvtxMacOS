@@ -1,0 +1,17 @@
+# Build output
+build/
+*.noindex/
+DerivedData/
+Packages/DaybookKit/.build/
+.swiftpm/
+
+# Xcode user state
+xcuserdata/
+*.xcuserstate
+
+# macOS
+.DS_Store
+
+# Cases and evidence never belong in the repository
+*.daybook/
+*.evtx

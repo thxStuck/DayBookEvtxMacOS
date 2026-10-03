@@ -1,0 +1,47 @@
+DayBookEvtxMacOS
+Copyright (c) 2026 thxStuck. All rights reserved.
+
+[RU]
+Все права на исходный код, ресурсы и документацию этого репозитория принадлежат
+правообладателю (thxStuck), за исключением сторонних компонентов, перечисленных ниже.
+
+Без предварительного письменного разрешения правообладателя запрещается копировать,
+изменять, переделывать, объединять с другим кодом, публиковать, распространять,
+сублицензировать и продавать этот код и его производные.
+
+Разрешается:
+  * просматривать исходный код в этом репозитории;
+  * создавать issue — сообщать об ошибках и предлагать улучшения.
+
+Публикуя публичный репозиторий, правообладатель также предоставляет пользователям
+GitHub права, прямо предусмотренные Условиями использования GitHub (просмотр и fork
+внутри GitHub). Никакие иные права не предоставляются.
+
+ПРОГРАММА ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ.
+
+[EN]
+All rights to the source code, resources and documentation in this repository belong to
+the copyright holder (thxStuck), except for the third-party components listed below.
+
+Without prior written permission of the copyright holder you may not copy, modify,
+adapt, merge, publish, distribute, sublicense or sell this code or derivative works.
+
+You may:
+  * view the source code in this repository;
+  * open issues to report bugs and suggest improvements.
+
+By making the repository public, the copyright holder grants GitHub users only the rights
+set out in the GitHub Terms of Service (viewing and forking on GitHub). No other rights
+are granted.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+Third-party components (they keep their own licenses and are NOT covered by the terms above):
+
+  * Sigma detection rules from SigmaHQ (https://github.com/SigmaHQ/sigma) and Hayabusa
+    (https://github.com/Yamato-Security/hayabusa-rules), bundled in
+    DayBookEvtxMacOS/Resources/Rules/rules.json, including Hayabusa field aliases
+    (config/eventkey_alias.txt) — Detection Rule License (DRL) 1.1,
+    DayBookEvtxMacOS/Resources/Rules/DRL-1.1.md. Every rule keeps its original text and
+    author; the app shows the author next to every match.
+  * Yams (https://github.com/jpsim/Yams), fetched by Swift Package Manager — MIT License.
